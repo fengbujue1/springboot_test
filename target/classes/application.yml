@@ -1,0 +1,10 @@
+my:
+  name: lisa
+  age: 26
+
+person:
+  name: zyj
+  age: 26
+  height: 1.7
+  weight: 68
+
