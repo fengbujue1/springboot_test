@@ -1,8 +1,7 @@
-package com.zyj.springboot_test.test.JAVA_IO.read_file;
+package com.zyj.springboot_test.util;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 
 public class FileUtil {
