@@ -3,3 +3,29 @@
 --- Created by Administrator.
 --- DateTime: 2019/12/18 20:41
 ---
+-- 参数已
+
+local key1 = KEYS[1];
+local key2 = KEYS[2];
+local arg1 = AVGV[1];
+local arg2 = ARGV[2];
+local v1 = redis.call("get",key1);
+local v2 = redis.call("get",key2);
+
+if v1 == true or v2==true then
+    local del1 = redis.call("del",key1);
+    local del2 = redis.call("del",key2);
+    return del2;
+end
+
+if v1 == false then
+    redis.call("set",key1,arg1);
+end
+if v2 == false then
+    redis.call("set",key2,arg2);
+end
+
+local sum = tonumber(arg2)+tonumber(arg1);
+local retSum = redis.call("set",sum,sum);
+return 0;
+

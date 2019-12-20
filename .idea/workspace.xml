@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa7e4eb7-742c-42c1-88d0-9085507d188f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/LuaUsageJedis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/NormalUsageJedis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lua/test.lua" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/FileUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/LuaUsageJedis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/LuaUsageJedis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/NormalUsageJedis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/NormalUsageJedis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lua/test.lua" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lua/test.lua" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,83 +54,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TestFileInputReader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/TestFileInputReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PrintWriter.java" pinned="false" current-in-tab="false">
-        <entry file="jar://E:/src.zip!/java/io/PrintWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="333" column="16" selection-start-line="333" selection-start-column="16" selection-end-line="333" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Writer.java" pinned="false" current-in-tab="false">
-        <entry file="jar://E:/src.zip!/java/io/Writer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8910">
-              <caret line="322" column="25" selection-start-line="322" selection-start-column="25" selection-end-line="322" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2247">
-              <caret line="92" column="20" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NormalUsageJedis.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/NormalUsageJedis.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BinaryJedis.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/BinaryJedis.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="1367" column="18" selection-start-line="1367" selection-start-column="18" selection-end-line="1367" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LuaUsageJedis.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/LuaUsageJedis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="411">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.lua" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/lua/test.lua">
+      <file leaf-file-name="FileUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/FileUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="338">
+              <caret line="14" column="90" selection-start-line="14" selection-start-column="90" selection-end-line="14" selection-end-column="90" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Jedis.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/Jedis.class">
+      <file leaf-file-name="TestFileInputReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/TestFileInputReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+            <state relative-caret-position="240">
+              <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="19" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -145,13 +96,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="test.lua" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/lua/test.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NormalUsageJedis.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/NormalUsageJedis.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="NewLua" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -182,6 +151,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/ExecutorsInJDK.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/TestJDDKProxy.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/TestFileInputReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/FileUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/LuaUsageJedis.java" />
         <option value="$PROJECT_DIR$/src/main/resources/lua/test.lua" />
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/NormalUsageJedis.java" />
@@ -296,6 +267,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="springboot_test" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="read_file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboot_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springboot_test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="springboot_test" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="redis_jedis" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -364,6 +345,16 @@
         </pattern>
       </extension>
     </configuration>
+    <configuration name="LuaUsageJedis" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.redis_jedis.LuaUsageJedis" />
+      <module name="springboot_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zyj.springboot_test.test.redis_jedis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration name="NormalUsageJedis" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.redis_jedis.NormalUsageJedis" />
       <module name="springboot_test" />
@@ -394,35 +385,25 @@
         </pattern>
       </extension>
     </configuration>
-    <configuration name="Thread_pool" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.testThread.test_thread_pool.Thread_pool" />
-      <module name="springboot_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.zyj.springboot_test.test.testThread.test_thread_pool.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
     <configuration name="SpringbootTestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="springboot_test" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.zyj.springboot_test.SpringbootTestApplication" />
     </configuration>
     <list>
       <item itemvalue="Spring Boot.SpringbootTestApplication" />
-      <item itemvalue="Application.Thread_pool" />
       <item itemvalue="Application.ExecutorsInJDK" />
       <item itemvalue="Application.TestSingleton" />
       <item itemvalue="Application.TestJDDKProxy" />
       <item itemvalue="Application.NormalUsageJedis" />
+      <item itemvalue="Application.LuaUsageJedis" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.NormalUsageJedis" />
+        <item itemvalue="Application.LuaUsageJedis" />
         <item itemvalue="Application.TestSingleton" />
         <item itemvalue="Application.TestJDDKProxy" />
         <item itemvalue="Application.ExecutorsInJDK" />
-        <item itemvalue="Application.Thread_pool" />
       </list>
     </recent_temporary>
   </component>
@@ -442,12 +423,12 @@
       <workItem from="1576632373412" duration="2365000" />
       <workItem from="1576649685869" duration="680000" />
       <workItem from="1576651581261" duration="1745000" />
-      <workItem from="1576669561311" duration="2103000" />
+      <workItem from="1576669561311" duration="10416000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21393000" />
+    <option name="totallyTimeSpent" value="29706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -460,10 +441,10 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="2" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info id="Structure" order="1" sideWeight="0.13149351" side_tool="true" visible="true" weight="0.26332623" />
+      <window_info id="Structure" order="1" sideWeight="0.129771" side_tool="true" visible="true" weight="0.26332623" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997986" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991276" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3293348" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
@@ -472,10 +453,10 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="LuaCheck" order="13" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32824427" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32824427" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8685065" visible="true" weight="0.26332623" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.870229" visible="true" weight="0.26332623" />
       <window_info anchor="right" id="Bean Validation" order="9" />
       <window_info id="Web" order="7" sideWeight="0.5015015" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -494,14 +475,12 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/proxy/TestCglibProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3390">
@@ -771,31 +750,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/TestFileInputReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/src.zip!/java/io/PrintWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="333" column="16" selection-start-line="333" selection-start-column="16" selection-end-line="333" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2247">
           <caret line="92" column="20" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/test_NIO/TestSocketClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="4" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -806,20 +764,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/LuaUsageJedis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/lua/test.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/BinaryJedis.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -827,10 +771,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://E:/src.zip!/java/io/PrintWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="333" column="16" selection-start-line="333" selection-start-column="16" selection-end-line="333" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/lua/test.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/LuaUsageJedis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/FileUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="14" column="90" selection-start-line="14" selection-start-column="90" selection-end-line="14" selection-end-column="90" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/TestFileInputReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/test_NIO/TestSocketClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="4" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/redis_jedis/NormalUsageJedis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        <state relative-caret-position="420">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
         </state>
       </provider>
     </entry>
