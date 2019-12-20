@@ -10,9 +10,31 @@ public class LuaUsageJedis {
     public static void main(String[] args) {
         Jedis jedis = new Jedis("localhost", 6320);
         jedis.scriptFlush();
+//        testReturn(jedis);
+        testLua(jedis);
 
+    }
+
+    /**
+     *测试功能
+     * 是否有 key1 key2,有的话全删除
+     * 没有的话，存入，并且再存一个 他们的和（键是和，值也是和）
+     * @param jedis
+     */
+    public static void testLua(Jedis jedis) {
         String luaString = FileUtil.readFileFromClassPath("lua\\test.lua");
-        jedis.eval(luaString, 2, key1, key2, "10", "20");
+        Object eval = jedis.eval(luaString, 2, key1, key2, "10", "20");
+        System.out.println(eval);
+    }
+
+    /**
+     * 测试返回值
+     * @param jedis
+     */
+    public static void testReturn(Jedis jedis) {
+        String luaString = FileUtil.readFileFromClassPath("lua\\test_return.lua");
+        Object eval = jedis.eval(luaString, 1, "testReturn", "hello");
+        System.out.println(eval);
     }
 
 

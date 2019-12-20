@@ -15,7 +15,9 @@ public class FileUtil {
             bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(ileClassPath)));
             while ((s = bufferedReader.readLine()) != null) {
                 sb.append(new String(s.getBytes(),"utf-8"));
-
+                //lua脚本读取的时候，换行符必须自己添加，因为用的是readline方法，
+                //否则拼接出来的字符串就是一整行，传进redis 中会报错（或者直接在本地就报错了）
+                sb.append("\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
