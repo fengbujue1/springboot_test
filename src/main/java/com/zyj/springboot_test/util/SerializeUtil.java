@@ -40,8 +40,9 @@ public class SerializeUtil {
      * @param <T>
      * @return
      */
-    public static <T> byte[] bean2Byte(T obj, Class<T> clazz) {
-        Schema<T> schema = RuntimeSchema.getSchema(clazz);
+    public static <T> byte[] bean2Byte(T obj, Class<?> clazz) {
+        //此处用了强转，不知道会不会出问题，项目里面也是这样用的
+        Schema<T> schema =( Schema<T>) RuntimeSchema.getSchema(clazz);
         byte[] bytes = ProtobufIOUtil.toByteArray(obj, schema, getBuffer());
         return bytes;
     }

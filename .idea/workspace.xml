@@ -2,34 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa7e4eb7-742c-42c1-88d0-9085507d188f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_dyuproject_protostuff_protostuff_core_1_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/genericity/Model_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/genericity/ReturnType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protobuf/Peson.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protobuf/SimpleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Engine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/util/SerializeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/protobuff/peson.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_16_0_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/ali_fastjson/SimpleTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Numb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot_test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/JAVA_IO/read_file/TestFileInputReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/read_file/TestFileInputReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/proxy/TestCglibProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/proxy/TestCglibProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/proxy/TestJDDKProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/proxy/TestJDDKProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/singleton/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/singleton/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/singleton/TestSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/singleton/TestSingleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/ExecutorsInJDK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/testThread/test_thread_pool/ExecutorsInJDK.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/Thread_pool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/testThread/test_thread_pool/Thread_pool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/thread_local/TestThradLocal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/testThread/thread_local/TestThradLocal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/test_NIO/TestSocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/test_NIO/TestSocketClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/test_NIO/TestSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/test_NIO/TestSocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/test_NIO/select/ClientChannelSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/test_NIO/select/ClientChannelSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/test_NIO/select/ServerChannelSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/test_NIO/select/ServerChannelSelect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/util/SerializeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/util/SerializeUtil.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,11 +55,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FileUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/util/FileUtil.java">
+      <file leaf-file-name="SimpleTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="347">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -90,10 +68,10 @@
         </entry>
       </file>
       <file leaf-file-name="SimpleTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/ali_fastjson/SimpleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="377">
+              <caret line="20" column="58" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,11 +79,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RuntimeSchema.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/dyuproject/protostuff/protostuff-runtime/1.1.3/protostuff-runtime-1.1.3.jar!/com/dyuproject/protostuff/runtime/RuntimeSchema.class">
+      <file leaf-file-name="JSON.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.2.60/fastjson-1.2.60-sources.jar!/com/alibaba/fastjson/JSON.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+            <state relative-caret-position="167">
+              <caret line="646" column="25" selection-start-line="646" selection-start-column="25" selection-end-line="646" selection-end-column="25" />
+              <folding>
+                <element signature="e#23738#23739#0" expanded="true" />
+                <element signature="e#23795#23796#0" expanded="true" />
+                <element signature="e#37088#37089#0" expanded="true" />
+                <element signature="e#37161#37162#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JSON.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.2.60/fastjson-1.2.60.jar!/com/alibaba/fastjson/JSON.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="708" column="25" selection-start-line="708" selection-start-column="25" selection-end-line="708" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="125" column="28" selection-start-line="125" selection-start-column="24" selection-end-line="125" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -113,17 +115,26 @@
       <file leaf-file-name="SimpleTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protobuf/SimpleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="60">
+              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SerializeUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Peson.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protobuf/Peson.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="302" column="25" selection-start-line="302" selection-start-column="25" selection-end-line="302" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SerializeUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/util/SerializeUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
+            <state relative-caret-position="188">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#368#538#0" expanded="true" />
@@ -135,47 +146,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThreadLocal.java" pinned="false" current-in-tab="false">
-        <entry file="jar://E:/src.zip!/java/lang/ThreadLocal.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="73" column="13" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReturnType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/genericity/ReturnType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LinkedBuffer.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/dyuproject/protostuff/protostuff-api/1.1.3/protostuff-api-1.1.3.jar!/com/dyuproject/protostuff/LinkedBuffer.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProtobufIOUtil.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/dyuproject/protostuff/protostuff-core/1.1.3/protostuff-core-1.1.3.jar!/com/dyuproject/protostuff/ProtobufIOUtil.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Person.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Person.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+            <state relative-caret-position="1556">
+              <caret line="54" column="27" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
               <folding>
                 <element signature="e#132#133#0" expanded="true" />
                 <element signature="e#158#159#0" expanded="true" />
@@ -183,6 +158,49 @@
                 <element signature="e#223#224#0" expanded="true" />
                 <element signature="e#294#295#0" expanded="true" />
                 <element signature="e#330#331#0" expanded="true" />
+                <element signature="e#479#480#0" expanded="true" />
+                <element signature="e#511#512#0" expanded="true" />
+                <element signature="e#546#547#0" expanded="true" />
+                <element signature="e#576#577#0" expanded="true" />
+                <element signature="e#524#525#0" expanded="true" />
+                <element signature="e#550#551#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Numb.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Numb.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+              <folding>
+                <element signature="e#328#329#0" expanded="true" />
+                <element signature="e#358#359#0" expanded="true" />
+                <element signature="e#393#394#0" expanded="true" />
+                <element signature="e#423#424#0" expanded="true" />
+                <element signature="e#458#459#0" expanded="true" />
+                <element signature="e#488#489#0" expanded="true" />
+                <element signature="e#523#524#0" expanded="true" />
+                <element signature="e#553#554#0" expanded="true" />
+                <element signature="e#588#589#0" expanded="true" />
+                <element signature="e#618#619#0" expanded="true" />
+                <element signature="e#653#654#0" expanded="true" />
+                <element signature="e#683#684#0" expanded="true" />
+                <element signature="e#718#719#0" expanded="true" />
+                <element signature="e#748#749#0" expanded="true" />
+                <element signature="e#373#374#0" expanded="true" />
+                <element signature="e#399#400#0" expanded="true" />
+                <element signature="e#426#427#0" expanded="true" />
+                <element signature="e#452#453#0" expanded="true" />
+                <element signature="e#479#480#0" expanded="true" />
+                <element signature="e#505#506#0" expanded="true" />
+                <element signature="e#532#533#0" expanded="true" />
+                <element signature="e#558#559#0" expanded="true" />
+                <element signature="e#585#586#0" expanded="true" />
+                <element signature="e#611#612#0" expanded="true" />
+                <element signature="e#638#639#0" expanded="true" />
+                <element signature="e#664#665#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -204,6 +222,8 @@
       <find>RejectedExecutionHandler</find>
       <find>handler</find>
       <find>RejectedExecutionException</find>
+      <find>fast</find>
+      <find>String string = JSON.toJSONString(build);</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -240,10 +260,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/Model.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Engine.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Car.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Person.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/protostuff/SimpleTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Person.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/util/SerializeUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/ali_fastjson/SimpleTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Numb.java" />
       </list>
     </option>
   </component>
@@ -364,7 +386,7 @@
               <item name="springboot_test" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="genericity" type="462c0819:PsiDirectoryNode" />
+              <item name="serialization" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springboot_test" type="b2602c69:ProjectViewProjectNode" />
@@ -376,6 +398,7 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="serialization" type="462c0819:PsiDirectoryNode" />
+              <item name="ali_fastjson" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springboot_test" type="b2602c69:ProjectViewProjectNode" />
@@ -524,17 +547,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SimpleTest (1)">
-    <configuration name="LuaUsageJedis" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.redis_jedis.LuaUsageJedis" />
-      <module name="springboot_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.zyj.springboot_test.test.redis_jedis.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
+  <component name="RunManager" selected="Application.SimpleTest (2)">
     <configuration name="ReturnType" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.java.genericity.ReturnType" />
       <module name="springboot_test" />
@@ -551,6 +564,26 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.zyj.springboot_test.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="SimpleTest (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.java.serialization.ali_fastjson.SimpleTest" />
+      <module name="springboot_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zyj.springboot_test.test.java.serialization.ali_fastjson.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="SimpleTest (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.java.serialization.google_protobuff.protostuff.SimpleTest" />
+      <module name="springboot_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zyj.springboot_test.test.java.serialization.google_protobuff.protostuff.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -581,19 +614,19 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.SpringbootTestApplication" />
-      <item itemvalue="Application.LuaUsageJedis" />
       <item itemvalue="Application.ReturnType" />
       <item itemvalue="Application.SimpleTest" />
       <item itemvalue="Application.SimpleTest (1)" />
       <item itemvalue="Application.SerializeUtil" />
+      <item itemvalue="Application.SimpleTest (2)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SimpleTest (2)" />
+        <item itemvalue="Application.SimpleTest (1)" />
         <item itemvalue="Application.SimpleTest (1)" />
         <item itemvalue="Application.SerializeUtil" />
         <item itemvalue="Application.SimpleTest" />
-        <item itemvalue="Application.ReturnType" />
-        <item itemvalue="Application.LuaUsageJedis" />
       </list>
     </recent_temporary>
   </component>
@@ -614,12 +647,12 @@
       <workItem from="1576649685869" duration="680000" />
       <workItem from="1576651581261" duration="1745000" />
       <workItem from="1576669561311" duration="10416000" />
-      <workItem from="1576808589051" duration="29743000" />
+      <workItem from="1576808589051" duration="39578000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59449000" />
+    <option name="totallyTimeSpent" value="69284000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -632,10 +665,10 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="2" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info id="Structure" order="1" sideWeight="0.36688313" side_tool="true" visible="true" weight="0.26599148" />
+      <window_info id="Structure" order="1" sideWeight="0.36842105" side_tool="true" visible="true" weight="0.26599148" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991276" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3991276" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3293348" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
@@ -644,11 +677,11 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="LuaCheck" order="13" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32824427" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32824427" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6331169" visible="true" weight="0.26599148" />
-      <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6315789" visible="true" weight="0.26599148" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32995737" />
       <window_info id="Web" order="7" sideWeight="0.5015015" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3293348" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -668,32 +701,24 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java</url>
+          <line>83</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/ali_fastjson/SimpleTest.java</url>
+          <line>40</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="10" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/testThread/test_thread_pool/Thread_pool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/testThread/test_thread_pool/ExecutorsInJDK.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/ThreadFactory.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/testThread/thread_local/TestThradLocal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/Executors.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/Thread.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/ThreadGroup.java" />
@@ -878,13 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="104" column="21" selection-start-line="104" selection-start-column="21" selection-end-line="104" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/protobuff/peson.proto">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -926,13 +944,6 @@
             <element signature="e#152#153#0" expanded="true" />
             <element signature="e#188#189#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protobuf/Peson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="302" column="25" selection-start-line="302" selection-start-column="25" selection-end-line="302" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -981,38 +992,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protobuf/SimpleTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-          <folding>
-            <element signature="e#132#133#0" expanded="true" />
-            <element signature="e#158#159#0" expanded="true" />
-            <element signature="e#193#194#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#294#295#0" expanded="true" />
-            <element signature="e#330#331#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://E:/src.zip!/java/lang/ThreadLocal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -1020,16 +999,133 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="125" column="28" selection-start-line="125" selection-start-column="24" selection-end-line="125" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.2.60/fastjson-1.2.60.jar!/com/alibaba/fastjson/JSON.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="708" column="25" selection-start-line="708" selection-start-column="25" selection-end-line="708" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protobuf/Peson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="302" column="25" selection-start-line="302" selection-start-column="25" selection-end-line="302" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1556">
+          <caret line="54" column="27" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
+          <folding>
+            <element signature="e#132#133#0" expanded="true" />
+            <element signature="e#158#159#0" expanded="true" />
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#223#224#0" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#330#331#0" expanded="true" />
+            <element signature="e#479#480#0" expanded="true" />
+            <element signature="e#511#512#0" expanded="true" />
+            <element signature="e#546#547#0" expanded="true" />
+            <element signature="e#576#577#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+            <element signature="e#550#551#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/util/SerializeUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
+        <state relative-caret-position="188">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#368#538#0" expanded="true" />
             <element signature="e#537#538#0" expanded="true" />
             <element signature="e#1276#1277#0" expanded="true" />
             <element signature="e#1323#1324#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.2.60/fastjson-1.2.60-sources.jar!/com/alibaba/fastjson/JSON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="646" column="25" selection-start-line="646" selection-start-column="25" selection-end-line="646" selection-end-column="25" />
+          <folding>
+            <element signature="e#23738#23739#0" expanded="true" />
+            <element signature="e#23795#23796#0" expanded="true" />
+            <element signature="e#37088#37089#0" expanded="true" />
+            <element signature="e#37161#37162#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/ali_fastjson/SimpleTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="20" column="58" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protobuf/SimpleTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/google_protobuff/protostuff/SimpleTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/java/serialization/model/Numb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+          <folding>
+            <element signature="e#328#329#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#393#394#0" expanded="true" />
+            <element signature="e#423#424#0" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+            <element signature="e#488#489#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#553#554#0" expanded="true" />
+            <element signature="e#588#589#0" expanded="true" />
+            <element signature="e#618#619#0" expanded="true" />
+            <element signature="e#653#654#0" expanded="true" />
+            <element signature="e#683#684#0" expanded="true" />
+            <element signature="e#718#719#0" expanded="true" />
+            <element signature="e#748#749#0" expanded="true" />
+            <element signature="e#373#374#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+            <element signature="e#426#427#0" expanded="true" />
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#479#480#0" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+            <element signature="e#532#533#0" expanded="true" />
+            <element signature="e#558#559#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#638#639#0" expanded="true" />
+            <element signature="e#664#665#0" expanded="true" />
           </folding>
         </state>
       </provider>
