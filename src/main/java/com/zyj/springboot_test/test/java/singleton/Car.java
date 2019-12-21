@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.singleton;
+package com.zyj.springboot_test.test.java.singleton;
 
 public class Car {
     private Car(){
