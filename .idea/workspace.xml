@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa7e4eb7-742c-42c1-88d0-9085507d188f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/ExecutorsInJDK.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/Thread_pool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_status/ThreadStatusTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/TestThradLocal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/thread_local/TestThradLocal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/ExecutorsInJDK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/ExecutorsInJDK.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,29 +19,32 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.33" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="19" />
+          <entry key="class" value="3" />
+          <entry key="java" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="19" />
+          <entry key="CLASS" value="3" />
+          <entry key="JAVA" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="2" />
-          <entry key="java" value="974" />
+          <entry key="java" value="1451" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="974" />
+          <entry key="JAVA" value="1451" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
@@ -53,19 +56,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/Thread_pool.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1410">
-              <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/ExecutorsInJDK.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
+            <state relative-caret-position="240">
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,20 +67,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/ThreadFactory.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_status/ThreadStatusTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+            <state relative-caret-position="362">
+              <caret line="85" column="55" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
+              <folding>
+                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#577#578#0" expanded="true" />
+                <element signature="e#3419#3420#0" expanded="true" />
+                <element signature="e#3454#3455#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/thread_local/TestThradLocal.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/ExecutorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+            <state relative-caret-position="3630">
+              <caret line="155" column="9" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -94,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/Executors.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4590">
-              <caret line="194" column="59" selection-start-line="194" selection-start-column="40" selection-end-line="194" selection-end-column="59" />
+            <state relative-caret-position="1380">
+              <caret line="87" column="34" selection-start-line="87" selection-start-column="34" selection-end-line="87" selection-end-column="34" />
               <folding>
                 <element signature="e#15215#15216#0" expanded="true" />
                 <element signature="e#15264#15265#0" expanded="true" />
@@ -107,8 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/Thread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18660">
-              <caret line="677" column="43" selection-start-line="677" selection-start-column="34" selection-end-line="677" selection-end-column="43" />
+            <state relative-caret-position="490">
+              <caret line="886" column="37" lean-forward="true" selection-start-line="886" selection-start-column="37" selection-end-line="886" selection-end-column="37" />
               <folding>
                 <element signature="e#15020#15021#0" expanded="true" />
                 <element signature="e#15084#15085#0" expanded="true" />
@@ -120,35 +120,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/ThreadGroup.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/nio/channels/spi/AbstractInterruptibleChannel.class">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/sun/nio/ch/Interruptible.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
-              <caret line="56" column="6" selection-start-line="56" selection-start-column="6" selection-end-line="56" selection-end-column="6" />
+            <state relative-caret-position="150">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/SynchronousQueue.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5160">
-              <caret line="210" column="23" selection-start-line="210" selection-start-column="23" selection-end-line="210" selection-end-column="23" />
-              <folding>
-                <element signature="e#34990#34991#0" expanded="true" />
-                <element signature="e#35017#35018#0" expanded="true" />
-                <element signature="e#35291#35292#0" expanded="true" />
-                <element signature="e#35374#35375#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/nio/channels/spi/AbstractSelector.class">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/ThreadPoolExecutor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="1372" column="16" selection-start-line="1372" selection-start-column="7" selection-end-line="1372" selection-end-column="16" />
+            <state relative-caret-position="22050">
+              <caret line="788" column="31" selection-start-line="788" selection-start-column="31" selection-end-line="788" selection-end-column="31" />
               <folding>
+                <element signature="e#16568#16569#0" expanded="true" />
+                <element signature="e#16597#16598#0" expanded="true" />
+                <element signature="e#31552#31553#0" expanded="true" />
+                <element signature="e#31595#31596#0" expanded="true" />
                 <element signature="e#31948#31949#0" expanded="true" />
                 <element signature="e#32004#32005#0" expanded="true" />
                 <element signature="e#57238#57239#0" expanded="true" />
@@ -159,10 +158,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/RejectedExecutionHandler.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/TimeUnit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+            <state relative-caret-position="1230">
+              <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -182,6 +181,7 @@
       <find>RejectedExecutionHandler</find>
       <find>handler</find>
       <find>RejectedExecutionException</find>
+      <find>workers</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -201,6 +201,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/thread_pool.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/Thread_pool.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/ExecutorsInJDK.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_status/ThreadStatusTest.java" />
       </list>
     </option>
   </component>
@@ -218,7 +219,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1385" />
@@ -230,9 +231,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -310,7 +308,7 @@
               <item name="springboot_test" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="testThread" type="462c0819:PsiDirectoryNode" />
-              <item name="thread_local" type="462c0819:PsiDirectoryNode" />
+              <item name="test_thread_status" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springboot_test" type="b2602c69:ProjectViewProjectNode" />
@@ -322,19 +320,22 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576075378240" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../game/qipai2/poke" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576142232305" />
+    <property name="last_opened_file_path" value="F:/动脑课程/高并发分布式/15-高并发多线程-（多线程编程基础01）-kody-20190512/课件/period1" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -348,7 +349,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ExecutorsInJDK">
+  <component name="RunManager" selected="Application.ThreadStatusTest">
     <configuration name="ExecutorsInJDK" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.testThread.test_thread_pool.ExecutorsInJDK" />
       <module name="springboot_test" />
@@ -375,12 +376,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSocketServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.test_NIO.TestSocketServer" />
+    <configuration name="TestThradLocal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.testThread.thread_local.TestThradLocal" />
       <module name="springboot_test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.zyj.springboot_test.test.test_NIO.*" />
+          <option name="PATTERN" value="com.zyj.springboot_test.test.testThread.thread_local.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -388,12 +389,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestThradLocal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.testThread.thread_local.TestThradLocal" />
+    <configuration name="ThreadStatusTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zyj.springboot_test.test.testThread.test_thread_status.ThreadStatusTest" />
       <module name="springboot_test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.zyj.springboot_test.test.testThread.thread_local.*" />
+          <option name="PATTERN" value="com.zyj.springboot_test.test.testThread.test_thread_status.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -423,19 +424,19 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.SpringbootTestApplication" />
-      <item itemvalue="Application.TestSocketServer" />
       <item itemvalue="Application.TestSocketClient" />
       <item itemvalue="Application.TestThradLocal" />
       <item itemvalue="Application.Thread_pool" />
       <item itemvalue="Application.ExecutorsInJDK" />
+      <item itemvalue="Application.ThreadStatusTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ThreadStatusTest" />
         <item itemvalue="Application.ExecutorsInJDK" />
         <item itemvalue="Application.Thread_pool" />
         <item itemvalue="Application.TestThradLocal" />
         <item itemvalue="Application.TestSocketClient" />
-        <item itemvalue="Application.TestSocketServer" />
       </list>
     </recent_temporary>
   </component>
@@ -450,19 +451,20 @@
       <option name="presentableId" value="Default" />
       <updated>1576047253398</updated>
       <workItem from="1576047255296" duration="12176000" />
-      <workItem from="1576111898754" duration="446000" />
+      <workItem from="1576111898754" duration="3548000" />
+      <workItem from="1576135898998" duration="3042000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12622000" />
+    <option name="totallyTimeSpent" value="18766000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4974824" visible="true" weight="0.25249502" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.50251764" side_tool="true" visible="true" weight="0.25249502" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4954955" visible="true" weight="0.25499" />
+      <window_info id="Structure" order="1" sideWeight="0.5045045" side_tool="true" visible="true" weight="0.25499" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -471,7 +473,7 @@
       <window_info id="Web" order="7" sideWeight="0.5015015" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32930514" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32930514" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997986" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -479,7 +481,7 @@
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32930514" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="13" show_stripe_button="false" />
@@ -500,6 +502,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/springboot_test" />
+    </ignored-roots>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/SpringbootTestApplication.java">
@@ -544,58 +551,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/Thread_pool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/ExecutorsInJDK.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/ThreadFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/thread_local/TestThradLocal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/Executors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4590">
-          <caret line="194" column="59" selection-start-line="194" selection-start-column="40" selection-end-line="194" selection-end-column="59" />
-          <folding>
-            <element signature="e#15215#15216#0" expanded="true" />
-            <element signature="e#15264#15265#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18660">
-          <caret line="677" column="43" selection-start-line="677" selection-start-column="34" selection-end-line="677" selection-end-column="43" />
-          <folding>
-            <element signature="e#15020#15021#0" expanded="true" />
-            <element signature="e#15084#15085#0" expanded="true" />
-            <element signature="e#21475#21476#0" expanded="true" />
-            <element signature="e#21519#21520#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -610,12 +569,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5160">
           <caret line="210" column="23" selection-start-line="210" selection-start-column="23" selection-end-line="210" selection-end-column="23" />
-          <folding>
-            <element signature="e#34990#34991#0" expanded="true" />
-            <element signature="e#35017#35018#0" expanded="true" />
-            <element signature="e#35291#35292#0" expanded="true" />
-            <element signature="e#35374#35375#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,15 +579,114 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/atomic/AtomicInteger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="89" column="21" selection-start-line="89" selection-start-column="21" selection-end-line="89" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/thread_local/TestThradLocal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/Thread_pool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1410">
+          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/ExecutorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3630">
+          <caret line="155" column="9" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/Executors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="87" column="34" selection-start-line="87" selection-start-column="34" selection-end-line="87" selection-end-column="34" />
+          <folding>
+            <element signature="e#15215#15216#0" expanded="true" />
+            <element signature="e#15264#15265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/nio/channels/spi/AbstractInterruptibleChannel.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/sun/nio/ch/Interruptible.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/nio/channels/spi/AbstractSelector.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/ThreadPoolExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="1372" column="16" selection-start-line="1372" selection-start-column="7" selection-end-line="1372" selection-end-column="16" />
+        <state relative-caret-position="22050">
+          <caret line="788" column="31" selection-start-line="788" selection-start-column="31" selection-end-line="788" selection-end-column="31" />
           <folding>
+            <element signature="e#16568#16569#0" expanded="true" />
+            <element signature="e#16597#16598#0" expanded="true" />
+            <element signature="e#31552#31553#0" expanded="true" />
+            <element signature="e#31595#31596#0" expanded="true" />
             <element signature="e#31948#31949#0" expanded="true" />
             <element signature="e#32004#32005#0" expanded="true" />
             <element signature="e#57238#57239#0" expanded="true" />
             <element signature="e#57283#57284#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/TimeUnit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1230">
+          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="886" column="37" lean-forward="true" selection-start-line="886" selection-start-column="37" selection-end-line="886" selection-end-column="37" />
+          <folding>
+            <element signature="e#15020#15021#0" expanded="true" />
+            <element signature="e#15084#15085#0" expanded="true" />
+            <element signature="e#21475#21476#0" expanded="true" />
+            <element signature="e#21519#21520#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_pool/ExecutorsInJDK.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zyj/springboot_test/test/testThread/test_thread_status/ThreadStatusTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="85" column="55" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
+          <folding>
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#3419#3420#0" expanded="true" />
+            <element signature="e#3454#3455#0" expanded="true" />
           </folding>
         </state>
       </provider>
