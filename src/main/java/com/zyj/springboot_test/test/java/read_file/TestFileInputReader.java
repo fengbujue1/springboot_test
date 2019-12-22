@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.JAVA_IO.read_file;
+package com.zyj.springboot_test.test.java.read_file;
 
 
 import java.io.*;

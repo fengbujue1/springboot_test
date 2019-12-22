@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.testThread.thread_local;
+package com.zyj.springboot_test.test.java.testThread.thread_local;
 
 
 public class TestThradLocal {
