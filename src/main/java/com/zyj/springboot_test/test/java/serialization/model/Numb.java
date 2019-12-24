@@ -1,15 +1,28 @@
 package com.zyj.springboot_test.test.java.serialization.model;
 
+import com.dyuproject.protostuff.Tag;
+import org.msgpack.annotation.Message;
+import org.msgpack.annotation.MessagePackMessage;
+
 import java.util.Random;
 
+@MessagePackMessage
 public class Numb {
+    @Tag(1)
     private int i_1;
+    @Tag(2)
     private int i_2;
+    @Tag(3)
     private int i_3;
+    @Tag(4)
     private int i_4;
+    @Tag(5)
     private int i_5;
+    @Tag(6)
     private int i_6;
+    @Tag(7)
     private int i_7;
+    @Tag(8)
     private int random;
 
     public void setI_1(int i_1) {
@@ -87,7 +100,7 @@ public class Numb {
         numb.i_5 = 1;
         numb.i_6 = 1;
         numb.i_7 = 1;
-        numb.random = new Random().nextInt(1000);
+//        numb.random = new Random().nextInt(1000);
         return numb;
     }
 }
