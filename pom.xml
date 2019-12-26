@@ -33,6 +33,13 @@
                 <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
+        <!--POI  处理excel表格-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.16</version>
+        </dependency>
+
         <!--msgpack 依赖-->
         <dependency>
             <groupId>org.msgpack</groupId>
