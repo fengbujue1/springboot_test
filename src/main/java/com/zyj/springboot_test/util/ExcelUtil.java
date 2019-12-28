@@ -15,17 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExcelUtil {
-    private static String Star;
-    private static String Job;
-    private static String HeroId;
-    private static String Level;
-    private static String Pos;
-    private static String Coefficien;
-    private static String AtkCoefficien;
-    private static String HpCoefficien;
+    private static String Star = "";
+    private static String Job = "";
+    private static String HeroId = "";
+    private static String Level = "";
+    private static String Pos = "";
+    private static String Coefficien = "";
+    private static String AtkCoefficien = "";
+    private static String DefCoefficien = "";
+    private static String HpCoefficien = "";
 
-    private static String failure;
-    private static String win;
+    private static String failure = "";
+    private static String win = "";
+    private static String outOfTime = "";
 
     public static boolean start = false;
     public static boolean end =true;
@@ -35,7 +37,7 @@ public class ExcelUtil {
 
 
     public static void main(String[] args) throws IOException, IllegalAccessException {
-        FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Administrator\\Desktop\\zyj\\temp\\无防御\\10万场无防御战斗结果.xlsx"));
+        FileInputStream inputStream = new FileInputStream(new File(ExcelUtil.class.getResource("/").getPath() + "poi\\10万场无防御战斗结果.xlsx"));
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
         XSSFSheet sheet1 = workbook.getSheet("sheet1");
         int num = sheet1.getLastRowNum();
@@ -59,7 +61,7 @@ public class ExcelUtil {
         writeSheet("刺客",workbook);
         writeSheet("牧师",workbook);
         writeSheet("法师",workbook);
-        File file = new File("C:\\Users\\Administrator\\Desktop\\zyj\\temp\\有防御\\10万场无防御战斗结果_trans.xlsx");
+        File file = new File(ExcelUtil.class.getResource("/").getPath() + "poi\\10万场无防御战斗结果_trans3.xlsx");
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         workbook.write(fileOutputStream);
         fileOutputStream.close();
@@ -81,6 +83,8 @@ public class ExcelUtil {
                 cell.setCellValue("失败场数为");
             } else if (declaredFields[i].getName().equals("win")) {
                 cell.setCellValue("胜利场数为");
+            } else if (declaredFields[i].getName().equals("outOfTime")) {
+                cell.setCellValue("超时场数为");
             }
             declaredFields[i].setAccessible(true);
         }
@@ -99,6 +103,20 @@ public class ExcelUtil {
 
 
     }
+    private static void flush(){
+        Star = "";
+        Job = "";
+        HeroId = "";
+        Level = "";
+        Pos = "";
+        Coefficien = "";
+        AtkCoefficien = "";
+        HpCoefficien = "";
+        DefCoefficien = "";
+        failure = "";
+        win = "";
+        outOfTime = "";
+    }
 
     private static void createModel(XSSFCell cell1, XSSFCell cell2) {
         String title = "";
@@ -110,6 +128,10 @@ public class ExcelUtil {
         if (cell1 != null) {
             cell1.setCellType(CellType.STRING);
             title = cell1.getStringCellValue().trim();
+        }
+        if (cell1 != null && cell2 == null) {
+            list.add(new Warrior(Star, Job, HeroId, Level, Pos, Coefficien, AtkCoefficien,DefCoefficien, HpCoefficien, failure, win, outOfTime));
+            flush();
         }
 
 
@@ -139,21 +161,20 @@ public class ExcelUtil {
                 case "AtkCoefficien":
                     AtkCoefficien = value;
                     break;
+                case "DefCoefficien":
+                    DefCoefficien = value;
+                    break;
                 case "HpCoefficien":
                     HpCoefficien = value;
                     break;
             }
             if (title.startsWith("失败")) {
                 failure = value;
-            } else {
+            } else if (title.startsWith("胜利")) {
                 win = value;
+            } else if (title.startsWith("超时")) {
+                outOfTime = value;
             }
-        }
-        if ((start) && title.startsWith("胜利")) {
-            end = true;
-            start = false;
-
-            list.add(new Warrior(Star, Job, HeroId, Level, Pos, Coefficien, AtkCoefficien, HpCoefficien, failure, win));
         }
 
 
