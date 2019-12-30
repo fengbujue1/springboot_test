@@ -80,6 +80,13 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!--高效的反射工具类-->
+        <dependency>
+            <groupId>com.esotericsoftware.reflectasm</groupId>
+            <artifactId>reflectasm</artifactId>
+            <version>1.09</version>
+        </dependency>
+
         <!--统一日志接口-->
         <dependency>
             <groupId>org.slf4j</groupId>
