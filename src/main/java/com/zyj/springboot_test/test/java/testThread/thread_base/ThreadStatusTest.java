@@ -5,8 +5,22 @@ public class ThreadStatusTest {
 //        test1();//线程 创建 -》运行—》结束
 //        test2();//线程 创建 -》运行-》等待（带时间的）—》结束
 //        test3();//线程 创建 -》运行-》阻塞（锁机制） —》结束
-        test4();
+//        test4();
 
+
+    }
+
+    /**
+     * 测试isAlive方法
+     * 线程创建为 start的时候，是未存活的   返回false
+     * start方法调用字后，线程没有死亡之前，线程是活着的  返回true
+     * @throws InterruptedException
+     */
+    public static void testThreadIsAlive() throws InterruptedException {
+        Thread thread = new Thread();
+        System.out.println(thread.isAlive());
+        thread.start();
+        System.out.println(thread.isAlive());
     }
     public static void test1() throws InterruptedException {
         // 第一种状态切换 - 新建 -> 运行 -> 终止

@@ -8,15 +8,16 @@ public class Thread_pool {
 
         //阿里推荐自己使用ThreadPoolExecutor创建线程池
 
-        //核心线程数
+        //核心线程数（常规状态下，处理任务的线程数）
         int corePoolSize = 3;
-        //最大线程数
+        //最大线程数，（只有在工作队列满了的情况下，才会新建线程处理任务）
+        //这个结果有点意思，根据结果可分析出，这种策略会出现后面的任务反而先执行
         int maximumPoolSize = 6;
         //超出最大线程数的线程的存活时间
         long keepAliveTime = 5;
         //存活的时间单位
         TimeUnit unit = TimeUnit.SECONDS;
-        //工作队列，用于存放暂时无法处理的任务,可自行指定任务队列大小
+        //工作队列，用于存放暂时无法处理的任务,可自行指定工作队列大小
         BlockingQueue<Runnable> workQueue = new LinkedBlockingDeque<>(2);
         //自定义线程工厂，可指定线程名称，分配队内存空间等操作
         ThreadFactory threadFactory = new ThreadFactory() {
