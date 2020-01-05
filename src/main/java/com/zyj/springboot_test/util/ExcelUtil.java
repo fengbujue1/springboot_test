@@ -24,6 +24,7 @@ public class ExcelUtil {
     private static String AtkCoefficien = "";
     private static String DefCoefficien = "";
     private static String HpCoefficien = "";
+    private static String leftHp = "";
 
     private static String failure = "";
     private static String win = "";
@@ -37,7 +38,7 @@ public class ExcelUtil {
 
 
     public static void main(String[] args) throws IOException, IllegalAccessException {
-        FileInputStream inputStream = new FileInputStream(new File(ExcelUtil.class.getResource("/").getPath() + "poi\\10万场无防御战斗结果.xlsx"));
+        FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\Administrator\\Desktop\\zyj\\temp\\无防御2\\10000无防御.xlsx"));
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
         XSSFSheet sheet1 = workbook.getSheet("sheet1");
         int num = sheet1.getLastRowNum();
@@ -61,7 +62,7 @@ public class ExcelUtil {
         writeSheet("刺客",workbook);
         writeSheet("牧师",workbook);
         writeSheet("法师",workbook);
-        File file = new File(ExcelUtil.class.getResource("/").getPath() + "poi\\10万场无防御战斗结果_trans3.xlsx");
+        File file = new File("C:\\Users\\Administrator\\Desktop\\zyj\\temp\\无防御2\\10000无防御trans.xlsx");
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         workbook.write(fileOutputStream);
         fileOutputStream.close();
@@ -85,6 +86,8 @@ public class ExcelUtil {
                 cell.setCellValue("胜利场数为");
             } else if (declaredFields[i].getName().equals("outOfTime")) {
                 cell.setCellValue("超时场数为");
+            } else if (declaredFields[i].getName().equals("leftHp")) {
+                cell.setCellValue("失败剩余血量百分比");
             }
             declaredFields[i].setAccessible(true);
         }
@@ -116,6 +119,7 @@ public class ExcelUtil {
         failure = "";
         win = "";
         outOfTime = "";
+        leftHp = "";
     }
 
     private static void createModel(XSSFCell cell1, XSSFCell cell2) {
@@ -130,7 +134,7 @@ public class ExcelUtil {
             title = cell1.getStringCellValue().trim();
         }
         if (cell1 != null && cell2 == null) {
-            list.add(new Warrior(Star, Job, HeroId, Level, Pos, Coefficien, AtkCoefficien,DefCoefficien, HpCoefficien, failure, win, outOfTime));
+            list.add(new Warrior(Star, Job, HeroId, Level, Pos, Coefficien, AtkCoefficien,DefCoefficien, HpCoefficien, failure, win, outOfTime,leftHp));
             flush();
         }
 
@@ -168,12 +172,14 @@ public class ExcelUtil {
                     HpCoefficien = value;
                     break;
             }
-            if (title.startsWith("失败")) {
+            if (title.startsWith("失败场数")) {
                 failure = value;
             } else if (title.startsWith("胜利")) {
                 win = value;
             } else if (title.startsWith("超时")) {
                 outOfTime = value;
+            } else if (title.startsWith("失败剩余")) {
+                leftHp = value;
             }
         }
 

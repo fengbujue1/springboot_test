@@ -2,13 +2,13 @@ package com.zyj.springboot_test.test.java.testThread.thread_base;
 
 public class MethodsOfStopThread {
     public static void main(String[] args) throws Exception{
-
+        testStopMethod();
     }
 
 
     /**
      * 测试stop方法
-     * 该方法回破坏操作的原子性
+     * 该方法会破坏操作的原子性
      */
     private static void testStopMethod() throws Exception{
         MyThread thread = new MyThread();

@@ -14,8 +14,9 @@ public class Warrior {
     private String failure;
     private String win;
     private String outOfTime;
+    private String leftHp;
 
-    public Warrior(String star, String job, String heroId, String level, String pos, String coefficien, String atkCoefficien,String defCoefficien, String hpCoefficien, String failure, String win,String outOfTime) {
+    public Warrior(String star, String job, String heroId, String level, String pos, String coefficien, String atkCoefficien,String defCoefficien, String hpCoefficien, String failure, String win,String outOfTime,String leftHp) {
         Star = star;
         Job = job;
         HeroId = heroId;
@@ -28,6 +29,11 @@ public class Warrior {
         this.win = win;
         this.outOfTime = outOfTime;
         this.DefCoefficien = defCoefficien;
+        this.leftHp = leftHp;
+    }
+
+    public String getLeftHp() {
+        return leftHp;
     }
 
     public String getDefCoefficien() {
