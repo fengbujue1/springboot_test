@@ -98,7 +98,18 @@ public class ExcelUtil {
                 for (int i = 0; i < declaredFields.length; i++) {
                     XSSFCell cell = rowX.createCell(i);
                     cell.setCellType(CellType.STRING);
-                    cell.setCellValue(declaredFields[i].get(warrior).toString());
+                    if (i != 1) {
+                        double v;
+                        if (!declaredFields[i].get(warrior).toString().isEmpty()) {
+                            v = Double.parseDouble(declaredFields[i].get(warrior).toString());
+                        } else {
+                            v = 0;
+                        }
+                        cell.setCellValue(v);
+                    } else {
+                        cell.setCellValue(declaredFields[i].get(warrior).toString());
+                    }
+
 
                 }
             }
