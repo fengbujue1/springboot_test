@@ -26,6 +26,7 @@ public class TestWaitAndNotify {
             synchronized (lock) {
                 System.out.println("线程2开始运行，唤起线程1");
                 System.out.println("lock：" + lock);
+                System.out.println("当前thread1的状态：" + thread1.getState().toString());
                 lock.notifyAll();
             }
         }
@@ -51,6 +52,7 @@ public class TestWaitAndNotify {
         @Override
         public void run() {
             System.out.println("线程4开始运行，尝试获取锁，然后唤醒线程1");
+            System.out.println("当前thread3的状态：" + thread3.getState().toString());
             flag = true;
             synchronized (lock) {
                 System.out.println("lock：" + lock);
@@ -59,8 +61,8 @@ public class TestWaitAndNotify {
         }
     };
     public static void main(String[] args) {
-//        test1();
-        test2();
+        test1();
+//        test2();
     }
 
 
