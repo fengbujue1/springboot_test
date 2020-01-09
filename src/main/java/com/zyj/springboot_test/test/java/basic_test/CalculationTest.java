@@ -6,7 +6,8 @@ public class CalculationTest {
     public static void main(String[] args) {
 //        test1();
 //        test2();
-        test3();
+//        test3();
+        test4();
     }
 
     /**
@@ -44,5 +45,11 @@ public class CalculationTest {
             System.out.println(count);
         }
         System.out.println(random.nextInt(0));
+    }
+    /**
+     * 余数
+     */
+    public static void test4() {
+        System.out.println(50000%321);
     }
 }
