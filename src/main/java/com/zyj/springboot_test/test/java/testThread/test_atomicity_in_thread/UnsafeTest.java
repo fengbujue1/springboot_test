@@ -56,8 +56,6 @@ public class UnsafeTest {
     }
 
     public static void main(String[] args) {
-        AtomicInteger atomicInteger = new AtomicInteger();
-
         CountDownLatch countDownLatch = new CountDownLatch(6);
         UnsafeTest unsafeTest = new UnsafeTest();
         for (int i = 0; i < 6; i++) {
