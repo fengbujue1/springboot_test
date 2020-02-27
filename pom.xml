@@ -19,7 +19,6 @@
     </properties>
 
 
-
     <dependencies>
         <!--erueka依赖jar包-->
         <!--服务端-->
@@ -176,6 +175,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.60</version>
+        </dependency>
+
+        <!--时间处理工具类-->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
         </dependency>
     </dependencies>
 

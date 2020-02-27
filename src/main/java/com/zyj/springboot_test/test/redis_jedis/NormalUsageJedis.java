@@ -4,7 +4,7 @@ import redis.clients.jedis.Jedis;
 
 public class NormalUsageJedis {
     public static void main(String[] args) {
-        Jedis jedis = new Jedis("localhost", 6320);
+        Jedis jedis = new Jedis("192.168.0.2", 6320);
         String ret_s = jedis.set("hello", "1");
         String ret_g = jedis.get("hello1");
 
