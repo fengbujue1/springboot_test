@@ -1,10 +1,10 @@
-package com.zyj.springboot_test.test.java.basic_test;
+package com.zyj.springboot_test.test.java.basic_test.collection;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class CollectionTest {
+public class TestHashMethod {
     public static class LastDayDonationBoxReward {
         public String playerId;
         public List<Integer> rewardItems;

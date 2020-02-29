@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * 抢红包算法，线段切割法
+ */
 public class RedPacket {
     public static void main(String[] args) {
         int errorTimes = 0;
