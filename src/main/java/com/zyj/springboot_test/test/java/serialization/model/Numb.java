@@ -1,10 +1,7 @@
 package com.zyj.springboot_test.test.java.serialization.model;
 
 import com.dyuproject.protostuff.Tag;
-import org.msgpack.annotation.Message;
 import org.msgpack.annotation.MessagePackMessage;
-
-import java.util.Random;
 
 @MessagePackMessage
 public class Numb {
