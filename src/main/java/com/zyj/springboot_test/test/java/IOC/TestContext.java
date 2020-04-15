@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.IOC;
+package com.zyj.springboot_test.test.java.IOC;
 
 import com.zyj.springboot_test.bean.Person;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-//@ComponentScan("com.zyj.springboot_test.controller")
+@ComponentScan("com.zyj.springboot_test")
 public class SpringbootTestApplication {
 
     public static void main(String[] args) {
