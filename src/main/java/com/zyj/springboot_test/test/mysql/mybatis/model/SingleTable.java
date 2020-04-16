@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.mysql.model;
+package com.zyj.springboot_test.test.mysql.mybatis.model;
 
 public class SingleTable {
     private String key1;
