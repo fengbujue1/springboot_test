@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.java.testThread.thread_base;
+package com.zyj.springboot_test.test.java.testThread.thread_base_stop;
 
 public class ThreadStatusTest {
     public static void main(String[] args) throws Exception{

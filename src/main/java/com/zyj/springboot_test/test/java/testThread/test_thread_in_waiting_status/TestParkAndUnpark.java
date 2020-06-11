@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.java.testThread.test_thread_wait_and_notify;
+package com.zyj.springboot_test.test.java.testThread.test_thread_in_waiting_status;
 
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;

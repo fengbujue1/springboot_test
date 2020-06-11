@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.java.testThread.test_thread_wait_and_notify;
+package com.zyj.springboot_test.test.java.testThread.test_thread_in_waiting_status;
 
 public class TestSuspendAndResume {
     public static Object lock = new Object();

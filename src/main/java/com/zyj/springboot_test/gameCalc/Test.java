@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
+        System.out.println("加10%攻击");
         for (int i = 5; i < 10; i++) {
             double attact = i*1000000 * (1-0.125*3) / 4.5;
             System.out.println("血量：" + i + "百万" + "    攻击：" + (attact+100000));
