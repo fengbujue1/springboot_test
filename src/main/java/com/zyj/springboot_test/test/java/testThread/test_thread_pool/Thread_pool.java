@@ -66,7 +66,7 @@ public class Thread_pool {
             System.out.println("任务" + num + "执行");
 
             try {
-                Thread.sleep(2000);
+                Thread.sleep(200000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

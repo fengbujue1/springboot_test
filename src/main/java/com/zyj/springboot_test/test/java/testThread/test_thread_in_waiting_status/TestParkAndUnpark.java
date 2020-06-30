@@ -78,7 +78,7 @@ public class TestParkAndUnpark {
         public void run() {
             reentrantLock.lock();
             while (!flag) {//循环判定条件，防止伪唤醒
-                System.out.println("线程3开始运行,进入等待()");
+                System.out.println("线程3开始运行,进入等待()");//此时线程3是waiting状态
                 LockSupport.park();
             }
             System.out.println("线程3重新开始运行");
