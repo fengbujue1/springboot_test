@@ -8,25 +8,29 @@ public class TestReentrantLock {
 //        test1();
 //        test1();
         test3();
+
     }
+
 
     /*
     阻塞状态下的线程状态：waiting状态
      */
     public static void test3() {
-        ReentrantLock reentrantLock = new ReentrantLock();
-        reentrantLock.lock();
+//        ReentrantLock reentrantLock = new ReentrantLock();
+        MyReentrantLock reentrantLock = new MyReentrantLock();
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("线程1获取锁,睡10秒");
                 reentrantLock.lock();
+                System.out.println("线程1获取锁,睡5秒");
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                reentrantLock.unlock();
+               finally {
+                    reentrantLock.unlock();
+                }
             }
         });
 
