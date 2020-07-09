@@ -1,8 +1,6 @@
-package com.zyj.springboot_test.test.java.testThread.test_concurrentCondtion;
+package com.zyj.springboot_test.test.java.testThread.test_concurrentUtil;
 
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Phaser;
 
 public class TestPhaser {
