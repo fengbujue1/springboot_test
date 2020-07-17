@@ -82,7 +82,7 @@ public class PriorityBlockingQueueDemo {
 		
 		new Thread(()->{
 			long s = System.currentTimeMillis();
-			for(;System.currentTimeMillis() - s < 1000;) {
+			for(;System.currentTimeMillis() - s < 5;) {
 				// 下载太慢了？你的问题，充值可以解决。
 				Task task = new Task(3, ()->{
 					System.out.println("task");
@@ -94,7 +94,7 @@ public class PriorityBlockingQueueDemo {
 		
 		new Thread(()->{
 			long s = System.currentTimeMillis();
-			for(;System.currentTimeMillis() - s < 1000;) {
+			for(;System.currentTimeMillis() - s < 5;) {
 				Task vipTask = new Task(2, ()->{
 					System.out.println("vip task");
 				});
@@ -105,7 +105,7 @@ public class PriorityBlockingQueueDemo {
 		
 		new Thread(()->{
 			long s = System.currentTimeMillis();
-			for(;System.currentTimeMillis() - s < 1000;) {
+			for(;System.currentTimeMillis() - s < 5;) {
 				Task svipTask = new Task(1, ()->{
 					System.out.println("svip task");
 				});
@@ -132,7 +132,7 @@ public class PriorityBlockingQueueDemo {
 			System.out.println("priority: "+priority+" sequence: "+sequence);
 			System.out.println();
 			// 为更好的观赏输出效果，停留1秒
-			LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(1));
+			LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(100));
 		}
 		
 		@Override

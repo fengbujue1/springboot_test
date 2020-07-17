@@ -45,6 +45,9 @@ public class TestQueue {
         LinkedTransferQueue<Object> objects2 = new LinkedTransferQueue<>();
         objects2.transfer(new Object());
 
+        /** ConcurrentLinkedQueue*/
+        ConcurrentLinkedQueue<Object> objects3 = new ConcurrentLinkedQueue<>();
+
         //阻塞队列在线程池中的使用
 
         //以下两者的任务队列使用的都是LinkedBlockingQueue,无限添加等待执行的任务
