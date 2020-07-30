@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.java.testThread.lock;
+package com.zyj.springboot_test.test.java.testThread.concurrentUtil;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
@@ -16,8 +16,8 @@ public class TestReentrantLock {
     阻塞状态下的线程状态：waiting状态
      */
     public static void test3() {
-//        ReentrantLock reentrantLock = new ReentrantLock();
-        MyReentrantLock reentrantLock = new MyReentrantLock();
+        ReentrantLock reentrantLock = new ReentrantLock();
+//        MyReentrantLock reentrantLock = new MyReentrantLock();
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {

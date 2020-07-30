@@ -1,10 +1,9 @@
-package com.zyj.springboot_test.test.java.testThread.test_atomicity_in_thread;
+package com.zyj.springboot_test.test.java.testThread.concurrentUtil.aqs;
 
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class UnsafeTest {
     public static Unsafe unsafe;
