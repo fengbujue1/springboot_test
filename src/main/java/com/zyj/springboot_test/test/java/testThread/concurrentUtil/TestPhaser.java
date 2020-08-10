@@ -1,8 +1,6 @@
-package com.zyj.springboot_test.test.java.testThread.test_concurrentCondtion;
+package com.zyj.springboot_test.test.java.testThread.concurrentUtil;
 
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Phaser;
 
 public class TestPhaser {
@@ -30,18 +28,31 @@ public class TestPhaser {
 
         };
 
+        phaser.register();
         for (int i = 0; i < 3; i++) {
             new Thread(new Task(phaser)).start();
         }
-
+        phaser.arriveAndAwaitAdvance();//第0阶段等待
 
         while (!phaser.isTerminated()) {
+//            if (phaser.getPhase() == 1) {//这样的实现有问题，当main走到这一步的时候，可能其他线程已经完成了这一步，为了实现这种
+//                //控制,需要让main也参与到 phaser中来，
+//                System.out.println("main:检查到了阶段1,新增两个线程，完成后取消注册");
+//                for (int i = 0; i < 2; i++) {
+//                    new Thread(new Task2(phaser)).start();
+//                }
+//                break;
+//            }
             if (phaser.getPhase() == 1) {
                 System.out.println("main:检查到了阶段1,新增两个线程，完成后取消注册");
+                phaser.bulkRegister(2);
                 for (int i = 0; i < 2; i++) {
                     new Thread(new Task2(phaser)).start();
-                }
-                break;
+               }
+                phaser.arriveAndAwaitAdvance();//第一阶段等待
+            } else if (phaser.getPhase() == 2) {
+                phaser.arriveAndAwaitAdvance();//第二阶段等待
+                phaser.arriveAndDeregister();//第二阶段完，取消注册
             }
         }
 
@@ -95,7 +106,6 @@ public class TestPhaser {
         private Phaser phaser;
         public Task2(Phaser phaser) {
             this.phaser = phaser;
-            phaser.register();
         }
 
         @Override

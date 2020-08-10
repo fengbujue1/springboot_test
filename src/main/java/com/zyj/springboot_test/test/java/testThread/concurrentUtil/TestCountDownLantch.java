@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.java.testThread.test_concurrentCondtion;
+package com.zyj.springboot_test.test.java.testThread.concurrentUtil;
 
 import java.util.concurrent.CountDownLatch;
 
