@@ -1,5 +1,8 @@
 package com.zyj.springboot_test.test.java.testThread.lock;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -7,8 +10,32 @@ public class TestReentrantLock {
     public static void main(String[] args) {
 //        test1();
 //        test1();
-        test3();
+//        test3();.
+        int[] ints = divingBoard(1, 1, 0);
+        for (int i = 0; i < ints.length; i++) {
+            System.out.println(ints[i]);
+        }
 
+    }
+    public static int[] divingBoard(int shorter, int longer, int k) {
+        if (k == 0) {
+            return new int[0];
+        }
+
+        HashSet<Integer> integers = new HashSet<>();
+        for (int s = 0; s <= k; s++) {
+            int sNum = s;
+            int lNum = k - s;
+            integers.add(sNum * shorter + lNum* longer);
+        }
+        Iterator<Integer> iterator = integers.iterator();
+        int[] reults = new int[integers.size()];
+        Object[] objects = integers.toArray();
+        for (int i = 0; i < objects.length; i++) {
+            reults[i] = (int) objects[i];
+        }
+        Arrays.sort(reults);
+        return reults;
     }
 
 
