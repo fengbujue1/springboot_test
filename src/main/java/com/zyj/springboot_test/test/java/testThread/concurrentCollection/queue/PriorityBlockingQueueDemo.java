@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.java.testThread.concurrentCollection;
+package com.zyj.springboot_test.test.java.testThread.concurrentCollection.queue;
 
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;

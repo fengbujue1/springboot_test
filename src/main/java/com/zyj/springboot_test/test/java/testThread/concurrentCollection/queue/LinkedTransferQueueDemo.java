@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.java.testThread.concurrentCollection;
+package com.zyj.springboot_test.test.java.testThread.concurrentCollection.queue;
 
 import java.util.concurrent.LinkedTransferQueue;
 import java.util.concurrent.TimeUnit;

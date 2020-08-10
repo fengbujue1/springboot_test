@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.java.testThread.concurrentCollection.TreeMapUsage;
+package com.zyj.springboot_test.test.java.testThread.concurrentCollection.map.TreeMapUsage;
 
 import java.util.Collection;
 import java.util.SortedMap;

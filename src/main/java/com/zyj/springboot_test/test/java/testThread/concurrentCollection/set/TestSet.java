@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.java.testThread.concurrentCollection;
+package com.zyj.springboot_test.test.java.testThread.concurrentCollection.set;
 
 import java.util.NavigableSet;
 import java.util.Random;
