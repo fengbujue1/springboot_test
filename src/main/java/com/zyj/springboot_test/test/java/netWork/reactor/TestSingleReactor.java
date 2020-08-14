@@ -105,7 +105,6 @@ class Reactor implements Runnable {
         public Accpter(SelectionKey selectionKey) {
             this.selectionKey = selectionKey;
             this.serverSocketChannel = (ServerSocketChannel) selectionKey.channel();
-            System.out.println("收到一个新的连接请求");
         }
 
         @Override
@@ -181,6 +180,12 @@ class Reactor implements Runnable {
             readBuffer.flip();//切换读模式
             System.out.println("读到来自客户端的数据：  " + new String(readBuffer.array(), readBuffer.position(), readBuffer.limit(),Charset.defaultCharset()));//将数据读出
 
+            try {
+                Thread.sleep(10);//模拟10毫秒的业务处理耗时
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             state = writestate;
             selectionKey.interestOps(SelectionKey.OP_WRITE);//修改兴趣，对写事件感兴趣的监听
         }
@@ -196,7 +201,7 @@ class Reactor implements Runnable {
                 socketChannel.write(writeBuffer);//将数据写回去
             }
 
-            selectionKey.cancel();//这是在干嘛？
+            selectionKey.cancel();//这是在干嘛？--关闭连接？
         }
     }
 

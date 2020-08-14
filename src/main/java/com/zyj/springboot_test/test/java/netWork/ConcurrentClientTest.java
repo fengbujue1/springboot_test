@@ -21,28 +21,20 @@ import java.util.concurrent.CountDownLatch;
 public class ConcurrentClientTest {
     private static Charset charset = Charset.forName("UTF-8");
 
-    public static void main(String[] args) throws Exception {
-    	testConcurrent();
-    }
+	public static void main(String[] args) throws Exception {
+		ConcurrentClientTest concurrentClientTest = new ConcurrentClientTest();
+		concurrentClientTest.testConcurrent();
+	}
     
-    private static void testConcurrent() {
+    private  void testConcurrent() {
     	long s = System.currentTimeMillis();
-    	int concurrentLevel = 2000;
+    	int concurrentLevel = 30;
     	
     	CountDownLatch latch = new CountDownLatch(1);
     	CountDownLatch countDown = new CountDownLatch(concurrentLevel);
     	
         for(int i = 0; i < concurrentLevel; i++) {
-        	new Thread(()->{
-        		ConcurrentClientTest client = new ConcurrentClientTest();
-        		try {
-					latch.await();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-            	client.sendData_Nio();
-            	countDown.countDown();
-        	}).start();
+			new Task(i, latch, countDown).start();
         }
         latch.countDown();
         try {
@@ -53,7 +45,7 @@ public class ConcurrentClientTest {
     	System.out.println("cost: "+(System.currentTimeMillis() - s)+" ms");
     }
     
-    private void sendData_Nio() {
+    private void sendData_Nio(int i) {
     	try {
 			SocketChannel socketChannel = SocketChannel.open();
 			socketChannel.connect(new InetSocketAddress("127.0.0.1", 8088));
@@ -69,7 +61,7 @@ public class ConcurrentClientTest {
 			}
 
 			System.out.println("输入数据：");
-			byteBuffer.put("test".getBytes(Charset.defaultCharset()));
+			byteBuffer.put(("test"+i).getBytes(Charset.defaultCharset()));
 			byteBuffer.flip();
 			while (byteBuffer.hasRemaining()) {
 				socketChannel.write(byteBuffer);//持续写入数据
@@ -106,7 +98,7 @@ public class ConcurrentClientTest {
 			OutputStream outputStream = socket.getOutputStream();//打开流
 
 			System.out.println("写入数据");
-			outputStream.write("tesst".getBytes(charset));//将控制台的输入，以特定编码形式写入 输出流
+			outputStream.write("test".getBytes(charset));//将控制台的输入，以特定编码形式写入 输出流
 
 
 			InputStream inputStream = socket.getInputStream();
@@ -123,4 +115,29 @@ public class ConcurrentClientTest {
 		}
 
     }
+
+	class Task extends Thread {
+		private int num;
+		private CountDownLatch latch;
+		private CountDownLatch countDown;
+
+		public Task(int num,CountDownLatch latch,CountDownLatch countDown) {
+			this.num = num;
+			this.latch = latch;
+			this.countDown = countDown;
+		}
+
+		@Override
+		public void run() {
+			ConcurrentClientTest client = new ConcurrentClientTest();
+			try {
+				latch.await();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			client.sendData_Nio(num);
+			countDown.countDown();
+		}
+	}
 }
+
