@@ -12,6 +12,8 @@ public class TestServerSocketChannel {
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         serverSocketChannel.configureBlocking(false);//设定为非阻塞，默认是阻塞的
 
+        System.out.println("服务器启动完成");
+
         serverSocketChannel.bind(new InetSocketAddress(8088));//绑定端口
         while (true) {//循环遍历接受连接请求
             SocketChannel accept = serverSocketChannel.accept();//非阻塞获取连接
