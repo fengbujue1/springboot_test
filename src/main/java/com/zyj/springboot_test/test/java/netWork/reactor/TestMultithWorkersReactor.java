@@ -1,8 +1,5 @@
 package com.zyj.springboot_test.test.java.netWork.reactor;
 
-import com.zyj.springboot_test.test.java.testThread.test_thread_pool.Thread_pool;
-import com.zyj.springboot_test.test.java.testThread.test_thread_pool.dongnaoDemon.ThreadPool;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -13,7 +10,10 @@ import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -24,21 +24,19 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  */
 
-public class TestMultithreadedReactor {
+public class TestMultithWorkersReactor {
     public static void main(String[] args) throws IOException {
-        MianReactor reactor = new MianReactor(8088);
+        Reactor reactor = new Reactor(8088);
         reactor.run();
 
     }
 
 }
 
-class MianReactor implements Runnable {
+class Reactor implements Runnable {
 
     final Selector selector;
     final ServerSocketChannel serverSocketChannel;
-    final int subReactorSize = 1;
-    SubReactor[] subReactors = new SubReactor[1];
     final ThreadPoolExecutor threadPoolExecutor = createThreadPool();
     /**
      * 构造器 做一些 初始操作
@@ -47,7 +45,7 @@ class MianReactor implements Runnable {
      * 3.事件监听注册
      * 4.事件处理器绑定
      */
-    public MianReactor(int port) throws IOException{
+    public Reactor(int port) throws IOException{
         this.selector = Selector.open();//开启一个选择器
         this.serverSocketChannel = ServerSocketChannel.open();//开启一个服务监听通道
 //        serverSocketChannel.socket().bind(new InetSocketAddress(port));
@@ -56,9 +54,6 @@ class MianReactor implements Runnable {
 
         SelectionKey selectionKey = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);//注册到选择器，对accpet 连接请求感兴趣
 
-        for (int i = 0; i < subReactorSize; i++) {
-            subReactors[i] = new SubReactor();
-        }
         //此处的selectionKey代表的是serverSocketChannel和 selector之间的关系
         selectionKey.attach(new Accpter(selectionKey));//绑定一个 触发了accpet事件以后的处理器
 
@@ -69,12 +64,11 @@ class MianReactor implements Runnable {
     public void run() {//将当前堆积的事件统一取出，循环进行处理
         while (!Thread.interrupted()) {
             try {
-                System.out.println(this+"   阻塞等待");
                 int num = selector.select();//阻塞等待 有新的事件统治到来
                 if (num == 0) {
                     continue;
                 }
-                System.out.println(this+"   收到新的连接");
+                System.out.println("事件数量    " + num);
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
                 Iterator<SelectionKey> iterator = selectionKeys.iterator();
                 while (iterator.hasNext())
@@ -91,10 +85,10 @@ class MianReactor implements Runnable {
 
     private ThreadPoolExecutor createThreadPool() {
         //核心线程数（常规状态下，处理任务的线程数）
-        int corePoolSize = 12;
+        int corePoolSize = 3;
         //最大线程数，（只有在工作队列满了的情况下，才会新建线程处理任务）
         //这个结果有点意思，根据结果可分析出，这种策略会出现后面的任务反而先执行
-        int maximumPoolSize = 24;
+        int maximumPoolSize = 6;
         //超出最大线程数的线程的存活时间
         long keepAliveTime = 5;
         //存活的时间单位
@@ -116,44 +110,6 @@ class MianReactor implements Runnable {
     }
 
 
-    private class SubReactor extends Thread{
-        final Selector selector;
-        public volatile boolean running = false;
-
-        public SubReactor() throws IOException {
-            this.selector = Selector.open();//每个子reactor管理各自的selector
-        }
-
-        public void register(SocketChannel socketChannel) throws IOException {
-            new Handler(selector, socketChannel, threadPoolExecutor);
-        }
-
-        @Override
-        public void run() {
-            while (!Thread.interrupted()) {
-                try {
-                    System.out.println(this+"   阻塞等待");
-                    int num = selector.select(1000);//阻塞等待 有新的事件统治到来
-                    if (num == 0) {
-                        continue;
-                    }
-                    System.out.println("事件数量：" + num);
-                    Set<SelectionKey> selectionKeys = selector.selectedKeys();
-                    Iterator<SelectionKey> iterator = selectionKeys.iterator();
-                    while (iterator.hasNext())
-                        dispatch(iterator.next());
-
-                    System.out.println(this + ":     处理完一轮 事件");
-                    selectionKeys.clear();//将当前处理过的任务都清除掉
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-
-        }
-    }
 
     /**
      *
@@ -174,29 +130,17 @@ class MianReactor implements Runnable {
 
         @Override
         public void run() {
-//            关注于连接的分发
             System.out.println("阻塞等待连接建立");
             SocketChannel socketChannel = null;//建立一个和客户端的连接,阻塞
             try {
                 socketChannel = serverSocketChannel.accept();
-                System.out.println("channel:"+socketChannel);
                 if (socketChannel != null) {
-                    int i = count.incrementAndGet();
-                    int index = i % subReactorSize;
-                    subReactors[index].register(socketChannel);
-                    if (!subReactors[index].running) {
-                        System.out.println("start" + index);
-                        subReactors[index].running = true;
-                        subReactors[index].start();
-                    }
+                    System.out.println("建立一个和客户端的连接");
+                    new Handler(selector, socketChannel, threadPoolExecutor);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-
-
         }
     }
 
@@ -219,13 +163,11 @@ class MianReactor implements Runnable {
             socketChannel.configureBlocking(false);//设为非阻塞模式
 
             //将这个与客户端的连接注册到选择器中，
-            System.out.println("register1");
-            selector.wakeup();//唤醒在while循环中的阻塞，释放 monitor锁
-            selectionKey = socketChannel.register(selector, SelectionKey.OP_READ);
-            System.out.println("register2");
+            selectionKey = socketChannel.register(selector, 0);
             selectionKey.attach(this);//同时把自己作为事件处理器
 
             System.out.println("绑定处理器，并唤醒等待线程");
+            selectionKey.interestOps(SelectionKey.OP_READ);//对读事件感兴趣
 
             selector.wakeup();//唤醒select()方法上等待着的线程，告诉他他感兴趣的事发生了变化
 
@@ -262,7 +204,7 @@ class MianReactor implements Runnable {
             }
 
             System.out.println("关闭连接");
-//            selectionKey.cancel();//这是在干嘛？--关闭连接？
+            selectionKey.cancel();//这是在干嘛？--关闭连接？
         }
 
         /**
@@ -285,13 +227,6 @@ class MianReactor implements Runnable {
 //                new Processer().run();//单线程模式同步处理业务逻辑
 
                 threadPool.execute(new Processer());//使用线程池异步处理业务逻辑
-
-
-                //不进入业务模拟等待
-//                state = writestate;
-//                selectionKey.interestOps(SelectionKey.OP_WRITE);//修改兴趣，对写事件感兴趣的监听
-//
-//                selectionKey.selector().wakeup();//这是关键一步！！
             } catch (Exception e) {
 
             }

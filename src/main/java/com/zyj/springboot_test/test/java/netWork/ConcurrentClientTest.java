@@ -28,7 +28,7 @@ public class ConcurrentClientTest {
     
     private  void testConcurrent() {
     	long s = System.currentTimeMillis();
-    	int concurrentLevel = 30;
+    	int concurrentLevel = 100;
     	
     	CountDownLatch latch = new CountDownLatch(1);
     	CountDownLatch countDown = new CountDownLatch(concurrentLevel);

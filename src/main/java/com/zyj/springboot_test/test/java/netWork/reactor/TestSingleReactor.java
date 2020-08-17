@@ -24,14 +24,14 @@ import java.util.Set;
 
 public class TestSingleReactor {
     public static void main(String[] args) throws IOException {
-        Reactor reactor = new Reactor(8088);
+        SingleReactor reactor = new SingleReactor(8088);
         reactor.run();
 
     }
 
 }
 
-class Reactor implements Runnable {
+class SingleReactor implements Runnable {
 
     final Selector selector;
     final ServerSocketChannel serverSocketChannel;
@@ -43,7 +43,7 @@ class Reactor implements Runnable {
      * 3.事件监听注册
      * 4.事件处理器绑定
      */
-    public Reactor(int port) throws IOException{
+    public SingleReactor(int port) throws IOException{
 
         this.selector = Selector.open();//开启一个选择器
         this.serverSocketChannel = ServerSocketChannel.open();//开启一个服务监听通道
