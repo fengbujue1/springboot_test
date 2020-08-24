@@ -60,5 +60,12 @@ public class TestHashMap {
         for (Map.Entry<String, String> entry : entries) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
+
+
+        System.out.println("================putnull=================");
+        HashMap<Object, Object> testNull = new HashMap<>();
+        testNull.put(null, null);
+        System.out.println(testNull.get(null));
+
     }
 }
