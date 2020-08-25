@@ -12,9 +12,10 @@ public class TestHashMap {
     public static void testHashMap() {
         HashMap<String, String> map = new HashMap<>();
         System.out.println("================putIfAbsent=================");
-        map.putIfAbsent("1", "1_2");//如果不存在存入
+        String s = map.putIfAbsent("1", "1_2");//如果不存在存入
         map.putIfAbsent("1", "1");
         System.out.println(map.get("1"));
+        System.out.println("return:" + s);
 
         System.out.println("================merge=================");
         map.merge("1", "2",String::concat);//存在则组合，不存在则插入
@@ -27,6 +28,10 @@ public class TestHashMap {
         });
         System.out.println(map.get("1"));
         System.out.println(map.get("2"));
+        System.out.println("================computeIfAbsent=================");
+        HashMap<String, Integer> map3 = new HashMap<>();
+        Integer integer = map3.computeIfAbsent("1", key -> 1);
+        System.out.println(integer);
 
         System.out.println("================compute=================");
 
