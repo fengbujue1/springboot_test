@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.observe;
+package com.zyj.springboot_test.test.designMode.observe;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -16,13 +16,15 @@ public class TestObserve {
         Observer observer1 = new Observer() {
             @Override
             public void update(Observable o, Object arg) {
-                System.out.println(arg);
+                System.out.println("chamnge:" + this);
+                System.out.println("msg:" + arg);
             }
         };
         Observer observer2 = new Observer() {
             @Override
             public void update(Observable o, Object arg) {
-                System.out.println(arg);
+                System.out.println("chamnge:" + this);
+                System.out.println("msg:" + arg);
             }
         };
 
