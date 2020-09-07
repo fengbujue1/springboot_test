@@ -33,6 +33,17 @@ public class TestHashMap {
         Integer integer = map3.computeIfAbsent("1", key -> 1);
         System.out.println(integer);
 
+        System.out.println("================computeIfAbsent4=================");
+        HashMap<Integer, Integer> map4 = new HashMap<>();
+        map4.computeIfAbsent(1, key -> 1);
+        map4.compute(1, new BiFunction<Integer, Integer, Integer>() {
+            @Override
+            public Integer apply(Integer integer, Integer integer2) {
+                return integer + integer2;
+            }
+        });
+        System.out.println(map4.get(1));
+
         System.out.println("================compute=================");
 
         HashMap<String, Integer> map2 = new HashMap<>();

@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.designMode.proxy;
+package com.zyj.springboot_test.test.java.designMode.proxy;
 
 import com.zyj.springboot_test.bean.HelloBody;
 import org.springframework.cglib.proxy.*;

@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.designMode.observe;
+package com.zyj.springboot_test.test.java.designMode.observe;
 
 import java.util.Observable;
 import java.util.Observer;
