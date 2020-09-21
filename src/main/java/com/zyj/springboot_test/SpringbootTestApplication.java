@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClas
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.util.ArrayList;
+
 @SpringBootApplication
 @ComponentScan("com.zyj.springboot_test")
 public class SpringbootTestApplication {
