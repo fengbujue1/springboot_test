@@ -38,11 +38,12 @@ class MethodInterceptor1 implements MethodInterceptor {
 
         //调用父类的该方法，即不产生额外增强行为
 //        ret = methodProxy.invokeSuper(proxy, args);
-        System.out.println("before");
+       if(method.getName().equals("doSomething1")){
+           System.out.println("before");
+       }
         if (target != null) {
             ret = method.invoke(target, args);
         }
-
         return ret;
     }
 }
