@@ -36,7 +36,7 @@ public class Server_Netty {
                     public void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline p = ch.pipeline();
                         System.out.println("chanelPipeline" + p);
-                        p.addLast(new ServerHandler());
+//                        p.addLast(new ServerHandler());
                     }
                 })
                 .channel(NioServerSocketChannel.class);
