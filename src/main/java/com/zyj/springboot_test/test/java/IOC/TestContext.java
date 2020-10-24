@@ -8,5 +8,7 @@ public class TestContext {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         Person person = classPathXmlApplicationContext.getBean("person", Person.class);
         System.out.println(person);
+
+
     }
 }
