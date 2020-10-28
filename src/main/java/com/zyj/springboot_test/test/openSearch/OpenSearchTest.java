@@ -123,7 +123,7 @@ public class OpenSearchTest {
         //定义Config对象，用于设定config子句参数，用于分页或设置数据返回格式
         Config config = new Config(Lists.newArrayList(appName));
         config.setStart(0);
-        config.setHits(30);
+        config.setHits(1);
         //设置返回格式为json,目前只支持返回xml和json格式，暂不支持返回fulljson类型
         config.setSearchFormat(SearchFormat.JSON);
         // 设置搜索结果返回应用中哪些字段
