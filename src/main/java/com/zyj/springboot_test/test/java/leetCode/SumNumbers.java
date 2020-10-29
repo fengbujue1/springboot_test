@@ -31,7 +31,7 @@ public class SumNumbers {
         TreeNode treeNode4 = new TreeNode(1);
         treeNode1.left = treeNode3;
         treeNode1.right = treeNode4;
-        System.out.println(sumNumbers2(treeNode));
+        System.out.println(sumNumbers3(treeNode));
     }
 
     /**
@@ -40,22 +40,33 @@ public class SumNumbers {
      *
      */
     public static int sumNumbers3(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
         Queue<TreeNode> nodes = new LinkedList<>();
         Queue<Integer> nums = new LinkedList<>();
 
+        TreeNode node = root;
         nodes.offer(root);
         nums.offer(root.val);
-
+        int sum = 0;
         while (!nodes.isEmpty()) {
-
+            TreeNode peekNode = nodes.poll();
+            Integer peekVal = nums.poll();
+            if (peekNode.left == null && peekNode.right == null) {
+                sum += peekVal;
+            } else {
+                if (peekNode.right != null) {
+                    nodes.offer(peekNode.right);
+                    nums.offer(peekVal * 10 + peekNode.right.val);
+                }
+                if (peekNode.left != null) {
+                    nodes.offer(peekNode.left);
+                    nums.offer(peekVal * 10 + peekNode.left.val);
+                }
+            }
         }
-        return 0;
-//        calc(root,temp,nums);
-//        int sum = 0;
-//        for (int i = 0; i < nums.size(); i++) {
-//            sum += nums.get(i);
-//        }
-//        return sum;
+        return sum;
     }
     /**
      * 深度优先算法的实现
