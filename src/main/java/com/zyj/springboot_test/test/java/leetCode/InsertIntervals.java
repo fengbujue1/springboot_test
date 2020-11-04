@@ -1,0 +1,86 @@
+package com.zyj.springboot_test.test.java.leetCode;
+
+import com.sun.org.apache.bcel.internal.generic.I2F;
+import org.bouncycastle.util.Arrays;
+
+public class InsertIntervals {
+    /**
+     * 给出一个无重叠的 ，按照区间起始端点排序的区间列表。
+     *
+     * 在列表中插入一个新的区间，
+     * 你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。
+     *
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        int [][] intervals = {{1,3},{6,9}};
+        int[] newInterval = {2, 5};
+
+        int[][] intervals2 = {{1, 2}, {3, 5}, {6, 7}, {8, 10}, {12, 16}};
+        int[] newInterval2 = {4,8};
+//        [[1,2],[3,10],[12,16]]
+        insert(intervals2, newInterval2);
+    }
+
+    public static int[][] insert(int[][] intervals, int[] newInterval) {
+        if (intervals.length == 0) {
+            int[][] ints = new int[1][2];
+            ints[0] = newInterval;
+
+            return ints;
+        }
+
+        int[][] white = intervals;
+        int[] mergeInterval = new int[]{Integer.MIN_VALUE,Integer.MIN_VALUE};
+
+        for (int i = 0; i < white.length; i++) {
+            //遍历所有区间
+            if (white[i][0] <= newInterval[0] && white[i][1] >= newInterval[0]) {
+                //新区间的头部落入某个白区间中,以白区间的头为头
+                mergeInterval[0] = white[i][0];
+            }
+            if (i != white.length - 1 && white[i][1] < newInterval[0] && white[i + 1][0] > newInterval[0]) {
+                //新区间的头部落入某个黑区间中,以新区间头为头
+                mergeInterval[0] = newInterval[0];
+            }
+            if (white[i][0] <= newInterval[1] && white[i][1] >= newInterval[1]) {
+                //新区间的尾部部落入某个白区间中,以白区间的尾为尾
+                mergeInterval[1] = white[i][1];
+            }
+            if (i != white.length - 1 &&white[i][1] < newInterval[1] && white[i+1][0] > newInterval[1]) {
+                //新区间的尾部部落入某个黑区间中,以新区间的尾为尾
+                mergeInterval[1] = newInterval[1];
+            }
+        }
+
+        boolean isExchanged = false;
+        int validElements = 0;
+        for (int i = 0; i < white.length; i++) {
+            //二次比遍历，执行替换
+            //遍历所有区间,凡是新区间被包含了，就执行替换为null
+            if (white[i][0] >= mergeInterval[0] && white[i][1] <= mergeInterval[1]) {
+                if (!isExchanged) {
+                    validElements++;
+                    isExchanged = true;
+                    white[i] = mergeInterval;
+                } else {
+                    white[i] = null;
+                }
+            } else {
+                validElements++;
+            }
+        }
+
+        int[][] results = new int[validElements][2];
+        int index = 0;
+        for (int i = 0; i < white.length; i++) {
+            //三次比遍历，执行拷贝
+            if (white[i] != null) {
+                results[index] = white[i];
+                index++;
+            }
+        }
+        return results;
+    }
+}
