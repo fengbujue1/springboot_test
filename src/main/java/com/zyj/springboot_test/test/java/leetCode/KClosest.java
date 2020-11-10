@@ -24,6 +24,10 @@ public class KClosest {
         System.out.println(1);
 
     }
+
+    /**
+     * 自实现算法，时间是复杂度 O(NlogN)，太高了
+     */
     public int[][] kClosest(int[][] points, int K) {
         ArrayList<int[]> temps = new ArrayList<>();
         temps.addAll(Arrays.asList(points));
