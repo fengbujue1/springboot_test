@@ -4,13 +4,22 @@ package com.zyj.springboot_test.test.java.leetCode;
 import java.util.*;
 
 public class Test {
-    //List<节点idList<关联的节点id>>
-    ArrayList<List<Integer>> idToVNodeMap = new ArrayList<>();
-
-    Map<String, Integer> strToIdMap = new HashMap<String, Integer>();
-    int id = 0;//字符串的唯一id,同时也是idToVNodeMap里面的索引
-
     /**
+     *
+     * 127. 单词接龙
+     *
+     * 给定两个单词（beginWord 和 endWord）和一个字典，找到从 beginWord 到 endWord 的最短转换序列的长度。转换需遵循如下规则：
+     *
+     * 每次转换只能改变一个字母。
+     * 转换过程中的中间单词必须是字典中的单词。
+     * 说明:
+     *
+     * 如果不存在这样的转换序列，返回 0。
+     * 所有单词具有相同的长度。
+     * 所有单词只由小写字母组成。
+     * 字典中不存在重复的单词。
+     * 你可以假设 beginWord 和 endWord 是非空的，且二者不相同。
+     *
      * 算法：广度优先算法，配合图
      *
      *  1.建立图  每个单词如果和另一个存在一个单词的区别（可相互替换），就用一条线连接起来
@@ -29,6 +38,23 @@ public class Test {
      *
      */
 
+
+    //List<节点idList<关联的节点id>>
+    ArrayList<List<Integer>> idToVNodeMap = new ArrayList<>();
+
+    Map<String, Integer> strToIdMap = new HashMap<String, Integer>();
+    int id = 0;//字符串的唯一id,同时也是idToVNodeMap里面的索引
+
+    public static void main(String[] args) {
+        String beginWord = "hit";
+        String endWord = "cog";
+        String[] strings = {"hot", "dot", "dog", "lot", "log", "cog"};
+        List<String> wordList = Arrays.asList(strings);
+
+        Test test = new Test();
+        System.out.println(test.ladderLength(beginWord, endWord, wordList));
+    }
+
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         if (!wordList.contains(endWord)) {
             return 0;
@@ -41,40 +67,46 @@ public class Test {
         int startid = 0;
         int[] steps = new int[idToVNodeMap.size()];
         Arrays.fill(steps, Integer.MIN_VALUE);
+        steps[0] = 0;
 
         Queue<Integer> ids = new LinkedList<>();//队列里面存的是Id
-        ((LinkedList<Integer>) ids).offer(startid);
+        ids.offer(startid);
+        int endId = strToIdMap.get(endWord);
 
         while (!ids.isEmpty()) {
-            Integer curretnStepId = ids.poll();
-            if (strToIdMap.get(endWord).equals(curretnStepId)) {
+            int curretnStepId = ids.poll();
+            if (endId == curretnStepId) {
                 //找到结果，返回
-                return steps[curretnStepId];
+                return steps[curretnStepId] / 2 + 1;
             }
 
-            List<Integer> relationIds = idToVNodeMap.get(curretnStepId);//关联的所有节点
-
+            List<Integer> relationIds = idToVNodeMap.get(curretnStepId);//关联的所有节点的id
+            for (int x : relationIds) {
+                if (steps[x] == Integer.MIN_VALUE) {
+                    steps[x] = steps[curretnStepId] + 1;
+                    ids.offer(x);
+                }
+            }
         }
-
+        return 0;
     }
 
     //在图中添加可能的单词
     private void addWord(String s) {
-        int id1 = id;
-        if (!strToIdMap.containsKey(s)) {
-            strToIdMap.put(s, id++);
-            createRelation(s, id1);
-        }
+        createRelation(s);
+        int id1 = strToIdMap.get(s);
+//        if (!strToIdMap.containsKey(s)) {
+//            strToIdMap.put(s, id++);
+//            createRelation(s);
+//        }
         char[] chars = s.toCharArray();
         //建立虚拟节点(所有可能被替换的字符)
         for (int i = 0; i < chars.length; i++) {
             char temp = chars[i];
             chars[i] = '*';
             String vNode = new String(chars);//虚拟节点
-            strToIdMap.put(vNode, id++);
-
-            int id2 = id;
-            createRelation(vNode,id1);
+            createRelation(vNode);
+            int id2 = strToIdMap.get(vNode);
             chars[i] = temp;//把节点替换回来
             // 添加相互之间的映射关系
             idToVNodeMap.get(id1).add(id2);
@@ -83,13 +115,10 @@ public class Test {
         }
     }
 
-    private void createRelation(String vNode, int id1) {
-        if (strToIdMap.containsKey(vNode)) {
-            //如果这个节点是已经存在的，那就把这个已存在的节点(只会是虚拟节点)和当前的节点链接
-            Integer id = strToIdMap.get(vNode);
-            idToVNodeMap.get(id).add(id1);
-        } else {
+    private void createRelation(String vNode) {
+        if (!strToIdMap.containsKey(vNode)) {
             idToVNodeMap.add(new ArrayList<>());//在id对应的索引处插入一个对应的关联List(id从0递增)
+            strToIdMap.put(vNode, id++);
         }
 
     }
