@@ -3,7 +3,7 @@ package com.zyj.springboot_test.test.java.leetCode;
 
 import java.util.*;
 
-public class Test {
+public class LadderLength {
     /**
      *
      * 127. 单词接龙
@@ -51,7 +51,7 @@ public class Test {
         String[] strings = {"hot", "dot", "dog", "lot", "log", "cog"};
         List<String> wordList = Arrays.asList(strings);
 
-        Test test = new Test();
+        LadderLength test = new LadderLength();
         System.out.println(test.ladderLength(beginWord, endWord, wordList));
     }
 
