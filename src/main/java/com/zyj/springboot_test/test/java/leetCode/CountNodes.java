@@ -43,7 +43,13 @@ public class CountNodes {
         right2.left = left3;
         CountNodes countNodes = new CountNodes();
 
-        System.out.println(countNodes.countNodes(root));;
+//        System.out.println(countNodes.countNodes(root));;
+        int low = 1<<3;
+        int hignh = (1 << 4) - 1;
+        int mid = (hignh - low + 1) / 2 + low;
+        System.out.println(mid);
+
+
     }
 
     public int countNodes(TreeNode root) {
