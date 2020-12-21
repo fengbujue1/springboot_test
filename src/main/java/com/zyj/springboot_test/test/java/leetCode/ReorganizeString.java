@@ -22,6 +22,7 @@ public class ReorganizeString {
      * 注意:
      *
      * S 只包含小写字母并且长度在[1, 500]区间内。
+     * test
      */
 
     public static void main(String[] args) {
