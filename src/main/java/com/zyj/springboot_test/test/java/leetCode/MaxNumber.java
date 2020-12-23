@@ -39,15 +39,31 @@ public class MaxNumber {
      * [9, 8, 9]
      */
 
+    /**
+     * 力扣解法：单调栈
+     *  //1.计算可能出现的两个数组取值的情况
+     *  2.从两个数组中取出指定长度的最大序列，单调栈
+     *  3.合并两个序列,因为是单调栈，只需要直接组装即可
+     */
+    public static void main(String[] args) {
+        MaxNumber maxNumber = new MaxNumber();
+        int[] nums1 = new int[]{6, 7};
+        int[] nums2 = new int[]{6, 0, 4, 5, 6};
+        int[] ints = maxNumber.maxNumber(nums1, nums2, 5);
+            System.out.println();
+        for (int i = 0; i < ints.length; i++) {
+            System.out.print(ints[i]);
+        }
+    }
     public int[] maxNumber(int[] nums1, int[] nums2, int k) {
         int m = nums1.length, n = nums2.length;
         int[] maxSubsequence = new int[k];
-        int start = Math.max(0, k - n), end = Math.min(k, m);
+        int start = Math.max(0, k - n), end = Math.min(k, m);//1.计算可能出现的两个数组取值的情况
         for (int i = start; i <= end; i++) {
-            int[] subsequence1 = maxSubsequence(nums1, i);
+            int[] subsequence1 = maxSubsequence(nums1, i);//2.从两个数组中取出指定长度的最大序列，单调栈
             int[] subsequence2 = maxSubsequence(nums2, k - i);
-            int[] curMaxSubsequence = merge(subsequence1, subsequence2);
-            if (compare(curMaxSubsequence, 0, maxSubsequence, 0) > 0) {
+            int[] curMaxSubsequence = merge(subsequence1, subsequence2);//3.合并两个序列
+            if (compare(curMaxSubsequence, 0, maxSubsequence, 0) > 0) {//比较
                 System.arraycopy(curMaxSubsequence, 0, maxSubsequence, 0, k);
             }
         }
@@ -106,5 +122,20 @@ public class MaxNumber {
             index2++;
         }
         return (x - index1) - (y - index2);
+    }
+
+    /**
+     * 自己实现一遍leetcode算法
+     *      1.计算可能出现的两个数组取值的情况
+     *      2.从两个数组中取出指定长度的最大序列，单调栈
+     *      3.合并两个序列,因为是单调栈，只需要直接组装即可
+     */
+    public int[] maxNumberReWrite(int[] nums1, int[] nums2, int k) {
+        int length1 = nums1.length;
+        int length2 = nums2.length;
+        int start = Math.max(0, k - length2);
+        int end = Math.min(k, length1);
+
+        return null;
     }
 }
