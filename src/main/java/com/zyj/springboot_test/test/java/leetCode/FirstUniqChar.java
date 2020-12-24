@@ -1,6 +1,7 @@
 package com.zyj.springboot_test.test.java.leetCode;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class FirstUniqChar {
     /**
@@ -13,8 +14,12 @@ public class FirstUniqChar {
         FirstUniqChar firstUniqChar = new FirstUniqChar();
         String s = "leetcode";
         String s2 = "loveleetcode";
-        System.out.println(firstUniqChar.firstUniqChar(s2));
+        System.out.println(firstUniqChar.firstUniqChar2(s2));
     }
+
+    /**
+     * 自实现算法，时间空间 60%
+     */
     public int firstUniqChar(String s) {
         char[] chars = s.toCharArray();
         int[] counts = new int[26];
@@ -43,5 +48,23 @@ public class FirstUniqChar {
         }
         return -1;
 
+    }
+    /**
+     * hashmap 算法
+     */
+    public int firstUniqChar2(String s) {
+        HashMap<Character, Integer> count = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            Integer integer = count.computeIfAbsent(s.charAt(i),f->{
+                return 0;
+            });
+            count.put(s.charAt(i), integer+1);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (count.get(s.charAt(i)) == 1) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
