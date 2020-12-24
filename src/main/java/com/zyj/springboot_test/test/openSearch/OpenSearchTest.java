@@ -23,8 +23,8 @@ public class OpenSearchTest {
 
     private static String appName = "test_opensearh";
     private static String tableName = "person";
-    private static String accesskey = "LTAI4G4GXoVKcvmwsiayGzqW";
-    private static String secret = "koSncNFykQsh4mhF3JWzsryPYP1bUj";
+    private static String accesskey = "";
+    private static String secret = "";
     private static String host = "http://opensearch-cn-shenzhen.aliyuncs.com";
 
     public static void main(String[] args) {
