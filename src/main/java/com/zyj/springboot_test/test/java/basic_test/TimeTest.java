@@ -2,14 +2,41 @@ package com.zyj.springboot_test.test.java.basic_test;
 
 import org.joda.time.DateTime;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TimeTest {
     public static void main(String[] args) {
-        System.out.println(DateTime.now().getMillis());
-        System.out.println(calcDailyRenewTime(0));
-
+//        System.out.println(DateTime.now().getMillis());
+//        System.out.println(calcDailyRenewTime(0));
+        testcCalcYearDay();
     }
+
+    public static void testcCalcYearDay() {
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        String strDateFormat = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+        String format = sdf.format(date);
+        System.out.println(format);
+        String regex = "-";
+        String[] split = format.split(regex);
+        System.out.println(split[0]);
+        System.out.println(split[1]);
+        System.out.println(split[2]);
+        System.out.println("-----------------------");
+
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH)+1;
+        int day = calendar.get(Calendar.DATE);
+        System.out.println(year);
+        System.out.println(month);
+        System.out.println(day);
+    }
+
     public static long calcDailyRenewTime(int hour) {
         Calendar cal = Calendar.getInstance();
 //        cal.setTimeInMillis(System.currentTimeMillis()+500)/1000*1000);
