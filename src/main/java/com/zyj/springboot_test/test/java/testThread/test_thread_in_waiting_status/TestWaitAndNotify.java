@@ -61,8 +61,9 @@ public class TestWaitAndNotify {
         }
     };
     public static void main(String[] args) {
-        test1();
+//        test1();
 //        test2();
+        test3();
     }
 
 
@@ -89,6 +90,33 @@ public class TestWaitAndNotify {
             e.printStackTrace();
         }
         thread4.start();
+
+    }
+
+    private static volatile int i = 0;
+    public static Thread thread5_1 = new Thread() {
+        @Override
+        public void run() {
+            synchronized (lock) {
+                System.out.println("线程：" + Thread.currentThread().getName() + " 进入");
+                if (i < 3) {
+                    try {
+                        i++;
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    lock.notifyAll();
+                }
+                System.out.println("线程：" + Thread.currentThread().getName() + " 即将退出");
+            }
+        }
+    };
+    public static void test3() {
+        for (int i = 0; i < 4; i++) {
+            new Thread(thread5_1).start();
+        }
 
     }
 }

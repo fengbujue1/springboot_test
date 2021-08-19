@@ -16,7 +16,6 @@ public class TestCountDownLantch {
                     e.printStackTrace();
                 }
                 System.out.println("count down---1");
-                countDownLatch.countDown();
             }
         }).start();
         new Thread(new Runnable() {

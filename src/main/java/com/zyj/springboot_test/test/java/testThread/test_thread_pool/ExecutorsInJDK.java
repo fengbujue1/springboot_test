@@ -9,6 +9,9 @@ public class ExecutorsInJDK {
     public static void main(String[] args) throws InterruptedException {
         //JDK提供的线程池实例化工具，简便，代价就是有许多默认参数无法自己调控，容易造成OOM
         ExecutorService executorService = Executors.newFixedThreadPool(3);
+        ExecutorService executorService2 = Executors.newSingleThreadExecutor();
+        ExecutorService executorService3 = Executors.newCachedThreadPool();
+
         for (int i = 1; i < 11; i++) {
             executorService.execute(new Thread_pool.Run1(i));
         }
