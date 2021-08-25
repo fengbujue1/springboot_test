@@ -4,6 +4,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class TestConcurrentHashMap {
     public static void main(String[] args) {
-        new ConcurrentHashMap<>();
+        ConcurrentHashMap<Object, Object> map = new ConcurrentHashMap<>();
+
+        map.put("123", "123");
     }
 }

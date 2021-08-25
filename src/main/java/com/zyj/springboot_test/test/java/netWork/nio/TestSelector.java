@@ -51,20 +51,39 @@ public class TestSelector {
                             }
                         }
                         byteBuffer.flip();//切换为读模式
-                        System.out.println("读到来自客户端的数据：  " + new String(byteBuffer.array(), byteBuffer.position(), byteBuffer.limit(),Charset.defaultCharset()));//将数据读出
+                        String s = new String(byteBuffer.array(), byteBuffer.position(), byteBuffer.limit(), Charset.defaultCharset());
+                        System.out.println("读到来自客户端的数据：  " + s);//将数据读出
+
                         byteBuffer.clear();//清空数据
 
                         SocketChannel channel = (SocketChannel)selectionKey.channel();
-                        ByteBuffer responseBuffer = ByteBuffer.wrap("hello".getBytes(Charset.forName("utf8")));
-                        while(responseBuffer.hasRemaining()) {
-                            System.out.println("写回数据");
-                            channel.write(responseBuffer);//将数据写回去
+//                        ByteBuffer responseBuffer = ByteBuffer.wrap("hello".getBytes(Charset.forName("utf8")));
+                        if (s.equals("bye")) {
+                            while(byteBuffer.hasRemaining()) {
+                                byteBuffer.put("bye".getBytes(Charset.forName("utf8")));
+                                System.out.println("写回数据");
+                                channel.write(byteBuffer);//将数据写回去
+                            }
+                            channel.close();//关闭连接
+                            continue;
+                        } else {
+                            while(byteBuffer.hasRemaining()) {
+//                                byteBuffer.compact();
+                                byteBuffer.put("hello".getBytes(Charset.forName("utf8")));
+                                System.out.println("写回数据");
+                                channel.write(byteBuffer);//将数据写回去
+                            }
+//                            accept.register(selector, SelectionKey.OP_READ);
+                            accept.register(selector, SelectionKey.OP_WRITE);//注册一个写入事件，给客户端写一个回信
                         }
-                        channel.close();//关闭连接
+
+//                        channel.close();//关闭连接
 //                        accept.register(selector, SelectionKey.OP_WRITE);//注册一个写入事件，给客户端写一个回信
                     }
                     else if (selectionKey.isWritable()) {
-
+                        System.out.println("写入事件");
+//                        SocketChannel accept = (SocketChannel)selectionKey.channel();
+//                        accept.register(selector, SelectionKey.OP_READ);
 
                     }
 

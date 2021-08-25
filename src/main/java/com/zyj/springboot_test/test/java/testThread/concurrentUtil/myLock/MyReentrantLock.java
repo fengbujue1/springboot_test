@@ -4,11 +4,12 @@ import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class MyReentrantLock {
 
     public static void main(String[] args) {
-//        ReentrantLock reentrantLock = new ReentrantLock();
+        ReentrantLock reentrantLock2 = new ReentrantLock();
         MyReentrantLock reentrantLock = new MyReentrantLock();
         Thread thread1 = new Thread(new Runnable() {
             @Override

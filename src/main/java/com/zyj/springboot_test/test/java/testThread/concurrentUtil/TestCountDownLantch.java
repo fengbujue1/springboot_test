@@ -12,6 +12,7 @@ public class TestCountDownLantch {
                 System.out.println("1");
                 try {
                     Thread.sleep(1000);
+                    countDownLatch.countDown();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

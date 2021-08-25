@@ -16,6 +16,7 @@ public class TestServerSocketChannel {
 
         serverSocketChannel.bind(new InetSocketAddress(8088));//绑定端口
         while (true) {//循环遍历接受连接请求
+            System.out.println("循环");
             SocketChannel accept = serverSocketChannel.accept();//非阻塞获取连接
             if (accept != null) {
                 ByteBuffer byteBuffer = ByteBuffer.allocate(1024);//申请一段缓冲

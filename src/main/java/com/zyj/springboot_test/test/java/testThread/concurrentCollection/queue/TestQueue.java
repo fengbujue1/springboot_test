@@ -29,7 +29,12 @@ public class TestQueue {
         integers.take();//获取方法，空队列阻塞
 
         /** LinkedBlockingQueue ----链表容器*/
-        LinkedBlockingQueue<Integer> integers1 = new LinkedBlockingQueue<>();//无界阻塞队列，链表实现
+        LinkedBlockingQueue<Integer> integers1 = new LinkedBlockingQueue<>();//无界阻塞队列，链表实现,通过lock进行同步控制
+        integers1.offer(1);
+        integers1.add(1);
+        integers1.put(1);
+
+        integers1.take();
 
 
         /** PriorityBlockingQueue ------带权优先级的队列---业务场景百度网盘（根据会员等级优先处理任务）*/
@@ -47,6 +52,7 @@ public class TestQueue {
 
         /** ConcurrentLinkedQueue*/
         ConcurrentLinkedQueue<Object> objects3 = new ConcurrentLinkedQueue<>();
+        boolean offer = objects3.offer("123");
 
         //阻塞队列在线程池中的使用
 
