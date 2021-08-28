@@ -41,6 +41,7 @@ public class TestSocketChannel {
             //准备读取服务端的响应
             ByteBuffer respBuffer = ByteBuffer.allocate(1024);
             while (socketChannel.isOpen() && socketChannel.read(respBuffer) != -1) {
+                System.out.println("在读取数据");
                 //读到了数据
                 if (respBuffer.position() > 1) {
                     break;//有真实数据写入，调出循环
