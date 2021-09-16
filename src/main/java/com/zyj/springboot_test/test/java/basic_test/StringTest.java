@@ -10,6 +10,14 @@ public class StringTest {
         String c = "asd";
         String d = new String("asd");
 
+        StringBuilder stringBuilder = new StringBuilder("123");
+        stringBuilder.append("123");
+        stringBuilder.append("456");
+        System.out.println("StringBuilder:" + stringBuilder);
+
+        StringBuffer stringBuffer = new StringBuffer("123");
+        stringBuffer.append("123");
+
         System.out.println(a == b);
         System.out.println(c == a);
         System.out.println(b == d);

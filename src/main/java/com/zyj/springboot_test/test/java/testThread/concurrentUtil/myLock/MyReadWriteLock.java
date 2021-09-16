@@ -8,7 +8,6 @@ public class MyReadWriteLock {
 
         ReentrantReadWriteLock.ReadLock readLock = reentrantReadWriteLock.readLock();
         ReentrantReadWriteLock.WriteLock writeLock = reentrantReadWriteLock.writeLock();
-
         new Thread(new Runnable() {
             @Override
             public void run() {
