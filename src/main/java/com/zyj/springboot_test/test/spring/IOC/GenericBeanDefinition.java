@@ -11,6 +11,8 @@ public class GenericBeanDefinition implements BeanDefinition {
     private String staticFactoryMethodName;
     private String scope;
     private List<Object> params;
+    private String initMethod;
+    private String destroyMethod;
 
 
     @Override
@@ -84,14 +86,25 @@ public class GenericBeanDefinition implements BeanDefinition {
     }
 
     @Override
-    public String getInitMethodName() {
-        return null;
+    public void setInitMethod(String initMethod) {
+        this.initMethod = initMethod;
     }
 
     @Override
-    public String getDestroyMethodName() {
-        return null;
+    public String getInitMethod() {
+        return initMethod;
     }
+
+    @Override
+    public void setDestroyMethod(String destroyMethod) {
+        this.destroyMethod = destroyMethod;
+    }
+
+    @Override
+    public String getDestroyMethod() {
+        return destroyMethod;
+    }
+
 
     @Override
     public void setParams(List<Object> params) {

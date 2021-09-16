@@ -32,8 +32,10 @@ public interface BeanDefinition {
     boolean isPrototype();
 
     //初始化和销毁方法
-    String getInitMethodName();
-    String getDestroyMethodName();
+    void setInitMethod(String initMethod);
+    String getInitMethod();
+    void setDestroyMethod(String destroyMethod);
+    String getDestroyMethod();
 
 
     default boolean validate() {
@@ -42,7 +44,8 @@ public interface BeanDefinition {
             if (StringUtils.isBlank(this.getFactoryBeanName()) || StringUtils.isBlank(this.getFactoryMethodName())) {
                 return false;
             }
-        } else if (!StringUtils.isBlank(this.getFactoryBeanName())) {
+        } else if (!StringUtils.isBlank(this.getFactoryBeanName()) && this.getBeanClass() != null) {
+            //既传入了class又传入了成员工厂，不知道用哪种方式实例化bean
             return false;
         }
 
