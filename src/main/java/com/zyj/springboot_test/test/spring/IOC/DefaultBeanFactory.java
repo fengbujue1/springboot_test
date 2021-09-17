@@ -4,7 +4,10 @@ import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.apache.commons.lang.StringUtils;
 import org.omg.CORBA.OBJ_ADAPTER;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.*;
@@ -12,7 +15,7 @@ import java.util.*;
 /**
  * 懒加载的bean工厂，第一次获取Bean的时候完成初始化
  */
-public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory{
+public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, Closeable {
 
     Map<String,Object> beans;
     Map<String,BeanDefinition> definitionMap;
@@ -25,6 +28,7 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory{
     public Object getBean(String name) throws Exception {
         Object targetBean = this.beans.get(name);
 
+        //如果缓存中已经存在就取缓存
         if (targetBean != null) {
             return targetBean;
         }
@@ -33,7 +37,7 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory{
         if (beanDefinition != null) {
             return doGetBean(beanDefinition);
         } else {
-            throw new RuntimeException("bean is not define");
+            throw new RuntimeException("bean is not defined");
         }
 
     }
@@ -64,40 +68,6 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory{
         }
 
         return bean;
-//        if (beanDefinition.getBeanClass() != null) {
-//            //构造器初始化
-//            try {
-//                return createBeanByConstructor(beanDefinition);
-//            } catch (InstantiationException e) {
-//                e.printStackTrace();
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            }
-//        } else if (StringUtils.isNotBlank(beanDefinition.getFactoryBeanName()) && StringUtils.isNotBlank(beanDefinition.getFactoryMethodName())) {
-//            //成员工厂初始化
-//            Object factoryBean = getBean(beanDefinition.getFactoryBeanName());
-//            String factoryMethodName = beanDefinition.getFactoryMethodName();
-//
-//            Object[] constructorArgumentValues = getConstructorArgumentValues(beanDefinition);
-//
-//            Method targetMethod;
-//
-//            //通过反射对构造方法，参数数量和类型进行精确查找
-//            Method[] declaredMethods = factoryBean.getClass().getDeclaredMethods();
-//            for (int i = 0; i < declaredMethods.length; i++) {
-////                if (classes.length == declaredMethods[i].getParameterCount()) {
-////                    Type[] genericParameterTypes = declaredMethods[i].getGenericParameterTypes();
-////                    for (int j = 0; j < genericParameterTypes.length; j++) {
-////                        if (classes[j].getTypeName().equals(genericParameterTypes[j].getTypeName())) {
-////                        }
-////                    }
-////
-////                }
-//            }
-//
-//
-//        }
-//        return null;
     }
 
     //调用初始化方法
@@ -106,8 +76,96 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory{
         method.invoke(bean, null);
     }
     //通过构造函数实例化bean
-    private Object createBeanByConstructor(BeanDefinition beanDefinition) throws IllegalAccessException, InstantiationException {
-        return beanDefinition.getBeanClass().newInstance();
+    private Object createBeanByConstructor(BeanDefinition beanDefinition) throws Exception {
+        List<Object> params = beanDefinition.getParams();
+        if (params == null || params.size() == 0) {
+            return beanDefinition.getBeanClass().newInstance();
+        }
+        Constructor<?> constructor = getConstructor(beanDefinition);
+        return constructor.newInstance(getParamsRealValues(beanDefinition));
+    }
+
+    //获取参数类型
+    private Class[] getParamsTypes(BeanDefinition beanDefinition) throws Exception {
+        List<Object> params = beanDefinition.getParams();
+        Object[] paramsArr = params.toArray();
+        Class[] paramsTypes = new Class[paramsArr.length];
+        for (int i = 0; i < paramsArr.length; i++) {
+            if (paramsArr[i] instanceof BeanReference) {
+                //引用类型
+                BeanReference beanReference = (BeanReference) paramsArr[i];
+                Object bean = getBean(beanReference.getBeanName());
+                paramsTypes[i] = bean.getClass();
+            } else if (paramsArr[i] instanceof Map) {
+                //TODO
+                paramsTypes[i] = Map.class;
+            } else if (paramsArr[i] instanceof List) {
+                //TODO
+                paramsTypes[i] = List.class;
+            } else {
+                //基本数据类型
+                paramsTypes[i] = paramsArr[i].getClass();
+            }
+        }
+
+        return paramsTypes;
+    }
+
+    //获取参数类型
+    private Object[] getParamsRealValues(BeanDefinition beanDefinition) throws Exception {
+        List<Object> params = beanDefinition.getParams();
+        Object[] paramsArr = params.toArray();
+        Object[] paramsRealValues = new Object[paramsArr.length];
+        for (int i = 0; i < paramsArr.length; i++) {
+            if (paramsArr[i] instanceof BeanReference) {
+                //引用类型
+                BeanReference beanReference = (BeanReference) paramsArr[i];
+                Object bean = getBean(beanReference.getBeanName());
+                if (bean != null) {
+                    paramsRealValues[i] = bean;
+                } else {
+                    throw new Exception("无效的依赖");
+                }
+            } else {
+                //基本数据类型
+                paramsRealValues[i] = paramsArr[i];
+            }
+        }
+        return paramsRealValues;
+    }
+
+    //根据bean定义信息获取构造器
+    private Constructor<?> getConstructor(BeanDefinition beanDefinition) throws Exception{
+        Class[] paramsTypes = getParamsTypes(beanDefinition);
+        Constructor<?> constructor = null;
+        try {
+            constructor = beanDefinition.getBeanClass().getConstructor(paramsTypes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (constructor != null) {
+            return constructor;
+        }
+        Constructor<?>[] constructors = beanDefinition.getBeanClass().getConstructors();
+        outer:for (int i = 0; i < constructors.length; i++) {
+            constructor = constructors[i];
+            Class<?>[] parameterTypes = constructor.getParameterTypes();
+            if (parameterTypes.length != paramsTypes.length) {
+                continue;
+            }
+            for (int j = 0; j < parameterTypes.length; j++) {
+                if (!parameterTypes[j].isAssignableFrom(paramsTypes[j])) {
+                    continue outer;
+                }
+            }
+            break outer;
+        }
+        if (constructor != null) {
+            return constructor;
+        } else {
+            throw new Exception("构造参数传入不对！！");
+        }
+
     }
 
     //通过成员工厂创建bean
@@ -156,10 +214,12 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory{
     public void register(String beanName, BeanDefinition beanDefinition) {
         //注册信息不能为空
         Objects.requireNonNull(beanDefinition);
-        Objects.requireNonNull(beanDefinition);
         if (!beanDefinition.validate()) {
             //bean定义信息无效的话，就要抛出异常
             throw new RuntimeException("bean定义信息无效");
+        }
+        if (StringUtils.isBlank(beanDefinition.getBeanName())) {
+            beanDefinition.setBeanName(beanName);
         }
         definitionMap.put(beanName, beanDefinition);//对于重名的bean,后定义的替换掉先定义的
     }
@@ -172,5 +232,27 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory{
     @Override
     public boolean contains(String beanName) {
         return beans.containsKey(beanName);
+    }
+
+    @Override
+    public void close() {
+        try {
+            //只针对单例bean进行销毁
+            Set<Map.Entry<String, BeanDefinition>> entries = definitionMap.entrySet();
+            for (Map.Entry<String, BeanDefinition> entry : entries) {
+                BeanDefinition beanDefinition = entry.getValue();
+                if (beanDefinition.isSingleton() && StringUtils.isNotBlank(beanDefinition.getDestroyMethod())) {
+                    Object bean = beans.get(beanDefinition.getBeanName());
+                    if (bean != null) {
+                        Method destrouMethod = bean.getClass().getDeclaredMethod(beanDefinition.getDestroyMethod());
+//                        Method destrouMethod = bean.getClass().getMethod(beanDefinition.getDestroyMethod());
+                        destrouMethod.invoke(bean, null);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("容器关闭异常：");
+            e.printStackTrace();
+        }
     }
 }

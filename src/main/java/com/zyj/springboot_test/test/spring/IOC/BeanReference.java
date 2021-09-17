@@ -6,6 +6,10 @@ package com.zyj.springboot_test.test.spring.IOC;
 public class BeanReference {
     public String beanName;
 
+    public BeanReference(String beanName) {
+        this.beanName = beanName;
+    }
+
     public String getBeanName() {
         return beanName;
     }

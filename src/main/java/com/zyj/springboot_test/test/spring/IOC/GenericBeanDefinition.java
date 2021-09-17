@@ -10,7 +10,7 @@ public class GenericBeanDefinition implements BeanDefinition {
     private String factoryBeanName;
     private String staticFactoryMethodName;
     private String scope;
-    private List<Object> params;
+    private List<Object> params;//构造参数
     private String initMethod;
     private String destroyMethod;
 
