@@ -1,4 +1,4 @@
-package testDI;
+package testDI.model;
 
 import testIOC.Boy;
 
@@ -29,6 +29,6 @@ public class MagicGril implements Gril {
     public String toString() {
         return "MagicGril{" +
                 "name='" + name + '\'' +
-                '}';
+                '}'+hashCode();
     }
 }

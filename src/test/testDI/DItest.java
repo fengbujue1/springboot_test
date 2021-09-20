@@ -1,17 +1,20 @@
 package testDI;
 
-import com.zyj.springboot_test.test.spring.IOC.BeanReference;
-import com.zyj.springboot_test.test.spring.IOC.DefaultBeanFactory;
-import com.zyj.springboot_test.test.spring.IOC.GenericBeanDefinition;
+import com.zyj.springboot_test.test.spring.IOC.*;
 import org.junit.Test;
+import testDI.model.MagicGril;
+import testDI.model.Renminbi;
+import testIOC.Boy;
+import testIOC.BoyFactory;
+import testIOC.BoyFactoryBean;
 import testIOC.Lad;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DItest {
-//	static PreBuildBeanFactory bf = new PreBuildBeanFactory();
-	static DefaultBeanFactory bf = new DefaultBeanFactory();
+	static PreBuildBeanFactory bf = new PreBuildBeanFactory();
+//	static DefaultBeanFactory bf = new DefaultBeanFactory();
 
 	@Test
 	public void testConstructorDI() throws Exception {
@@ -22,6 +25,7 @@ public class DItest {
 		args.add("sunwukong");
 		args.add(new BeanReference("magicGril"));
 		bd.setParams(args);
+//		bd.setScope(BeanDefinition.SINGLETION);
 		bf.register("swk", bd);
 
 		bd = new GenericBeanDefinition();
@@ -31,11 +35,14 @@ public class DItest {
 		bd.setParams(args);
 		bf.register("magicGril", bd);
 
-//		bf.preInstantiateSingletons();
+		bf.preInstantiateSingletons();
 
 		Lad abean = (Lad) bf.getBean("swk");
 
 		abean.sayLove();
+
+		Object magicGril = bf.getBean("magicGril");
+		System.out.println(magicGril);
 	}
 
 	@Test
@@ -43,77 +50,77 @@ public class DItest {
 		new Lad("asd", new MagicGril());
 	}
 
-//	@Test
-//	public void testStaticFactoryMethodDI() throws Exception {
-//
-//		GenericBeanDefinition bd = new GenericBeanDefinition();
-//		bd.setBeanClass(BoyFactory.class);
-//		bd.setFactoryMethodName("getBean");
-//		List<Object> args = new ArrayList<>();
-//		args.add("niulang");
-//		args.add(new BeanReference("renmibi"));
-//		bd.setConstructorArgumentValues(args);
-//		bf.registerBeanDefinition("niulang", bd);
-//
-//		bd = new GenericBeanDefinition();
-//		bd.setBeanClass(Renminbi.class);
-//		bf.registerBeanDefinition("renmibi", bd);
-//
-//		bf.preInstantiateSingletons();
-//
-//		Boy nl = (Boy) bf.getBean("niulang");
-//		nl.play();
-//	}
-//
-//	@Test
-//	public void testFactoryMethodDI() throws Exception {
-//
-//		GenericBeanDefinition bd = new GenericBeanDefinition();
-//		bd.setFactoryBeanName("boyFactoryBean");
-//		bd.setFactoryMethodName("buildBoy");
-//		List<Object> args = new ArrayList<>();
-//		args.add("猪八戒");
-//		args.add(new BeanReference("xiaolongnu"));
-//		bd.setConstructorArgumentValues(args);
-//		bf.registerBeanDefinition("zhubajie", bd);
-//
-//		bd = new GenericBeanDefinition();
-//		bd.setBeanClass(BoyFactoryBean.class);
-//		bf.registerBeanDefinition("boyFactoryBean", bd);
-//
-//		bd = new GenericBeanDefinition();
-//		bd.setBeanClass(MagicGril.class);
-//		bf.registerBeanDefinition("xiaolongnu", bd);
-//
-//		bf.preInstantiateSingletons();
-//
-//		Boy abean = (Boy) bf.getBean("zhubajie");
-//
-//		abean.sayLove();
-//	}
-//
-//	@Test
-//	public void testChildTypeDI() throws Exception {
-//
-//		GenericBeanDefinition bd = new GenericBeanDefinition();
-//		bd.setBeanClass(Lad.class);
-//		List<Object> args = new ArrayList<>();
-//		args.add("niulang");
-//		args.add(new BeanReference("zhinv"));
-//		bd.setConstructorArgumentValues(args);
-//		bf.registerBeanDefinition("nl", bd);
-//
-//		bd = new GenericBeanDefinition();
-//		bd.setBeanClass(MagicGril.class);
-//		args = new ArrayList<>();
-//		args.add("zhinv");
-//		bd.setConstructorArgumentValues(args);
-//		bf.registerBeanDefinition("zhinv", bd);
-//
-//		bf.preInstantiateSingletons();
-//
-//		Boy abean = (Boy) bf.getBean("nl");
-//
-//		abean.sayLove();
-//	}
+	@Test
+	public void testStaticFactoryMethodDI() throws Exception {
+
+		GenericBeanDefinition bd = new GenericBeanDefinition();
+		bd.setBeanClass(BoyFactory.class);
+		bd.setFactoryMethodName("getBoy");
+		List<Object> args = new ArrayList<>();
+		args.add("niulang");
+		args.add(new BeanReference("renmibi"));
+		bd.setParams(args);
+		bf.register("niulang", bd);
+
+		bd = new GenericBeanDefinition();
+		bd.setBeanClass(Renminbi.class);
+		bf.register("renmibi", bd);
+
+		bf.preInstantiateSingletons();
+
+		Boy nl = (Boy) bf.getBean("niulang");
+		nl.play();
+	}
+
+	@Test
+	public void testFactoryMethodDI() throws Exception {
+
+		GenericBeanDefinition bd = new GenericBeanDefinition();
+		bd.setFactgoryBeanName("boyFactoryBean");
+		bd.setFactoryMethodName("getBoy");
+		List<Object> args = new ArrayList<>();
+		args.add("猪八戒");
+		args.add(new BeanReference("xiaolongnu"));
+		bd.setParams(args);
+		bf.register("zhubajie", bd);
+
+		bd = new GenericBeanDefinition();
+		bd.setBeanClass(BoyFactoryBean.class);
+		bf.register("boyFactoryBean", bd);
+
+		bd = new GenericBeanDefinition();
+		bd.setBeanClass(MagicGril.class);
+		bf.register("xiaolongnu", bd);
+
+		bf.preInstantiateSingletons();
+
+		Boy abean = (Boy) bf.getBean("zhubajie");
+
+		abean.sayLove();
+	}
+
+	@Test
+	public void testChildTypeDI() throws Exception {
+
+		GenericBeanDefinition bd = new GenericBeanDefinition();
+		bd.setBeanClass(Lad.class);
+		List<Object> args = new ArrayList<>();
+		args.add("niulang");
+		args.add(new BeanReference("zhinv"));
+		bd.setParams(args);
+		bf.register("nl", bd);
+
+		bd = new GenericBeanDefinition();
+		bd.setBeanClass(MagicGril.class);
+		args = new ArrayList<>();
+		args.add("zhinv");
+		bd.setParams(args);
+		bf.register("zhinv", bd);
+
+		bf.preInstantiateSingletons();
+
+		Boy abean = (Boy) bf.getBean("nl");
+
+		abean.sayLove();
+	}
 }

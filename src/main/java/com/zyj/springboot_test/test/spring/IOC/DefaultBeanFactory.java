@@ -6,46 +6,58 @@ import org.omg.CORBA.OBJ_ADAPTER;
 
 import java.io.Closeable;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 懒加载的bean工厂，第一次获取Bean的时候完成初始化
  */
 public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, Closeable {
 
-    Map<String,Object> beans;
-    Map<String,BeanDefinition> definitionMap;
+    private Map<String,Object> beans;
+    private Map<String,BeanDefinition> definitionMap;
+    private Set<String> ingBeans;
 
     public DefaultBeanFactory() {
-        this.beans = new HashMap<>();
-        this.definitionMap = new HashMap<>();
+        this.beans = new ConcurrentHashMap<>();
+        this.definitionMap = new ConcurrentHashMap<>();
+        this.ingBeans = Collections.newSetFromMap(new ConcurrentHashMap<>());
     }
 
     public Object getBean(String name) throws Exception {
-        Object targetBean = this.beans.get(name);
 
-        //如果缓存中已经存在就取缓存
+        Object targetBean = doGetBean(name);
+        //如果缓存中没有则初始化
+        BeanDefinition beanDefinition = definitionMap.get(name);
+
+        setPropertiesValues(beanDefinition, targetBean);
+        // 开始Bean生命周期
+        if(StringUtils.isNotBlank(beanDefinition.getInitMethod())) {
+            doInitMethod(targetBean, beanDefinition);
+        }
+        return targetBean;
+
+    }
+
+    protected Object doGetBean(String beanName) throws Exception {
+        Object targetBean = this.beans.get(beanName);
         if (targetBean != null) {
             return targetBean;
         }
 
-        BeanDefinition beanDefinition = definitionMap.get(name);
-        if (beanDefinition != null) {
-            return doGetBean(beanDefinition);
-        } else {
-            throw new RuntimeException("bean is not defined");
-        }
-
-    }
-
-    private Object doGetBean(BeanDefinition beanDefinition) throws Exception {
+        BeanDefinition beanDefinition = definitionMap.get(beanName);
         Class<?> type = beanDefinition.getBeanClass();
         Objects.requireNonNull(beanDefinition.getBeanName());
         Object bean = null;
+        //解决循环依赖问题
+        if (ingBeans.contains(beanDefinition.getBeanName())) {
+            throw new RuntimeException("出现了循环依赖" + ingBeans);
+        }else {
+            ingBeans.add(beanDefinition.getBeanName());
+        }
+
+
         if(type != null){
             // 通过构造函数
             if(StringUtils.isBlank(beanDefinition.getFactoryMethodName())) {
@@ -58,16 +70,52 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
             bean = createBeanByFactoryBean(beanDefinition);
         }
 
-        // 开始Bean生命周期
-        if(StringUtils.isNotBlank(beanDefinition.getInitMethod())) {
-            doInitMethod(bean, beanDefinition);
-        }
+        ingBeans.remove(beanDefinition.getBeanName());
+
+
 
         if (beanDefinition.isSingleton()) {
             beans.put(beanDefinition.getBeanName(), bean);
         }
 
+
+
         return bean;
+    }
+
+    //设置属性依赖
+    private void setPropertiesValues(BeanDefinition beanDefinition, Object instance) throws Exception{
+        List<PropertyValue> propertiesValues = beanDefinition.getPropertiesValues();
+
+        if (propertiesValues == null || propertiesValues.size() == 0) {
+            return;
+        }
+        Class<?> aClass = instance.getClass();
+        for (PropertyValue propertyValue : propertiesValues) {
+            String name = propertyValue.getName();
+            Object value = propertyValue.getValue();
+            if (name == null || value == null) {
+                continue;
+            }
+            Object realVale = null;
+            if (value instanceof BeanReference) {
+                //引用类型
+                BeanReference beanReference = (BeanReference) value;
+                Object bean = doGetBean(beanReference.getBeanName());
+                realVale = bean;
+            } else if (value instanceof Map) {
+                //TODO
+            } else if (value instanceof List) {
+                //TODO
+            } else {
+                //基本数据类型
+                realVale = value;
+            }
+            Field declaredField = aClass.getDeclaredField(propertyValue.getName());
+            declaredField.setAccessible(true);
+            declaredField.set(instance, realVale);
+        }
+
     }
 
     //调用初始化方法
@@ -94,7 +142,7 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
             if (paramsArr[i] instanceof BeanReference) {
                 //引用类型
                 BeanReference beanReference = (BeanReference) paramsArr[i];
-                Object bean = getBean(beanReference.getBeanName());
+                Object bean = doGetBean(beanReference.getBeanName());
                 paramsTypes[i] = bean.getClass();
             } else if (paramsArr[i] instanceof Map) {
                 //TODO
@@ -111,16 +159,19 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
         return paramsTypes;
     }
 
-    //获取参数类型
+    //获取参数的实际值
     private Object[] getParamsRealValues(BeanDefinition beanDefinition) throws Exception {
         List<Object> params = beanDefinition.getParams();
+        if (params == null || params.size() == 0) {
+            return null;
+        }
         Object[] paramsArr = params.toArray();
         Object[] paramsRealValues = new Object[paramsArr.length];
         for (int i = 0; i < paramsArr.length; i++) {
             if (paramsArr[i] instanceof BeanReference) {
                 //引用类型
                 BeanReference beanReference = (BeanReference) paramsArr[i];
-                Object bean = getBean(beanReference.getBeanName());
+                Object bean = doGetBean(beanReference.getBeanName());
                 if (bean != null) {
                     paramsRealValues[i] = bean;
                 } else {
@@ -138,6 +189,10 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
     private Constructor<?> getConstructor(BeanDefinition beanDefinition) throws Exception{
         Class[] paramsTypes = getParamsTypes(beanDefinition);
         Constructor<?> constructor = null;
+        constructor = beanDefinition.getConstructor();
+        if (constructor != null) {
+            return constructor;
+        }
         try {
             constructor = beanDefinition.getBeanClass().getConstructor(paramsTypes);
         } catch (Exception e) {
@@ -148,8 +203,7 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
         }
         Constructor<?>[] constructors = beanDefinition.getBeanClass().getConstructors();
         outer:for (int i = 0; i < constructors.length; i++) {
-            constructor = constructors[i];
-            Class<?>[] parameterTypes = constructor.getParameterTypes();
+            Class<?>[] parameterTypes = constructors[i].getParameterTypes();
             if (parameterTypes.length != paramsTypes.length) {
                 continue;
             }
@@ -158,9 +212,13 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
                     continue outer;
                 }
             }
-            break outer;
+            constructor = constructors[i];
+            break;
         }
         if (constructor != null) {
+            if (beanDefinition.isSingleton()) {
+                beanDefinition.setConstructor(constructor);
+            }
             return constructor;
         } else {
             throw new Exception("构造参数传入不对！！");
@@ -172,16 +230,65 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
     private Object createBeanByFactoryBean(BeanDefinition bd) throws Exception {
         String factoryBeanName = bd.getFactoryBeanName();
         Object factoryBean = getBean(factoryBeanName);
-        Method method = factoryBean.getClass()
-                .getMethod(bd.getFactoryMethodName(), null);
-        return method.invoke(factoryBean, null);
+        Object[] paramsRealValues = getParamsRealValues(bd);
+        Method factoryBeanMethod = bd.getFactoryBeanMethod();
+        if (factoryBeanMethod != null) {
+            return factoryBeanMethod.invoke(factoryBean, paramsRealValues);
+        } else {
+            factoryBeanMethod = getFactoryMethod(bd, factoryBean.getClass());
+        }
+        return factoryBeanMethod.invoke(factoryBean, paramsRealValues);
     }
     //通过静态工厂创建bean
     private Object createBeanByStaticFactory(BeanDefinition bd) throws Exception {
+        Method factoryMethod = null;
         Class<?> type = bd.getBeanClass();
-        Method method = type.getMethod(bd.getFactoryMethodName(), null);
-        return method.invoke(type, null);
+        Object[] paramsRealValues = getParamsRealValues(bd);
+        factoryMethod = bd.getStaticFactoryMethod();
+        if (factoryMethod != null) {
+            return factoryMethod.invoke(type, paramsRealValues);
+        } else {
+            factoryMethod = getFactoryMethod(bd,type);
+        }
+        return factoryMethod.invoke(type, paramsRealValues);
     }
+
+    private Method getFactoryMethod(BeanDefinition beanDefinition,Class<?> clazz) throws Exception{
+        Class[] paramsTypes = getParamsTypes(beanDefinition);
+        Method factoryMethod = null;
+        try {
+            factoryMethod = clazz.getMethod(beanDefinition.getFactoryMethodName(),paramsTypes);
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
+        if (factoryMethod != null) {
+            return factoryMethod;
+        }
+        Method[] factoryMethods = clazz.getMethods();
+        outer:for (int i = 0; i < factoryMethods.length; i++) {
+            Class<?>[] parameterTypes = factoryMethods[i].getParameterTypes();
+            if (parameterTypes.length != paramsTypes.length) {
+                continue;
+            }
+            for (int j = 0; j < parameterTypes.length; j++) {
+                if (!parameterTypes[j].isAssignableFrom(paramsTypes[j])) {
+                    continue outer;
+                }
+            }
+            factoryMethod = factoryMethods[i];
+            break;
+        }
+        if (factoryMethod != null) {
+            if (!beanDefinition.isSingleton()) {
+                beanDefinition.setStaticFactoryMethod(factoryMethod);
+            }
+            return factoryMethod;
+        } else {
+            throw new Exception("构造参数传入不对！！");
+        }
+
+    }
+
     /**
      * 参数解析，将引用类型等 到bean容器中找实例依赖
      * @param beanDefinition

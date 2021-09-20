@@ -1,4 +1,4 @@
-package testDI;
+package testDI.model;
 
 public interface Gril {
     

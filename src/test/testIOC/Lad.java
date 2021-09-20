@@ -1,8 +1,8 @@
 package testIOC;
 
-import testDI.Gril;
-import testDI.MagicGril;
-import testDI.Money;
+import testDI.model.Gril;
+import testDI.model.MagicGril;
+import testDI.model.Money;
 
 public class Lad implements Boy {
     private String name;
@@ -50,7 +50,11 @@ public class Lad implements Boy {
 
     @Override
     public void play() {
-        System.out.println("play  ");
+        if(money != null) {
+            System.out.println("I have money, let's play.");
+        }else{
+            System.out.println("I have no money, can't play.");
+        }
     }
 
     public void init() {

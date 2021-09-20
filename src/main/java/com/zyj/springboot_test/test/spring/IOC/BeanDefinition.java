@@ -2,14 +2,30 @@ package com.zyj.springboot_test.test.spring.IOC;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public interface BeanDefinition {
     public static final String SINGLETION = "singletion";
     public static final String PROTOTYPE = "prototype";
 
+    //构造器参数，构造器
     void setParams(List<Object> params);
     List<Object> getParams();
+
+    Constructor<?> getConstructor();
+    void setConstructor(Constructor<?> constructor);
+
+    Method getStaticFactoryMethod();
+    void setStaticFactoryMethod(Method staticFactoryMethod);
+    Method getFactoryBeanMethod();
+    void setFactoryBeanMethod(Method factoryBeanMethod);
+
+    void setPropertiesValues(List<PropertyValue> propertiesValues);
+    List<PropertyValue> getPropertiesValues();
+
+
 
     void setBeanName(String beanName);
     String getBeanName();
@@ -36,6 +52,8 @@ public interface BeanDefinition {
     String getInitMethod();
     void setDestroyMethod(String destroyMethod);
     String getDestroyMethod();
+
+
 
 
     default boolean validate() {

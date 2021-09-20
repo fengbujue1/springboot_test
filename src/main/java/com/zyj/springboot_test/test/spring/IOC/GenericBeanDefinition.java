@@ -1,5 +1,7 @@
 package com.zyj.springboot_test.test.spring.IOC;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class GenericBeanDefinition implements BeanDefinition {
@@ -9,8 +11,12 @@ public class GenericBeanDefinition implements BeanDefinition {
     private String factoryMethodName;
     private String factoryBeanName;
     private String staticFactoryMethodName;
-    private String scope;
+    private String scope = BeanDefinition.SINGLETION;
     private List<Object> params;//构造参数
+    private List<PropertyValue> propertiesValues;//依赖
+    private Constructor<?> constructor;//构造器，用于原型模式下，多次创建实例的时候，不用再去查找具体的构造器
+    private Method staticFactoryMethod;//静态工厂方法，用于原型模式下，多次创建实例的时候，不用再去查找具体的静态工厂方法
+    private Method factoryBeanMethod;//成员工厂方法，用于原型模式下，多次创建实例的时候，不用再去查找具体的静态工厂方法
     private String initMethod;
     private String destroyMethod;
 
@@ -114,5 +120,45 @@ public class GenericBeanDefinition implements BeanDefinition {
     @Override
     public List<Object> getParams() {
         return params;
+    }
+
+    @Override
+    public Constructor<?> getConstructor() {
+        return constructor;
+    }
+
+    @Override
+    public void setConstructor(Constructor<?> constructor) {
+        this.constructor = constructor;
+    }
+
+    @Override
+    public Method getStaticFactoryMethod() {
+        return staticFactoryMethod;
+    }
+
+    @Override
+    public void setStaticFactoryMethod(Method staticFactoryMethod) {
+        this.staticFactoryMethod = staticFactoryMethod;
+    }
+
+    @Override
+    public Method getFactoryBeanMethod() {
+        return factoryBeanMethod;
+    }
+
+    @Override
+    public void setFactoryBeanMethod(Method factoryBeanMethod) {
+        this.factoryBeanMethod = factoryBeanMethod;
+    }
+
+    @Override
+    public void setPropertiesValues(List<PropertyValue> propertiesValues) {
+        this.propertiesValues = propertiesValues;
+    }
+
+    @Override
+    public List<PropertyValue> getPropertiesValues() {
+        return propertiesValues;
     }
 }
