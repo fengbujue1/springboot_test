@@ -1,4 +1,4 @@
-package testDI.model;
+package TestSpring.testDI.model;
 
 public class Renminbi implements Money {
     

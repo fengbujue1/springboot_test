@@ -1,6 +1,6 @@
-package testDI.model;
+package TestSpring.testDI.model;
 
-import testIOC.Boy;
+import TestSpring.testIOC.Boy;
 
 public class MagicGril implements Gril {
     private String name;

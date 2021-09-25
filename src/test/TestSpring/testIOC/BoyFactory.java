@@ -1,6 +1,6 @@
-package testIOC;
+package TestSpring.testIOC;
 
-import testDI.model.Money;
+import TestSpring.testDI.model.Money;
 
 public class BoyFactory {
     public static Boy getBean(String name, Money m) {

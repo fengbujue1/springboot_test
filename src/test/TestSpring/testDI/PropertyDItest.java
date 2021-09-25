@@ -1,12 +1,12 @@
-package testDI;
+package TestSpring.testDI;
 
 import com.zyj.springboot_test.test.spring.IOC.BeanReference;
 import com.zyj.springboot_test.test.spring.IOC.GenericBeanDefinition;
 import com.zyj.springboot_test.test.spring.IOC.PreBuildBeanFactory;
 import com.zyj.springboot_test.test.spring.IOC.PropertyValue;
 import org.junit.Test;
-import testDI.model.MagicGril;
-import testIOC.Lad;
+import TestSpring.testDI.model.MagicGril;
+import TestSpring.testIOC.Lad;
 
 import java.util.ArrayList;
 import java.util.List;

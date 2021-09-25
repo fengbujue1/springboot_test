@@ -21,6 +21,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+
         <!--阿里云opensearch SDK-->
         <dependency>
             <groupId>com.aliyun.opensearch</groupId>

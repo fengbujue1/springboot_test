@@ -1,4 +1,4 @@
-package testIOC;
+package TestSpring.testIOC;
 
 
 import com.zyj.springboot_test.test.spring.IOC.BeanDefinition;

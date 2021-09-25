@@ -1,13 +1,13 @@
-package testDI;
+package TestSpring.testDI;
 
 import com.zyj.springboot_test.test.spring.IOC.*;
 import org.junit.Test;
-import testDI.model.MagicGril;
-import testDI.model.Renminbi;
-import testIOC.Boy;
-import testIOC.BoyFactory;
-import testIOC.BoyFactoryBean;
-import testIOC.Lad;
+import TestSpring.testDI.model.MagicGril;
+import TestSpring.testDI.model.Renminbi;
+import TestSpring.testIOC.Boy;
+import TestSpring.testIOC.BoyFactory;
+import TestSpring.testIOC.BoyFactoryBean;
+import TestSpring.testIOC.Lad;
 
 import java.util.ArrayList;
 import java.util.List;

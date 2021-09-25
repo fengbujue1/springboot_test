@@ -1,6 +1,6 @@
-package testIOC;
+package TestSpring.testIOC;
 
-import testDI.model.Gril;
+import TestSpring.testDI.model.Gril;
 
 public class BoyFactoryBean {
     public Boy getBoy(String name, Gril g) {

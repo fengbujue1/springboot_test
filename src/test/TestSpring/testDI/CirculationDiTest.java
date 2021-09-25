@@ -1,11 +1,11 @@
-package testDI;
+package TestSpring.testDI;
 
 import com.zyj.springboot_test.test.spring.IOC.BeanReference;
 import com.zyj.springboot_test.test.spring.IOC.GenericBeanDefinition;
 import com.zyj.springboot_test.test.spring.IOC.PreBuildBeanFactory;
 import org.junit.Test;
-import testDI.model.Niulang;
-import testDI.model.Zhinv;
+import TestSpring.testDI.model.Niulang;
+import TestSpring.testDI.model.Zhinv;
 
 import java.util.ArrayList;
 import java.util.List;

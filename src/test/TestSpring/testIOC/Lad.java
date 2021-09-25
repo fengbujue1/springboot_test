@@ -1,8 +1,8 @@
-package testIOC;
+package TestSpring.testIOC;
 
-import testDI.model.Gril;
-import testDI.model.MagicGril;
-import testDI.model.Money;
+import TestSpring.testDI.model.Gril;
+import TestSpring.testDI.model.MagicGril;
+import TestSpring.testDI.model.Money;
 
 public class Lad implements Boy {
     private String name;

@@ -1,4 +1,4 @@
-package testDI.model;
+package TestSpring.testDI.model;
 
 public class Zhinv {
     private Niulang lang;
