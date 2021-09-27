@@ -1,11 +1,8 @@
 package com.zyj.springboot_test.test.spring.IOC;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.apache.commons.lang.StringUtils;
-import org.omg.CORBA.OBJ_ADAPTER;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,6 +15,7 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
     private Map<String,Object> beans;
     private Map<String,BeanDefinition> definitionMap;
     private Set<String> ingBeans;
+    private List<BeanPostProcessor> beanPostProcessors;
 
     public DefaultBeanFactory() {
         this.beans = new ConcurrentHashMap<>();
@@ -32,12 +30,19 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
         BeanDefinition beanDefinition = definitionMap.get(name);
 
         setPropertiesValues(beanDefinition, targetBean);
+
+        beanPostProcessorBeforInit();
         // 开始Bean生命周期
         if(StringUtils.isNotBlank(beanDefinition.getInitMethod())) {
             doInitMethod(targetBean, beanDefinition);
         }
         return targetBean;
 
+    }
+
+    @Override
+    public void registerBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
+        beanPostProcessors.add(beanPostProcessor);
     }
 
     protected Object doGetBean(String beanName) throws Exception {
@@ -81,6 +86,14 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
 
 
         return bean;
+    }
+    private void beanPostProcessorBeforInit(Object bean, String beanName) {
+        for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
+            beanPostProcessor.postProcessBeforeInitialization(bean, beanName);
+        }
+    }
+    private void beanPostProcessorAfterInit() {
+
     }
 
     //设置属性依赖
