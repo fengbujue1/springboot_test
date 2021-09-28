@@ -31,7 +31,7 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
 
         setPropertiesValues(beanDefinition, targetBean);
 
-        beanPostProcessorBeforInit();
+        beanPostProcessorBeforInit(targetBean,name);
         // 开始Bean生命周期
         if(StringUtils.isNotBlank(beanDefinition.getInitMethod())) {
             doInitMethod(targetBean, beanDefinition);
