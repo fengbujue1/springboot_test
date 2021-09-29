@@ -24,7 +24,7 @@ public class AdvisorAutoProxyCreator implements BeanPostProcessor, AdvisorRegist
 
     @Override
     public List<Advisor> getAdvistors() {
-        return advisors;
+        return advisors; 
     }
 
     @Override
