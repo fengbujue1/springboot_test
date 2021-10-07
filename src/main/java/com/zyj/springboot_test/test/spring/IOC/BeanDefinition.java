@@ -10,9 +10,13 @@ public interface BeanDefinition {
     public static final String SINGLETION = "singletion";
     public static final String PROTOTYPE = "prototype";
 
-    //构造器参数，构造器
+    //构造器参数（可能存在引用类型的参数），构造器
     void setParams(List<Object> params);
     List<Object> getParams();
+
+    //构造参数的真实值，用于在aop中实现代理的时候使用
+    void setParamsRealValues(List<Object> params);
+    List<Object> getParamsRealValues();
 
     Constructor<?> getConstructor();
     void setConstructor(Constructor<?> constructor);

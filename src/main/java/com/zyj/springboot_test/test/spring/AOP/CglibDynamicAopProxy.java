@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 public class CglibDynamicAopProxy implements AopProxy, MethodInterceptor {
-    private static final Logger logger = LoggerFactory.getLogger(CglibDynamicAopProxy.class);
+//    private static final Logger logger = LoggerFactory.getLogger(CglibDynamicAopProxy.class);
 
     static private Enhancer enhancer = new Enhancer();
 
@@ -40,9 +40,9 @@ public class CglibDynamicAopProxy implements AopProxy, MethodInterceptor {
     @Override
     public Object getProxy(ClassLoader classLoader) {
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("为" + target + "创建cglib代理。");
-        }
+//        if (logger.isDebugEnabled()) {
+        System.out.println("为" + target + "创建cglib代理。");
+//        }
         Class<?> superClass = this.target.getClass();
         enhancer.setSuperclass(superClass);
         enhancer.setInterfaces(this.getClass().getInterfaces());
@@ -63,7 +63,7 @@ public class CglibDynamicAopProxy implements AopProxy, MethodInterceptor {
 
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-//        return AopProxyUtils.applyAdvices(target, method, objects, matchedAdvisors, o, beanFactory);
+        return AopProxyUtils.applyAdvices(target, method, objects, matchedAdvisors, o, beanFactory);
 
     }
 }

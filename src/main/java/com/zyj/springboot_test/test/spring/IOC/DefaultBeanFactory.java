@@ -15,7 +15,7 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
     private Map<String,Object> beans;
     private Map<String,BeanDefinition> definitionMap;
     private Set<String> ingBeans;
-    private List<BeanPostProcessor> beanPostProcessors;
+    private List<BeanPostProcessor> beanPostProcessors = Collections.synchronizedList(new ArrayList<>());;
 
     public DefaultBeanFactory() {
         this.beans = new ConcurrentHashMap<>();
@@ -31,11 +31,12 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
 
         setPropertiesValues(beanDefinition, targetBean);
 
-        beanPostProcessorBeforInit(targetBean,name);
+//        beanPostProcessorBeforInit(targetBean,name);
         // 开始Bean生命周期
         if(StringUtils.isNotBlank(beanDefinition.getInitMethod())) {
             doInitMethod(targetBean, beanDefinition);
         }
+        targetBean = beanPostProcessorAfterInit(targetBean, name);
         return targetBean;
 
     }
@@ -43,6 +44,9 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
     @Override
     public void registerBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
         beanPostProcessors.add(beanPostProcessor);
+        if (beanPostProcessor instanceof BeanFactoryAware) {
+            ((BeanFactoryAware) beanPostProcessor).setBeanFactory(this);
+        }
     }
 
     protected Object doGetBean(String beanName) throws Exception {
@@ -87,13 +91,17 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
 
         return bean;
     }
-    private void beanPostProcessorBeforInit(Object bean, String beanName) {
+    private Object beanPostProcessorBeforInit(Object bean, String beanName) throws Exception {
         for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
-            beanPostProcessor.postProcessBeforeInitialization(bean, beanName);
+            bean = beanPostProcessor.postProcessBeforeInitialization(bean, beanName);
         }
+        return bean;
     }
-    private void beanPostProcessorAfterInit() {
-
+    private Object beanPostProcessorAfterInit(Object bean, String beanName) throws Exception {
+        for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
+            bean = beanPostProcessor.postProcessAfterInitialization(bean, beanName);
+        }
+        return bean;
     }
 
     //设置属性依赖
@@ -143,6 +151,8 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
             return beanDefinition.getBeanClass().newInstance();
         }
         Constructor<?> constructor = getConstructor(beanDefinition);
+        beanDefinition.setConstructor(constructor);
+
         return constructor.newInstance(getParamsRealValues(beanDefinition));
     }
 
@@ -174,10 +184,14 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
 
     //获取参数的实际值
     private Object[] getParamsRealValues(BeanDefinition beanDefinition) throws Exception {
+        if (beanDefinition.getParamsRealValues()!=null) {
+            return beanDefinition.getParamsRealValues().toArray();
+        }
         List<Object> params = beanDefinition.getParams();
         if (params == null || params.size() == 0) {
             return null;
         }
+
         Object[] paramsArr = params.toArray();
         Object[] paramsRealValues = new Object[paramsArr.length];
         for (int i = 0; i < paramsArr.length; i++) {
@@ -195,6 +209,7 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
                 paramsRealValues[i] = paramsArr[i];
             }
         }
+        beanDefinition.setParamsRealValues(Arrays.asList(paramsRealValues));
         return paramsRealValues;
     }
 
@@ -229,9 +244,11 @@ public class DefaultBeanFactory implements BeanDefinitionRegistry,BeanFactory, C
             break;
         }
         if (constructor != null) {
-            if (beanDefinition.isSingleton()) {
-                beanDefinition.setConstructor(constructor);
-            }
+            //由于aop要使用到构造器的参数类型，进行cglib动态代理，所这里无论是否是原型bean.都要缓存构造器
+//            if (beanDefinition.isSingleton()) {
+//                beanDefinition.setConstructor(constructor);
+//            }
+
             return constructor;
         } else {
             throw new Exception("构造参数传入不对！！");

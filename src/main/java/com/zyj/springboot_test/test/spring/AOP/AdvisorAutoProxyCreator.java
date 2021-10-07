@@ -4,9 +4,13 @@ import com.zyj.springboot_test.test.spring.AOP.advisor.Advisor;
 import com.zyj.springboot_test.test.spring.AOP.advisor.AdvisorRegister;
 import com.zyj.springboot_test.test.spring.AOP.advisor.PointcutAdvisor;
 import com.zyj.springboot_test.test.spring.AOP.pointcut.Pointcut;
+import com.zyj.springboot_test.test.spring.IOC.BeanFactory;
+import com.zyj.springboot_test.test.spring.IOC.BeanFactoryAware;
 import com.zyj.springboot_test.test.spring.IOC.BeanPostProcessor;
+import javafx.beans.binding.ObjectExpression;
 import jodd.util.CollectionUtil;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Bean;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ReflectionUtils;
@@ -14,9 +18,16 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Method;
 import java.util.*;
 
-public class AdvisorAutoProxyCreator implements BeanPostProcessor, AdvisorRegister {
+public class AdvisorAutoProxyCreator implements BeanPostProcessor, AdvisorRegister, BeanFactoryAware {
 
     private List<Advisor> advisors;
+    // 当前的bean工厂
+    private BeanFactory beanFactory;
+
+    public AdvisorAutoProxyCreator() {
+        this.advisors = new ArrayList<>();
+    }
+
     @Override
     public void registorAdvistor(Advisor advisor) {
         advisors.add(advisor);
@@ -27,21 +38,36 @@ public class AdvisorAutoProxyCreator implements BeanPostProcessor, AdvisorRegist
         return advisors; 
     }
 
+    public void setBeanFactory(BeanFactory beanFactory) {
+        this.beanFactory = beanFactory;
+    }
+
     @Override
-    public void postProcessBeforeInitialization(Object bean, String beanName) {
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws Exception {
         List<Advisor> matchedAdvisor =
                 getMatchedAdvisor(beanName, bean);
+        if (matchedAdvisor == null || matchedAdvisor.isEmpty()) {
+            return bean;
+        }
         //TODO 实际的代理增强
+        return this.getProxy(bean, beanName, matchedAdvisor);
 
     }
 
     @Override
-    public void postProcessAfterInitialization(Object bean, String beanName) {
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws Exception{
+        List<Advisor> matchedAdvisor = getMatchedAdvisor(beanName, bean);
+        if (matchedAdvisor == null || matchedAdvisor.isEmpty()) {
+            return bean;
+        }
         //TODO 实际的代理增强
+        return this.getProxy(bean, beanName, matchedAdvisor);
     }
 
     /**
      * 获取匹配的通知
+     *
+     * 针对的是bean的所有方法，只要有一个方法被匹配了，代表这个通知就可以被织入这个bean
      *
      * @return
      */
@@ -59,7 +85,7 @@ public class AdvisorAutoProxyCreator implements BeanPostProcessor, AdvisorRegist
 
                 List<Method> allMethods = getAllMethods(bean);
                 for (Method method : allMethods) {
-                    if (pointcut.matchMethod(method)) {
+                    if (pointcut.matchMethod(method,bean.getClass())) {
                         matchedAdvisors.add(advisor);
                         continue outer;
                     }
@@ -78,7 +104,8 @@ public class AdvisorAutoProxyCreator implements BeanPostProcessor, AdvisorRegist
      */
     private List<Method> getAllMethods(Object bean) {
         ArrayList<Method> methods = new ArrayList<>();
-        Set<Class<?>> classes = ClassUtils.getAllInterfacesForClassAsSet(bean.getClass());
+        Set<Class<?>> classes = new LinkedHashSet<>(ClassUtils.getAllInterfacesForClassAsSet(bean.getClass()));
+        classes.add(bean.getClass());
         for (Class clazz : classes) {
             Method[] declaredMethods = ReflectionUtils.getAllDeclaredMethods(clazz);
             for (Method method : declaredMethods) {
@@ -86,5 +113,9 @@ public class AdvisorAutoProxyCreator implements BeanPostProcessor, AdvisorRegist
             }
         }
         return methods;
+    }
+
+    public Object getProxy(Object bean, String beanName, List<Advisor> matchedAdvisors) throws Exception {
+        return AopProxyFactory.getAopProxyFactory().createAopProxy(bean, beanName, matchedAdvisors, this.beanFactory).getProxy();
     }
 }

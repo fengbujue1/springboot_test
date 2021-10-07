@@ -13,6 +13,7 @@ public class GenericBeanDefinition implements BeanDefinition {
     private String staticFactoryMethodName;
     private String scope = BeanDefinition.SINGLETION;
     private List<Object> params;//构造参数
+    private List<Object> paramsRealValues;//构造参数的真实值
     private List<PropertyValue> propertiesValues;//依赖
     private Constructor<?> constructor;//构造器，用于原型模式下，多次创建实例的时候，不用再去查找具体的构造器
     private Method staticFactoryMethod;//静态工厂方法，用于原型模式下，多次创建实例的时候，不用再去查找具体的静态工厂方法
@@ -20,6 +21,15 @@ public class GenericBeanDefinition implements BeanDefinition {
     private String initMethod;
     private String destroyMethod;
 
+    @Override
+    public void setParamsRealValues(List<Object> params) {
+        paramsRealValues = params;
+    }
+
+    @Override
+    public List<Object> getParamsRealValues() {
+        return paramsRealValues;
+    }
 
     @Override
     public void setBeanName(String beanName) {

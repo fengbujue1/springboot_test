@@ -24,7 +24,7 @@ public class PreBuildBeanFactory extends DefaultBeanFactory {
         synchronized (beanNames) {
             for (String beanName : beanNames) {
                 if (this.getBeanDefition(beanName).isSingleton()) {
-                    getBean(beanName);
+                    doGetBean(beanName);
                 }
             }
         }

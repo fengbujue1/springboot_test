@@ -6,7 +6,7 @@ import com.zyj.springboot_test.test.spring.IOC.BeanFactory;
 import java.util.List;
 
 /**
- * AOP代理借口的工厂模式接口
+ * AOP代理接口的工厂模式接口
  */
 public interface AopProxyFactory {
     AopProxy createAopProxy(Object bean, String beanName, List<Advisor> matchedAdvisors, BeanFactory beanFactory) throws Exception;

@@ -7,5 +7,5 @@ public interface Pointcut {
     boolean matchClass(Class<?> cls);
 
     //是否可以匹配指定方法
-    boolean matchMethod(Method method);
+    boolean matchMethod(Method method, Class<?> targetClass);
 }
