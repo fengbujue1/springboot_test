@@ -51,7 +51,6 @@ public class AdvisorAutoProxyCreator implements BeanPostProcessor, AdvisorRegist
         }
         //TODO 实际的代理增强
         return this.getProxy(bean, beanName, matchedAdvisor);
-        return this.getProxy(bean, beanName, matchedAdvisor);
 
     }
 
