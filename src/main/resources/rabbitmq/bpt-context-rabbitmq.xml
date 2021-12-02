@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
+
+	<bean id="propertyConfigurer"
+		  class="com.zyj.springboot_test.test.mq.BpPropertyPlaceholder">
+		<property name="locations">
+			<list>
+				<value>rabbitmq/mq.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+
+<!--	<bean id="messageSender" class="com.nstc.bp.message.DefaultMessageSender">-->
+<!--		<property name="notPersistentJmsTemplate" ref="notPersistentJmsTemplate"/>-->
+<!--		<property name="persistentJmsTemplate" ref="persistentJmsTemplate"/>-->
+<!--		<property name="connectionFactory" ref="cachingConnectionFactory" />-->
+<!--		<property name="defaultQueueName" value="${server.queue}" />-->
+<!--	</bean>-->
+<!--&lt;!&ndash;	定义消息处理器处理器&ndash;&gt;-->
+<!--	<bean id="communicationlevelConfirmHandler" class="com.nstc.bpt.bank.cips.messageHandler.CommunicationlevelConfirmHandler">-->
+<!--	</bean>-->
+<!--	<bean id="loginConfirmHandler" class="com.nstc.bpt.bank.cips.messageHandler.LoginConfirmHandler">-->
+<!--	</bean>-->
+<!--	<bean id="transferConfirmHandler" class="com.nstc.bpt.bank.cips.messageHandler.TransferConfirmHandler">-->
+<!--	</bean>-->
+
+<!--	<bean id="cipsProcessorManager" class="com.nstc.bpt.message.messageListener.manager.DefaultCIPSProcessorManager">-->
+<!--		<property name="messageSender" ref="messageSender" />-->
+<!--		<property name="messageHandlerMap">-->
+<!--			<map>-->
+<!--				<entry key="cips.806.001.01" value-ref="loginConfirmHandler" />-->
+<!--				<entry key="cprd.601.001.02" value-ref="transferConfirmHandler" />-->
+<!--				<entry key="ccms.990.002.01" value-ref="communicationlevelConfirmHandler" />-->
+<!--			</map>-->
+<!--		</property>-->
+<!--	</bean>-->
+	<!-- 消息接收监听机制 -->
+	<bean id="messageListener" class="com.zyj.springboot_test.test.mq.DefaultListener">
+	</bean>
+
+
+	<!-- 定义rabbitmq connectionFactory -->
+	<rabbit:connection-factory id="rabbitConnectionFactory" host="${rabbitmq.host}"
+							   port="${rabbitmq.port}"
+							   username="${rabbitmq.username}"
+							   password="${rabbitmq.password}"
+							   virtual-host="${rabbitmq.virtual-host}"/>
+	<rabbit:admin connection-factory="rabbitConnectionFactory"/>
+
+	<!-- spring template声明 -->
+<!--	<rabbit:template id="rabbitTemplate" exchange="spring.queue.exchange" connection-factory="rabbitConnectionFactory" routing-key="${rabbitmq.queneName1}"/>-->
+
+	<!-- queue 队列声明 -->
+<!--	<rabbit:queue name="${rabbitmq.queneName1}" durable="true" auto-delete="false" exclusive="false"/>-->
+<!--	<rabbit:queue name="${rabbitmq.queneName1}" durable="true" auto-delete="false" exclusive="false" />-->
+<!--	&lt;!&ndash; exchange queue binging key 绑定 &ndash;&gt;-->
+<!--	&lt;!&ndash; 定义管理交换机&ndash;&gt;-->
+<!--	<rabbit:direct-exchange name="spring.queue.exchange" durable="true" auto-delete="false">-->
+<!--		<rabbit:bindings>-->
+<!--			<rabbit:binding queue="${rabbitmq.queneName1}" key="${rabbitmq.queneName1}" />-->
+<!--			<rabbit:binding queue="${rabbitmq.queneName2}" key="${rabbitmq.queneName2}"  />-->
+<!--		</rabbit:bindings>-->
+<!--	</rabbit:direct-exchange>-->
+
+	<bean id="simpleMessageListenerContainer" class="org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer">
+		<property name="queueNames" value="${rabbitmq.queneName1}" />
+		<property name="connectionFactory" ref="rabbitConnectionFactory" />
+		<property name="maxConcurrentConsumers" value="5" />
+		<property name="defaultRequeueRejected" value="true" />
+		<property name="messageListener" ref="messageListener" />
+		<property name="autoStartup" value="false" />
+
+	</bean>
+</beans>
