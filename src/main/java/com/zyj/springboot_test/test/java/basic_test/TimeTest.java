@@ -11,7 +11,17 @@ public class TimeTest {
     public static void main(String[] args) {
 //        System.out.println(DateTime.now().getMillis());
 //        System.out.println(calcDailyRenewTime(0));
-        testcCalcYearDay();
+//        testcCalcYearDay();
+        testTransFormart();
+    }
+
+    public static void testTransFormart() {
+        Date date = new Date();
+        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+        String format1 = df1.format(date);
+        String format2 = df2.format(date);
+        System.out.println(format1+"T"+format2);;
     }
 
     public static void testcCalcYearDay() {
