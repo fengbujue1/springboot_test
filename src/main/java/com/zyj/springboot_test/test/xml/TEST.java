@@ -7,6 +7,7 @@ import org.jdom.Element;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Description:
@@ -18,6 +19,7 @@ import java.util.List;
 public class TEST {
     public static boolean tag = true;
     public static void main(String[] args) throws Exception {
+        System.out.println(new Random().nextInt());
 
         String s = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                 "<Document xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.10\">\n" +

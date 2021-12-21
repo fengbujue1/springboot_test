@@ -9,9 +9,10 @@ import java.util.Base64;
  * @since 2021/12/13
  */
 public class Base64Util {
+    private static Base64.Encoder encoder = Base64.getEncoder();
+    private static Base64.Decoder decoder = Base64.getDecoder();
     public static void main(String[] args) {
-        Base64.Encoder encoder = Base64.getEncoder();
-        Base64.Decoder decoder = Base64.getDecoder();
+
         String text = "你好??////\\\\\\\\\\，世界";
         System.out.println("text:" + text);
 
@@ -20,5 +21,21 @@ public class Base64Util {
 
         byte[] decode = decoder.decode(encode);
         System.out.println("decode:" + new String(decode));
+    }
+
+    public static byte[] encode(String src){
+        return encoder.encode(src.getBytes());
+    }
+
+    public static byte[] decode(String src){
+        return decoder.decode(src.getBytes());
+    }
+
+    public static byte[] encode(byte[] src){
+        return encoder.encode(src);
+    }
+
+    public static byte[] decode(byte[] src){
+        return decoder.decode(src);
     }
 }
