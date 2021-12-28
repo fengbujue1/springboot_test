@@ -1,10 +1,13 @@
 package com.zyj.springboot_test.util;
 
+import java.io.IOException;
 import java.io.StringReader;
 
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
 /**
  * Description:
@@ -32,5 +35,26 @@ public class XMLUtil {
         }
 
         return var5;
+    }
+
+    public static String buildText(Document document) throws IOException {
+        XMLOutputter out = new XMLOutputter();
+        Format format = Format.getPrettyFormat();
+        format.setIndent("   ");
+        format.setExpandEmptyElements(true);
+        format.setLineSeparator("\r\n");
+        out.setFormat(format);
+        return out.outputString(document);
+    }
+
+    public static String buildText(Element element) throws IOException {
+        Document document = new Document(element);
+        XMLOutputter out = new XMLOutputter();
+        Format format = Format.getPrettyFormat();
+        format.setIndent("   ");
+        format.setExpandEmptyElements(true);
+        format.setLineSeparator("\r\n");
+        out.setFormat(format);
+        return out.outputString(document);
     }
 }

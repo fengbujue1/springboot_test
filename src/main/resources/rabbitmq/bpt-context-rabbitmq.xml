@@ -56,20 +56,20 @@ http://www.springframework.org/schema/jms http://www.springframework.org/schema/
 	<rabbit:admin connection-factory="rabbitConnectionFactory"/>
 
 	<!-- spring template声明 -->
-<!--	<rabbit:template id="rabbitTemplate" exchange="spring.queue.exchange" connection-factory="rabbitConnectionFactory" routing-key="${rabbitmq.queneName1}"/>-->
+<!--	指定交换机与路由键的意义在于可以通过通配符一次性向多个队列发送消息-->
+	<rabbit:template id="rabbitTemplate" exchange="spring.queue.exchange" connection-factory="rabbitConnectionFactory" routing-key="${rabbitmq.queneName1}"/>
 
-	<!-- queue 队列声明 -->
-<!--	<rabbit:queue name="${rabbitmq.queneName1}" durable="true" auto-delete="false" exclusive="false"/>-->
-<!--	<rabbit:queue name="${rabbitmq.queneName1}" durable="true" auto-delete="false" exclusive="false" />-->
-<!--	&lt;!&ndash; exchange queue binging key 绑定 &ndash;&gt;-->
-<!--	&lt;!&ndash; 定义管理交换机&ndash;&gt;-->
-<!--	<rabbit:direct-exchange name="spring.queue.exchange" durable="true" auto-delete="false">-->
-<!--		<rabbit:bindings>-->
-<!--			<rabbit:binding queue="${rabbitmq.queneName1}" key="${rabbitmq.queneName1}" />-->
-<!--			<rabbit:binding queue="${rabbitmq.queneName2}" key="${rabbitmq.queneName2}"  />-->
-<!--		</rabbit:bindings>-->
-<!--	</rabbit:direct-exchange>-->
-
+<!--	 queue 队列声明 -->
+	<rabbit:queue name="${rabbitmq.queneName1}" durable="true" auto-delete="false" exclusive="false"/>
+	<rabbit:queue name="${rabbitmq.queneName2}" durable="true" auto-delete="false" exclusive="false" />
+	<!-- exchange queue binging key 绑定 -->
+	<!-- 定义管理交换机-->
+	<rabbit:direct-exchange name="spring.queue.exchange" durable="true" auto-delete="false">
+		<rabbit:bindings>
+			<rabbit:binding queue="${rabbitmq.queneName1}" key="${rabbitmq.queneName1}" />
+			<rabbit:binding queue="${rabbitmq.queneName2}" key="${rabbitmq.queneName2}"  />
+		</rabbit:bindings>
+	</rabbit:direct-exchange>
 	<bean id="simpleMessageListenerContainer" class="org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer">
 		<property name="queueNames" value="${rabbitmq.queneName1}" />
 		<property name="connectionFactory" ref="rabbitConnectionFactory" />
@@ -77,6 +77,5 @@ http://www.springframework.org/schema/jms http://www.springframework.org/schema/
 		<property name="defaultRequeueRejected" value="true" />
 		<property name="messageListener" ref="messageListener" />
 		<property name="autoStartup" value="false" />
-
 	</bean>
 </beans>
