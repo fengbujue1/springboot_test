@@ -12,7 +12,8 @@ public class TimeTest {
 //        System.out.println(DateTime.now().getMillis());
 //        System.out.println(calcDailyRenewTime(0));
 //        testcCalcYearDay();
-        testTransFormart();
+//        testTransFormart();
+        testDemoInCompany();
     }
 
     public static void testTransFormart() {
@@ -23,6 +24,17 @@ public class TimeTest {
         String format2 = df2.format(date);
         System.out.println(format1+"T"+format2);;
         System.out.println(format1);;
+    }
+
+    public static void testDemoInCompany() {
+        Calendar cl = Calendar.getInstance();
+        cl.setTime(new Date());
+        cl.set(10, 0);//Calendar.HOUR
+        cl.set(11, 0);//Calendar.HOUR_OF_DAY
+        cl.set(12, 0);//Calendar.MINUTE
+        cl.set(13, 0);//Calendar.SECOND
+        cl.set(14, 0);//Calendar.MILLISECOND
+        System.out.println(cl.getTime().toString());;
     }
 
     public static void testcCalcYearDay() {
