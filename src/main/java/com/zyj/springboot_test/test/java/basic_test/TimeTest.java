@@ -12,13 +12,13 @@ public class TimeTest {
 //        System.out.println(DateTime.now().getMillis());
 //        System.out.println(calcDailyRenewTime(0));
 //        testcCalcYearDay();
-//        testTransFormart();
-        testDemoInCompany();
+        testTransFormart();
+//        testDemoInCompany();
     }
 
     public static void testTransFormart() {
         Date date = new Date();
-        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss:SSS000");
         SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss");
         String format1 = df1.format(date);
         String format2 = df2.format(date);
