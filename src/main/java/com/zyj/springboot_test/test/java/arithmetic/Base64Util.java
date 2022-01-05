@@ -1,5 +1,7 @@
 package com.zyj.springboot_test.test.java.arithmetic;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.util.Base64;
 
 /**
@@ -12,7 +14,13 @@ public class Base64Util {
     private static Base64.Encoder encoder = Base64.getEncoder();
     private static Base64.Decoder decoder = Base64.getDecoder();
     public static void main(String[] args) {
+        other();
+    }
 
+    /**
+     * JDK自带的工具包
+     */
+    public static void java() {
         String text = "你好??////\\\\\\\\\\，世界";
         System.out.println("text:" + text);
 
@@ -21,6 +29,27 @@ public class Base64Util {
 
         byte[] decode = decoder.decode(encode);
         System.out.println("decode:" + new String(decode));
+    }
+
+    /**
+     * sun公司的工具包
+     */
+    public static void other() {
+        String filePath = "C:\\Users\\DELL\\Desktop\\1.txt";
+        BufferedReader bufferedReader;
+        StringBuilder sb = new StringBuilder();
+        byte[] tmp = new byte[1024];
+        int s;
+        try {
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+            while ((s = fileInputStream.read(tmp)) >0) {
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        byte[] encode = com.sun.jersey.core.util.Base64.encode(tmp);
+        System.out.println(new String(encode));
     }
 
     public static byte[] encode(String src){
