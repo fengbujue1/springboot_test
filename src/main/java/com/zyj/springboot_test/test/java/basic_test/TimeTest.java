@@ -3,12 +3,13 @@ package com.zyj.springboot_test.test.java.basic_test;
 import org.joda.time.DateTime;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class TimeTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 //        System.out.println(DateTime.now().getMillis());
 //        System.out.println(calcDailyRenewTime(0));
 //        testcCalcYearDay();
@@ -16,14 +17,16 @@ public class TimeTest {
 //        testDemoInCompany();
     }
 
-    public static void testTransFormart() {
+    public static void testTransFormart() throws ParseException {
         Date date = new Date();
-        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss:SSS000");
+        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd-HH.mm.ss.SSSSSS");
         SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss");
-        String format1 = df1.format(date);
         String format2 = df2.format(date);
-        System.out.println(format1+"T"+format2);;
-        System.out.println(format1);;
+        String format = df1.format(date);
+        System.out.println(format);
+        Date parse = df1.parse("2022-01-05-15.00.07.366000");
+//        Date parse = df1.parse(format);
+        System.out.println(parse.toString());
     }
 
     public static void testDemoInCompany() {
