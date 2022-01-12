@@ -4,16 +4,16 @@ import java.util.List;
 
 /**
  * Description:
- *  ¸½¼þÄ£ÐÍ
+ *  ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
  *
- * @author ÖÜÚS¼ª
+ * @author ï¿½ï¿½ï¿½Sï¿½ï¿½
  * @since 2021/12/10
  */
 public class AccessoryModel {
-    private String mesgId;//Óë±¨ÎÄÖÐ±¨ÎÄ±êÊ¶ºÅ±£³ÖÒ»ÖÂ
-    private String receiver;//½ÓÊÕ·½ÐÐºÅ
-    private String reDup;//1-×Ô¶¯È¥ÖØ¡£ÆäÓà¾ù²»È¥ÖØ£¬·¢ÏÖÖØ¸´·µ»ØÒì³£
-    private List<AccessoryData> fileInfo;//ÎÄ¼þÐÅÏ¢¼¯ºÏ
+    private String mesgId;//ï¿½ë±¨ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ä±ï¿½Ê¶ï¿½Å±ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
+    private String receiver;//ï¿½ï¿½ï¿½Õ·ï¿½ï¿½Ðºï¿½
+    private String reDup;//1-ï¿½Ô¶ï¿½È¥ï¿½Ø¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¥ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£
+    private List<AccessoryData> fileInfo;//ï¿½Ä¼ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
 
     public String getMesgId() {
         return mesgId;

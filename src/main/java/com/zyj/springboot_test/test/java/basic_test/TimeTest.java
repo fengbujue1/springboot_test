@@ -19,7 +19,7 @@ public class TimeTest {
 
     public static void testTransFormart() throws ParseException {
         Date date = new Date();
-        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd-HH.mm.ss.SSSSSS");
+        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd-HH.mm.ss.SSS");
         SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss");
         String format2 = df2.format(date);
         String format = df1.format(date);
