@@ -11,6 +11,7 @@ import org.apache.shardingsphere.sharding.api.config.strategy.sharding.StandardS
 import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,14 +23,14 @@ import java.util.Properties;
  * @author 周赟吉
  * @since 2022/1/13
  */
-public class Main_ID {
+public class Sharding_Time_API {
     public static void main(String[] args) throws SQLException {
         // 配置真实数据源
         Map<String, DataSource> dataSourceMap = new HashMap<>();
 
         // 配置第 1 个数据源
         HikariDataSource dataSource1 = new HikariDataSource();
-        dataSource1.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource1.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource1.setJdbcUrl("jdbc:mysql://47.96.0.106:3306/TEST?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC");
         dataSource1.setUsername("fengbujue234");
         dataSource1.setPassword("zhouyunji1315");
@@ -45,11 +46,8 @@ public class Main_ID {
 //                "dbShardingAlgorithm"));
 
         // 配置分表策略
-        orderTableRuleConfig.setTableShardingStrategy(new StandardShardingStrategyConfiguration("seri_no_1",
+        orderTableRuleConfig.setTableShardingStrategy(new StandardShardingStrategyConfiguration("date",
                 "tableShardingAlgorithm"));
-
-        // 省略配置 t_order_item 表规则...
-        // ...
 
         // 配置分片规则
         ShardingRuleConfiguration shardingRuleConfig = new ShardingRuleConfiguration();
@@ -63,9 +61,10 @@ public class Main_ID {
 
         // 配置分表算法
         Properties tableShardingAlgorithmrProps = new Properties();
-        tableShardingAlgorithmrProps.setProperty("algorithm-expression", "detail_${seri_no_1 % 2+1}");
+        tableShardingAlgorithmrProps.setProperty("strategy", "STANDARD");
+        tableShardingAlgorithmrProps.setProperty("algorithmClassName", "com.zyj.springboot_test.test.mysql.shardingsphere.TableShardingAlgorithm");
         shardingRuleConfig.getShardingAlgorithms().put("tableShardingAlgorithm",
-                new ShardingSphereAlgorithmConfiguration("INLINE", tableShardingAlgorithmrProps));
+                new ShardingSphereAlgorithmConfiguration("INTERVAL", tableShardingAlgorithmrProps));//时间分片算法
 
         // 创建 ShardingSphereDataSource
         DataSource dataSource = ShardingSphereDataSourceFactory.createDataSource(dataSourceMap,

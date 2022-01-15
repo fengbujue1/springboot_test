@@ -11,7 +11,6 @@ import org.apache.shardingsphere.sharding.api.config.strategy.sharding.StandardS
 import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.sql.*;
-import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,7 @@ import java.util.Properties;
  * @author 周赟吉
  * @since 2022/1/13
  */
-public class Main_Time {
+public class Sharding_ID_API {
     public static void main(String[] args) throws SQLException {
         // 配置真实数据源
         Map<String, DataSource> dataSourceMap = new HashMap<>();
@@ -39,15 +38,18 @@ public class Main_Time {
 
         // 配置 detail 表规则
         ShardingTableRuleConfiguration orderTableRuleConfig =
-                new ShardingTableRuleConfiguration("detail", "TEST.detail_${20200110..20200120}");
+                new ShardingTableRuleConfiguration("detail", "TEST.detail_${1..2}");
 
         // 配置分库策略
 //        orderTableRuleConfig.setDatabaseShardingStrategy(new StandardShardingStrategyConfiguration("user_id",
 //                "dbShardingAlgorithm"));
 
         // 配置分表策略
-        orderTableRuleConfig.setTableShardingStrategy(new StandardShardingStrategyConfiguration("date",
+        orderTableRuleConfig.setTableShardingStrategy(new StandardShardingStrategyConfiguration("seri_no_1",
                 "tableShardingAlgorithm"));
+
+        // 省略配置 t_order_item 表规则...
+        // ...
 
         // 配置分片规则
         ShardingRuleConfiguration shardingRuleConfig = new ShardingRuleConfiguration();
@@ -61,18 +63,9 @@ public class Main_Time {
 
         // 配置分表算法
         Properties tableShardingAlgorithmrProps = new Properties();
-        tableShardingAlgorithmrProps.setProperty("datetime-pattern", "yyyy-MM-dd HH:mm:ss");
-        tableShardingAlgorithmrProps.setProperty("datetime-lower", "2021-10-01 09:00:00");//时间下界
-        tableShardingAlgorithmrProps.setProperty("datetime-upper", "2021-10-10 09:00:00");//时间上界，默认为当前时间
-        //分片数据源或真实表的后缀格式，必须遵循 Java DateTimeFormatter 的格式，必须和 datetime-interval-unit 保持一致。例如：yyyyMM
-        tableShardingAlgorithmrProps.setProperty("sharding-suffix-pattern", "yyyyMM");
-        //分片键时间间隔，超过该时间间隔将进入下一分片
-        tableShardingAlgorithmrProps.setProperty("datetime-interval-amount", "1");
-        //分片键时间间隔单位，必须遵循 Java ChronoUnit 的枚举值。例如：MONTHS
-//        tableShardingAlgorithmrProps.setProperty("datetime-interval-unit", ChronoUnit.DAYS.toString());
-        tableShardingAlgorithmrProps.setProperty("datetime-interval-unit", "MONTHS");
+        tableShardingAlgorithmrProps.setProperty("algorithm-expression", "detail_${seri_no_1 % 2+1}");
         shardingRuleConfig.getShardingAlgorithms().put("tableShardingAlgorithm",
-                new ShardingSphereAlgorithmConfiguration("INTERVAL", tableShardingAlgorithmrProps));//时间分片算法
+                new ShardingSphereAlgorithmConfiguration("INLINE", tableShardingAlgorithmrProps));
 
         // 创建 ShardingSphereDataSource
         DataSource dataSource = ShardingSphereDataSourceFactory.createDataSource(dataSourceMap,
