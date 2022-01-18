@@ -2,6 +2,9 @@ package com.zyj.springboot_test.test.mysql.refreshDB;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 /**
  * Description:
@@ -24,42 +27,42 @@ public class InsertData {
         connection = DriverManager.getConnection(url, username, password);
         //流水号
         int serialNo = 0;
-//        String sql = "insert into detail_1e_inno " +
-//                "(seri_no_1, seri_no_2, order_id, goods_name,date,opposite_account,receive_money)" +
-//                " values (?, ?, ?, ?,?,?,?)";
-        String sql = "delete from detail_1e_inno where id < ?";
+        String sql = "insert into detail" +
+                "(seri_no_1, seri_no_2, order_id, goods_name,date,opposite_account,receive_money)" +
+                " values (?, ?, ?, ?,?,?,?)";
         connection.setAutoCommit(false);
-        for(int i = 0; i < 670000; i++) {
-            //1.预处理SQL
-            PreparedStatement pstmt = connection.prepareStatement(sql);
+        //1.预处理SQL
+        PreparedStatement pstmt = connection.prepareStatement(sql);
 
-//            for(int k = 0; k < 100000; k++) {
-//                serialNo++;
-//                pstmt.setString(1, String.valueOf(k*1000));
-////                pstmt.setString(1, String.valueOf(serialNo));
-////                pstmt.setString(2, String.valueOf(serialNo));
-////                pstmt.setString(3, String.valueOf(serialNo));
-////                pstmt.setString(4, "goods_" + serialNo);
-////                pstmt.setDate(5, new Date(new java.util.Date().getTime()));
-////                pstmt.setString(6, "account_" + serialNo);
-////                pstmt.setBigDecimal(7, new BigDecimal(20));
-//                //加入批处理
-//                pstmt.addBatch();
-//            }
+        for(int k = 0; k < 100; k++) {
+            String time = "2022011";
+            int i = new Random().nextInt(10);
+            time = time + i;
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+            Date parse = df.parse(time);
             serialNo++;
-            pstmt.setString(1, String.valueOf(i*5000));
-            long start = System.currentTimeMillis();
-            System.out.println("开始批处理");
-            pstmt.executeBatch(); //执行批处理
-            long end = System.currentTimeMillis();
-            System.out.println("结束批处理，耗时:" +(end-start)/1000+"秒");
+            pstmt.setString(1, String.valueOf(k));
+            pstmt.setString(1, String.valueOf(serialNo));
+            pstmt.setString(2, String.valueOf(serialNo));
+            pstmt.setString(3, String.valueOf(serialNo));
+            pstmt.setString(4, "goods_" + serialNo);
+            pstmt.setTimestamp(5, new Timestamp(parse.getTime()));
+            pstmt.setString(6, "account_" + serialNo);
+            pstmt.setBigDecimal(7, new BigDecimal(20));
+            //加入批处理
+            pstmt.addBatch();
+        }
+        long start = System.currentTimeMillis();
+        System.out.println("开始批处理");
+        pstmt.executeBatch(); //执行批处理
+        long end = System.currentTimeMillis();
+        System.out.println("结束批处理，耗时:" +(end-start)/1000+"秒");
 //            System.out.println("处理完了：" + serialNo + "条数据");
-            System.out.println("处理完了：" + 5000 + "条数据");
-            connection.commit();
+        System.out.println("处理完了：" + 5000 + "条数据");
+        connection.commit();
 //            if (i % 10 == 0) {
 //                connection.commit();
 //            }
-            pstmt.close();
-        }
+        pstmt.close();
     }
 }

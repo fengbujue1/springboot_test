@@ -14,15 +14,15 @@
                       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <!-- 配置真实数据源 -->
     <bean id="TEST" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://47.96.0.106:3306/TEST" />
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://47.96.0.106:3306/TEST?useOldAliasMetadataBehavior=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=false&amp;serverTimezone=GMT%2B8&amp;allowMultiQueries=true" />
         <property name="username" value="fengbujue234" />
         <property name="password" value="zhouyunji1315" />
     </bean>
 
 
     <!-- 配置分表策略 -->
-    <sharding:standard-strategy id="tableShardingStrategy" sharding-column="date" algorithm-ref="groupLotRelationTableAlgorithmRef"/>
+    <sharding:standard-strategy id="tableShardingStrategy" sharding-column="insert_time" algorithm-ref="groupLotRelationTableAlgorithmRef"/>
     <sharding:sharding-algorithm id="groupLotRelationTableAlgorithmRef" type="CLASS_BASED">
         <props>
             <prop key="strategy">standard</prop>
@@ -31,10 +31,27 @@
     </sharding:sharding-algorithm>
     <context:property-placeholder ignore-unresolvable="true"/>
 
-    <!-- 配置sharding策略 -->
+    <!-- 配置分片规则 -->
     <sharding:rule id="shardingRule">
         <sharding:table-rules>
-            <sharding:table-rule logic-table="detail" actual-data-nodes="TEST.detail_$->{2021..2025}$->{0..1}$->{0..9}$->{0..3}$->{0..9}" table-strategy-ref="tableShardingStrategy"/>
+            <sharding:table-rule logic-table="detail"
+                                 actual-data-nodes="TEST.detail_$->{
+                                    def result=[];
+                                    def days=[];
+                                    Calendar instance = Calendar.getInstance();
+                                    for ( y in 2022..2025 ) {
+                                        instance.set(Calendar.YEAR,y);
+                                        for ( m in 1..12 ) {
+                                           instance.set(Calendar.MONTH,(m-1));
+                                           days= (1..instance.getActualMaximum(Calendar.DAY_OF_MONTH));
+                                           for ( d in days ) {
+                                                result.add(y.toString()+m.toString().padLeft(2,'0')+d.toString().padLeft(2,'0'))
+                                           }
+                                        }
+                                    };
+                                    return result;
+                                 }"
+                                 table-strategy-ref="tableShardingStrategy"/>
         </sharding:table-rules>
 <!--        绑定表，不绑定-->
 <!--        <sharding:binding-table-rules>-->
