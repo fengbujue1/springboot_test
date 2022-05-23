@@ -96,7 +96,9 @@ public class Sharding_Time_spring_namespase {
         long start = System.currentTimeMillis();
         Connection connection = dataSource.getConnection();
         connection.setAutoCommit(false);
-        String sql = "select * from detail d join order1 o on d.order_id = o.order_id where d.seri_no_1 = 245 and d.insert_time>=  ? and d.insert_time<=  ?";
+        String sql = "select * from detail d join order1 o on d.order_id = o.order_id " +
+                "where d.seri_no_1 = 245 and d.insert_time>=  ? and d.insert_time<=  ? " +
+                "limit 5,2";
         //1.预处理SQL
         PreparedStatement pstmt = connection.prepareStatement(sql);
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd HHmmss");
@@ -111,6 +113,8 @@ public class Sharding_Time_spring_namespase {
         while (resultSet.next()) {
             count++;
             String seri_no_1 = resultSet.getString("seri_no_1");
+            String id = resultSet.getString("id");
+            System.out.println("id:" + id);
             System.out.println("seri_no_1:" + seri_no_1);
         }
         System.out.println("count:" + count);
