@@ -10,6 +10,11 @@ import java.net.URL;
  * @Description :
  */
 public class ReadFileFronUrl {
+    public static void main(String[] args) throws IOException {
+        String url = "https://file.cloudpnr.com/app-bdef1811-3bad-472f-b76c-90230ad840ed%2Ffb7df3b0-d79e-11ec-ac53-0242ac110003.zip?Expires=1654584304&Signature=rU7wD61uwJMw%2Bla%2BE0R0MJQG8CY%3D&OSSAccessKeyId=LTAI6Yzq9tIYS57h";
+        String destPath = "D:\\project_my\\tmpFile";
+        downLoadByUrl(url, "detail.zip", destPath);
+    }
 
     public static void  downLoadByUrl(String urlStr,String fileName,String savePath) throws IOException {
         URL url = new URL(urlStr);
