@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.quartz.SchedulerContext;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,20 @@ import java.util.Map;
 public class Test {
     public static void main(String[] args) {
 //        test1();
-        test2();
+//        test2();
+        test3();
+
+    }
+
+    public static void test3() {
+        String path = "D:\\1.NSTC\\demand\\2022.6\\tmp";
+        File file = new File(path);
+        String[] list = file.list();
+        for (String fileName : list) {
+            String[] name = fileName.split("_");
+            String[] split = name[3].split("\\.");
+            System.out.println(split);
+        }
     }
     public static void test1() {
         String puspose = "代理收款, 代理结算: 代理测试 666622224450 收款";
