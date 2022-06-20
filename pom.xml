@@ -126,6 +126,12 @@
                         <version>2.0.2.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.8.0</version>
+        </dependency>
+
         <!--阿里云opensearch SDK-->
         <dependency>
             <groupId>com.aliyun.opensearch</groupId>

@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.mq;
+package com.zyj.springboot_test.test.mq.rabbitmq;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;

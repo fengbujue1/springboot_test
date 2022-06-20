@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.mq;
+package com.zyj.springboot_test.test.mq.rabbitmq;
 
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
