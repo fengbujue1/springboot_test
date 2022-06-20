@@ -20,7 +20,20 @@
 
 
     <dependencies>
+<!--        sftp连接工具-->
+        <dependency>
+            <groupId>com.sshtools</groupId>
+            <artifactId>j2ssh-maverick</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+<!--        上面那个工具的依赖包-->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.55</version>
+        </dependency>
 
+<!--        解压缩工具-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-compress</artifactId>
