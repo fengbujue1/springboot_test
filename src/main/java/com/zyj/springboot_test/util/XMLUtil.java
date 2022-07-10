@@ -20,7 +20,7 @@ import org.jdom.output.XMLOutputter;
 public class XMLUtil {
 
     public static void main(String[] args) throws Exception {
-        test1();
+//        test1();
         test2();
     }
 
@@ -66,6 +66,8 @@ public class XMLUtil {
 
 
     public static void test2() throws Exception {
+        String s = "<?xml version=\"1.0\" encoding = \"GBK\"?><root><Head><OpName>5005</OpName><OpRetCode>000000</OpRetCode><OpRetMsg></OpRetMsg></Head><Param><PDFName>PSBC20220616163306.pdf</PDFName><list_no>29092721005810229044102</list_no><Reserved1></Reserved1><Reserved2></Reserved2><Reserved3></Reserved3><Reserved4></Reserved4></Param></root>\n";
+        Element rootElement = getRootElement(s);
 
     }
 

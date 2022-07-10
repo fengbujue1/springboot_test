@@ -19,11 +19,11 @@ import java.util.Enumeration;
 public class ZipUtil {
 
     public static void main(String[] args) throws Exception {
-//        unZip(new File("D:\\1.NSTC\\demand\\2022.5\\tmpdir\\front_down\\202110151634281677551\\20220519\\detail.zip"),
-//                "D:\\1.NSTC\\demand\\2022.5\\tmpdir\\front_down\\202110151634281677551\\20220519", false);
+        unZip(new File("D:\\1.NSTC\\demand\\2022.5\\tmpdir\\down\\奥术大师大多我报错.zip"),
+                "D:\\1.NSTC\\demand\\2022.5\\tmpdir\\down", false);
 
-        unzip2(new File("D:\\1.NSTC\\demand\\2022.5\\tmpdir\\front_down\\202110151634281677551\\20220519\\detail.zip"),
-                "D:\\1.NSTC\\demand\\2022.5\\tmpdir\\front_down\\202110151634281677551\\20220519");
+//        unzip2(new File("D:\\1.NSTC\\demand\\2022.5\\tmpdir\\front_down\\202110151634281677551\\20220519\\detail.zip"),
+//                "D:\\1.NSTC\\demand\\2022.5\\tmpdir\\front_down\\202110151634281677551\\20220519");
     }
 
     public static void unZip(File file, String destPath, boolean delete) throws Exception {
@@ -33,7 +33,7 @@ public class ZipUtil {
         InputStream in = null;
 
         try {
-            zip = new ZipFile(file, "GBK");
+            zip = new ZipFile(file, "utf-8");
             Enumeration entries = zip.getEntries();
             while (entries.hasMoreElements()) {
                 ZipEntry entry = (ZipEntry) entries.nextElement();

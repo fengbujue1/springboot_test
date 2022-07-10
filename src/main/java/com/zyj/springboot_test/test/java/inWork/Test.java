@@ -4,13 +4,12 @@ package com.zyj.springboot_test.test.java.inWork;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zyj.springboot_test.util.DateUtil;
+import com.zyj.springboot_test.util.TextFormat;
 import org.quartz.SchedulerContext;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author 周赟吉
@@ -21,10 +20,24 @@ public class Test {
     public static void main(String[] args) {
 //        test1();
 //        test2();
-        test3();
+//        test3();
+//        test4();
+        test5();
 
     }
+    public static void test5() {
+        Date date = DateUtil.addMonth(new Date(), -12);
+        String yyyyMMdd = TextFormat.formatDate8(date);
+        System.out.println(yyyyMMdd);
 
+    }
+    public static void test4() {
+
+        HashMap<String, String> map = new HashMap<>();
+//        map.put("1", "1");
+        Integer re = (Integer) Integer.parseInt(map.get("1"));
+        System.out.println(re);
+    }
     public static void test3() {
         String path = "D:\\1.NSTC\\demand\\2022.6\\tmp";
         File file = new File(path);
