@@ -9,7 +9,7 @@ http://www.springframework.org/schema/rabbit http://www.springframework.org/sche
 http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
 
 	<bean id="propertyConfigurer"
-		  class="com.zyj.springboot_test.test.mq.rabbitmq.BpPropertyPlaceholder">
+		  class="com.zyj.springboot_test.test.mq.rabbitmq.spring.BpPropertyPlaceholder">
 		<property name="locations">
 			<list>
 				<value>rabbitmq/mq.properties</value>
@@ -43,7 +43,7 @@ http://www.springframework.org/schema/jms http://www.springframework.org/schema/
 <!--		</property>-->
 <!--	</bean>-->
 	<!-- 消息接收监听机制 -->
-	<bean id="messageListener" class="com.zyj.springboot_test.test.mq.rabbitmq.DefaultListener">
+	<bean id="messageListener" class="com.zyj.springboot_test.test.mq.rabbitmq.spring.DefaultListener">
 	</bean>
 
 
