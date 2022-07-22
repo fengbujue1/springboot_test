@@ -6,11 +6,14 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zyj.springboot_test.util.DateUtil;
 import com.zyj.springboot_test.util.TextFormat;
+import com.zyj.springboot_test.util.XMLUtil;
 import org.apache.commons.lang.StringUtils;
+import org.jdom.Element;
 import org.quartz.SchedulerContext;
 
-import java.io.File;
+import java.io.*;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * @Author 周赟吉
@@ -18,18 +21,59 @@ import java.util.*;
  * @Description :
  */
 public class Test {
-    public static void main(String[] args) throws MultiFieldException {
+    public static final String SPECIFIC_CHARACTER = "&";
+    public static final String SPECIFIC_CHARACTER_EXCHANGE = "SPECIFIC";
+    public static void main(String[] args) throws Exception {
 //        test1();
 //        test2();
 //        test3();
 //        test4();
 //        test5();
 //        test6();
-        test7();
+//        test7();
+//        test8();
+        test8();
 
     }
-    public static void test7() throws MultiFieldException {
-        System.out.println(StringUtils.isNumeric(""));;
+    public static void test9() {
+        Date date = new Date();
+        Date date1 = DateUtil.addDay(date, 1);
+
+
+        System.out.println(TextFormat.formatDate(date1));
+    }
+    public static void test8() {
+        Calendar cl = Calendar.getInstance();
+        cl.setTime(new Date());
+        cl.set(10, 0);
+        cl.set(11, 0);
+        cl.set(12, 0);
+        cl.set(13, 0);
+        cl.set(14, 0);
+        Date time = cl.getTime();
+
+        System.out.println(TextFormat.formatDate(time));
+    }
+    public static void test7() throws Exception {
+        String quote = Pattern.quote("&");
+        String ileClassPath = "D:\\1.NSTC\\demand\\2022.7\\14【ID1336269】【兴业-迪欧家具项目】bps-农行ABC2-对银行返回报文的解，添加特殊字符的解析（CQRA10）\\out.res_2000018764344_20220713_113511.011.QRH";
+        BufferedReader bufferedReader;
+        StringBuilder sb = new StringBuilder();
+        String s;
+        try {
+            bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(ileClassPath)));
+            while ((s = bufferedReader.readLine()) != null) {
+                sb.append(new String(s.getBytes(),"gbk"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String s1 = sb.toString();
+        String replace = s1.replace(SPECIFIC_CHARACTER, SPECIFIC_CHARACTER_EXCHANGE);
+        Element rootElement = XMLUtil.getRootElement(replace);
+        String fileData = rootElement.getChild("Cmp").getChildTextTrim("BatchFileData");
+        fileData = fileData.replace(SPECIFIC_CHARACTER_EXCHANGE, SPECIFIC_CHARACTER);
+        System.out.println(fileData);
     }
     public static void test6() throws MultiFieldException {
         String records = "serial_no|acno|cur_code|tr_acdt|tr_time|tr_time|host_serial_no|tr_bankno|acname|opp_acno|opp_cur_code|opp_acname|opp_bankname|opp_bankno|tr_type|csh_dra_flag|bank_flag|area_flag|fee_amt|tr_from|trans_flag|old_serial_no|old_acdt|cash_flag|crdr_flag|amt|balance|last_bal|freeze_amt|cert_type|cert_batchno|cert_no|tr_code|user_no|sub_no|purpose|postscript|tr_timestamp|reserved1|reserved2|tr_bankname|bank_no|bankname|printcount|payamt|rcvamt|\n" +

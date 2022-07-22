@@ -19,11 +19,69 @@ import java.util.Enumeration;
 public class ZipUtil {
 
     public static void main(String[] args) throws Exception {
-        unZip(new File("D:\\1.NSTC\\demand\\2022.5\\tmpdir\\down\\奥术大师大多我报错.zip"),
-                "D:\\1.NSTC\\demand\\2022.5\\tmpdir\\down", false);
-
+//        unzip(new File("D:\\1.NSTC\\demand\\2022.7\\18【ID1329663】【华侨城集团】【农业银行】生产回单上线支持\\41002953400009373_20220621_CommonSingle_1.zip"),
+//                "D:\\1.NSTC\\demand\\2022.7\\18【ID1329663】【华侨城集团】【农业银行】生产回单上线支持\\unzip");
+        test();
 //        unzip2(new File("D:\\1.NSTC\\demand\\2022.5\\tmpdir\\front_down\\202110151634281677551\\20220519\\detail.zip"),
 //                "D:\\1.NSTC\\demand\\2022.5\\tmpdir\\front_down\\202110151634281677551\\20220519");
+    }
+
+    private static void test() throws Exception {
+        String destDirPath = "D:\\1.NSTC\\demand\\2022.7\\18【ID1329663】【华侨城集团】【农业银行】生产回单上线支持\\unzip";
+        File srcFile = new File("D:\\1.NSTC\\demand\\2022.7\\18【ID1329663】【华侨城集团】【农业银行】生产回单上线支持\\sftp_root1\\41002953400009373_20220622_CommonSingle_1.zip");
+//        File srcFile = new File("D:\\1.NSTC\\demand\\2022.7\\18【ID1329663】【华侨城集团】【农业银行】生产回单上线支持\\sftp_root1\\41002953400009373_20220626_CommonSingle_1.zip");
+//        File srcFile = new File("D:\\1.NSTC\\demand\\2022.7\\18【ID1329663】【华侨城集团】【农业银行】生产回单上线支持\\zip.zip");
+        long start = System.currentTimeMillis();
+        int BUFFER_SIZE = 1024;
+        if (!srcFile.exists()) {
+            System.out.println("文件不存在");
+        } else {
+            java.util.zip.ZipFile zipFile = null;
+
+            try {
+                zipFile = new java.util.zip.ZipFile(srcFile);
+                Enumeration entries = zipFile.entries();
+
+                while(entries.hasMoreElements()) {
+                    java.util.zip.ZipEntry entry = (java.util.zip.ZipEntry)entries.nextElement();
+                    if (entry.isDirectory()) {
+                        String dirPath = destDirPath + "/" + entry.getName();
+                        File dir = new File(dirPath);
+                        dir.mkdirs();
+                    } else {
+                        File targetFile = new File(destDirPath + "/" + entry.getName());
+                        if (!targetFile.getParentFile().exists()) {
+                            targetFile.getParentFile().mkdirs();
+                        }
+
+                        targetFile.createNewFile();
+                        InputStream is = zipFile.getInputStream(entry);
+                        FileOutputStream fos = new FileOutputStream(targetFile);
+                        byte[] buf = new byte[BUFFER_SIZE];
+
+                        int len;
+                        while((len = is.read(buf)) != -1) {
+                            fos.write(buf, 0, len);
+                        }
+
+                        fos.close();
+                        is.close();
+                    }
+                }
+
+                long end = System.currentTimeMillis();
+            } catch (Exception var20) {
+                throw new Exception("解压文件" + srcFile.getAbsolutePath() + "异常：" + var20.getMessage(), var20);
+            } finally {
+                if (zipFile != null) {
+                    try {
+                        zipFile.close();
+                    } catch (IOException var19) {
+                    }
+                }
+
+            }
+        }
     }
 
     public static void unZip(File file, String destPath, boolean delete) throws Exception {
@@ -99,7 +157,7 @@ public class ZipUtil {
 
     }
 
-    public static void unzip2(File zipFile, String descDir) {
+    public static void unzip2(File zipFile, String descDir) throws Exception {
         try (ZipArchiveInputStream inputStream = getZipFile(zipFile)) {
             File pathFile = new File(descDir);
             if (!pathFile.exists()) {
@@ -124,6 +182,7 @@ public class ZipUtil {
 
         } catch (Exception e) {
             System.out.println("[unzip] 解压zip文件出错" + e.getMessage());
+            throw e;
         }
     }
 

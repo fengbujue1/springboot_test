@@ -11,7 +11,7 @@ import java.net.URL;
  */
 public class ReadFileFronUrl {
     public static void main(String[] args) throws IOException {
-        String url = "https://file.cloudpnr.com/app-bdef1811-3bad-472f-b76c-90230ad840ed%2Ffb7df3b0-d79e-11ec-ac53-0242ac110003.zip?Expires=1654584304&Signature=rU7wD61uwJMw%2Bla%2BE0R0MJQG8CY%3D&OSSAccessKeyId=LTAI6Yzq9tIYS57h";
+        String url = "https://file.cloudpnr.com/app-bdef1811-3bad-472f-b76c-90230ad840ed%2F3af58554-078c-11ed-861b-0242ac11000b.zip?Expires=1658483710&Signature=0%2B4ClA%2FdgW8OXjbJUWE2WRQWJQk%3D&OSSAccessKeyId=LTAI6Yzq9tIYS57h";
         String destPath = "D:\\project_my\\tmpFile";
         downLoadByUrl(url, "detail.zip", destPath);
     }
@@ -34,8 +34,11 @@ public class ReadFileFronUrl {
         FileOutputStream fos = new FileOutputStream(file);
         byte[] buffer = new byte[1024];
         int len = 0;
-        while((len = inputStream.read(buffer)) != -1) {
+        while ((len = inputStream.read(buffer)) != -1) {
+            //todo 这种读取方式在读取压缩包的时候可能会乱码，因为流输入的字节不一定能占满buffer的1024个位置
             fos.write(buffer);
+            //这种读取方式才能正确输出压缩文件
+//            fos.write(buffer, 0, len);
         }
         if(fos!=null){
             fos.close();
