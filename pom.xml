@@ -20,6 +20,19 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.2</version>
+        </dependency>
+
+        <!--        pdf解析工具-->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>1.8.9</version>
+        </dependency>
+
 <!--        sftp连接工具-->
         <dependency>
             <groupId>com.sshtools</groupId>

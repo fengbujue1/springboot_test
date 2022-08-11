@@ -5,14 +5,21 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zyj.springboot_test.util.DateUtil;
+import com.zyj.springboot_test.util.PDFUtil;
 import com.zyj.springboot_test.util.TextFormat;
 import com.zyj.springboot_test.util.XMLUtil;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPReply;
 import org.jdom.Element;
 import org.quartz.SchedulerContext;
 
 import java.io.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -23,6 +30,13 @@ import java.util.regex.Pattern;
 public class Test {
     public static final String SPECIFIC_CHARACTER = "&";
     public static final String SPECIFIC_CHARACTER_EXCHANGE = "SPECIFIC";
+
+    public static String s_head;
+    public static String s_2;
+    public static String s_3;
+    public static String s_4;
+    public static String s_tail;
+
     public static void main(String[] args) throws Exception {
 //        test1();
 //        test2();
@@ -32,15 +46,218 @@ public class Test {
 //        test6();
 //        test7();
 //        test8();
-        test8();
+//        test9();
+//        test10();
+//        test11();
+//        test12();
+        test13();
+    }
+
+    /**
+     * 日志分析
+     */
+    public static void test13() throws IOException {
+        File file = new File("D:\\1.NSTC\\demand\\2022.8\\13【ID1335609】【科沃斯】bp3-支付宝-AP-交易明细及余额接口返回的数据文件需要新建ftp存放目录\\BP2022V01-需求规模估算.xlsx");
+        String accountNo = "123";
+        FTPClient ftpClient = new FTPClient();
+        try {
+            // 连接登录
+            ftpClient.connect("192.168.22.234", 21);
+
+            boolean loginResult = ftpClient.login("king", "huiyi1314");
+            int returnCode = ftpClient.getReplyCode();
+            // 如果登录成功
+            if (loginResult && FTPReply.isPositiveCompletion(returnCode)) {
+                System.out.println("连接ftp成功.......");
+            } else {
+                throw new Exception("连接ftp失败.......");
+            }
+            // 本地下载回单文件的路径
+            String basePath = "/baseDir";
+            // 设置ftp被动模式
+            ftpClient.enterLocalPassiveMode();
+            // 设置目录
+            System.out.println("切换路径："+ftpClient.changeWorkingDirectory(basePath));
+            ftpClient.setBufferSize(1024);
+            // 设置文件类型（二进制）
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            // 设置编码
+            ftpClient.setControlEncoding("gbk");
+            String fileName = file.getName();
+            if (!fileName.startsWith(accountNo)) {
+                fileName = accountNo + "_" + fileName;
+            }
+            String remote = new String(fileName.getBytes("gbk"), "iso-8859-1");
+            boolean success = ftpClient.storeFile(remote, new FileInputStream(file));
+            if (!success) {
+                throw new RuntimeException("FTP客户端上传文件失败");
+            }
+            ftpClient.logout();
+        } catch (Exception e) {
+            throw new RuntimeException("FTP客户端上传文件失败！", e);
+        } finally {
+            try {
+                ftpClient.disconnect();
+            } catch (IOException e) {
+                throw new RuntimeException("关闭FTP连接发生异常！", e);
+            }
+        }
+    }
+
+    /**
+     * 日志分析
+     */
+    public static void test12() throws IOException {
+        File file = new File("D:\\1.NSTC\\demand\\2022.8\\4.【ID1343417】【比亚迪】BP2各银行批量扣款时间过长，单个包扣款成功长达4分钟及以上\\20220725\\日志");
+        File[] files = file.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                if (name.startsWith("BOC.TRN1_86")) {
+                    return true;
+                }
+                return false;
+            }
+        });
+        int totalCount = 0;
+        System.out.println("fileNum:" + files.length);
+        Date lastTime = null;
+
+        //统计检查时间相关参数
+        Date checkStartTime = null;
+        Date checkEndTime = null;
+        boolean isCaclCheckTime = false;
+        int checkTotalCost = 0;
+        int checkCount = 0;
+
+        //指令查询相关参数
+        Date queryStartTime = null;
+        Date queryEndTime = null;
+        boolean isQuery = false;
+        int queryTotalCost = 0;
+        int queryCount = 0;
+
+        int totalCostTime = 0;
+        for (int i = 0; i < files.length; i++) {
+            File file1 = files[i];
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file1), "UTF-8"));
+
+            String line = null;
+            int count = 0;
+            int costTime = 0;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("-指令防重检查完成")) {
+                    String time = line.substring(0, 23);
+                    if (lastTime == null) {
+                        lastTime = TextFormat.parseDate(time, "yyyy-MM-dd HH:mm:ss.SSS");
+                    }
+                    Date currentTime = TextFormat.parseDate(time, "yyyy-MM-dd HH:mm:ss");
+                    costTime += currentTime.getTime() - lastTime.getTime();
+                    totalCostTime += currentTime.getTime() - lastTime.getTime();
+                    totalCount++;
+                    count++;
+                    lastTime = TextFormat.parseDate(time, "yyyy-MM-dd HH:mm:ss");
+                }
+                if (line.contains("-发送") && !isCaclCheckTime) {
+                    String time = line.substring(0, 23);
+                    checkStartTime = TextFormat.parseDate(time, "yyyy-MM-dd HH:mm:ss");
+                    isCaclCheckTime = true;
+                }
+                if (line.contains("-指令防重检查完成") && isCaclCheckTime) {
+                    String time = line.substring(0, 23);
+                    checkEndTime = TextFormat.parseDate(time, "yyyy-MM-dd HH:mm:ss");
+                    isCaclCheckTime = false;
+                    checkTotalCost += checkEndTime.getTime() - checkStartTime.getTime();
+                    checkCount++;
+                }
+
+                if (line.contains("-任务开始执行") && !isQuery) {
+                    String time = line.substring(0, 23);
+                    queryStartTime = TextFormat.parseDate(time, "yyyy-MM-dd HH:mm:ss");
+                    isQuery = true;
+                }
+                if (line.contains("-过滤有效指令数") && isQuery) {
+                    String time = line.substring(0, 23);
+                    queryEndTime = TextFormat.parseDate(time, "yyyy-MM-dd HH:mm:ss");
+                    isQuery = false;
+                    queryTotalCost += queryEndTime.getTime() - queryStartTime.getTime();
+                    queryCount++;
+                }
+
+                if (line.startsWith("-- 用时:")) {
+                    lastTime = null;
+                }
+            }
+            System.out.println("查完文件:" + file1.getName() + "总共" + count + "条指令，耗时：" + costTime / 1000 / 60 + "分" + (costTime / 1000) % 60 + "秒");
+        }
+        System.out.println("总计耗时：" + totalCostTime / 1000 / 60 + "分" + (totalCostTime / 1000) % 60 + "秒");
+        System.out.println("总计处理了："+totalCount+"条指令");
+        System.out.println("平均每条指令耗时："+totalCostTime/totalCount+"毫秒");
+        System.out.println("检查指令数："+checkCount+"条");
+        System.out.println("指令检查平均耗时：" + checkTotalCost / checkCount + "毫秒");
+        System.out.println("发送银行平均耗时：" + (totalCostTime-checkTotalCost) / checkCount + "毫秒");
+        System.out.println("查询数据库：" +queryCount + "次");
+        System.out.println("查询数据库耗时：" + queryTotalCost/1000 + "秒");
+
 
     }
-    public static void test9() {
-        Date date = new Date();
-        Date date1 = DateUtil.addDay(date, 1);
 
+    public static void test11() throws UnsupportedEncodingException {
+        String s = "阿斯蒂芬";
+        s.getBytes();
+    }
+    public static void test10() {
+        String text = PDFUtil.parsePDF(new File("D:\\1.NSTC\\demand\\2022.7\\排查问题\\4402256019100078262_20220726_22207000008_0000#2560#00307#01342231_00008.pdf"));
+        String[] infos = text.split("\r\n");
+        boolean isReceiveName = false;
+        String payName = "";
+        String payNo = "";
+        String payBranchName = "";
+        String recName = "";
+        String recNo = "";
+        String recBranchName = "";
 
-        System.out.println(TextFormat.formatDate(date1));
+        for(int j = 0; j < infos.length; ++j) {
+            String info = infos[j];
+            if (info.startsWith("电子回单号码:")) {
+                info.substring(7).trim();
+            } else if (info.startsWith("户　名") && !isReceiveName) {
+                payName = info.substring(3).trim();
+                isReceiveName = true;
+            } else if (info.startsWith("户　名") && isReceiveName) {
+                recName = info.substring(3).trim();
+            } else if (info.startsWith("账　号")) {
+                payNo = info.substring(3, info.lastIndexOf("账　号")).trim();
+                recNo = info.substring(info.lastIndexOf("账　号") + 3).trim();
+                if (payNo.equals("")) {
+                } else {
+                }
+            } else if (info.startsWith("开户银行")) {
+                payBranchName = info.substring(4, info.lastIndexOf("开户银行")).trim();
+                recBranchName = info.substring(info.lastIndexOf("开户银行") + 4).trim();
+            } else if (info.startsWith("金　额")) {
+                String regex = "\\d+(\\.\\d+)?";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(info);
+                if (info.contains("人民币")) {
+                }
+
+                while(matcher.find()) {
+                }
+            } else if (info.contains("摘　要")) {
+            }
+        }
+    }
+
+    public static void test9() throws NoSuchAlgorithmException {
+        String s = "app_id=1001072&app_secret=A4365A95394E414C&client_id=181008110918153&account_id=2005840000210651start_time=20220729000000end_time=20220729102157A4365A95394E414C";
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
+        byte[] digest = messageDigest.digest(s.getBytes());
+        String sha1Str = trans(digest);
+        byte[] encode = Base64.getEncoder().encode(sha1Str.getBytes());
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        byte[] digest1 = md5.digest(encode);
+        String md5Str = trans(digest1);
+        System.out.println(md5Str);
     }
     public static void test8() {
         Calendar cl = Calendar.getInstance();
@@ -51,8 +268,12 @@ public class Test {
         cl.set(13, 0);
         cl.set(14, 0);
         Date time = cl.getTime();
+        String s = TextFormat.formatDate(time, "yyyy-MM-dd :HHmmss");
+        if (s.endsWith("00")) {
 
-        System.out.println(TextFormat.formatDate(time));
+        } else {
+            System.out.println(s);
+        }
     }
     public static void test7() throws Exception {
         String quote = Pattern.quote("&");
@@ -132,5 +353,13 @@ public class Test {
 
         List o = (List<Map<String, String>>) JSON.parse(s);
         System.out.println(o);
+    }
+    public static String trans(byte[] digest) {
+        StringBuilder ret=new StringBuilder(digest.length<<1);
+        for(int i=0;i<digest.length;i++){
+            ret.append(Character.forDigit((digest[i]>>4)&0xf,16));
+            ret.append(Character.forDigit(digest[i]&0xf,16));
+        }
+        return ret.toString();
     }
 }

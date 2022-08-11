@@ -14,20 +14,21 @@ public class Base64Util {
     private static Base64.Encoder encoder = Base64.getEncoder();
     private static Base64.Decoder decoder = Base64.getDecoder();
     public static void main(String[] args) {
-        other();
+//        other();
+        java();
     }
 
     /**
      * JDK自带的工具包
      */
     public static void java() {
-        String text = "你好??////\\\\\\\\\\，世界";
+        String text = "RDAwODk=";
         System.out.println("text:" + text);
 
-        byte[] encode = encoder.encode(text.getBytes());
-        System.out.println("encode:" + new String(encode));
+//        byte[] encode = encoder.encode(text.getBytes());
+//        System.out.println("encode:" + new String(encode));
 
-        byte[] decode = decoder.decode(encode);
+        byte[] decode = decoder.decode(text.getBytes());
         System.out.println("decode:" + new String(decode));
     }
 
