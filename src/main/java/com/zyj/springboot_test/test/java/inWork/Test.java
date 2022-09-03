@@ -4,6 +4,7 @@ package com.zyj.springboot_test.test.java.inWork;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zyj.springboot_test.test.java.zip.ZipUtil;
 import com.zyj.springboot_test.util.DateUtil;
 import com.zyj.springboot_test.util.PDFUtil;
 import com.zyj.springboot_test.util.TextFormat;
@@ -11,11 +12,13 @@ import com.zyj.springboot_test.util.XMLUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 import org.jdom.Element;
 import org.quartz.SchedulerContext;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -51,13 +54,71 @@ public class Test {
 //        test11();
 //        test12();
         test13();
+//        test14();
+//        test15();
+//        test16();
+//        test17();
+//        test18();
+    }
+
+    public static void test18() throws IOException {
+        String s = "{\"congfig1\":{\"appId\":\"appId1\",\"rsaPrivateKey\":\"rsaPrivateKey1\",\"apiKey\":\"apiKey1\"}}";
+//        JSONObject parse = (JSONObject)JSON.parse();
+//        System.out.println(parse);
+    }
+    public static void test17() throws IOException {
+        File file = new File("D:\\1.NSTC\\demand\\2022.8\\23【ID1350333】【海华医药】金在联银-农行ABC2-农行电子回单接口异常\\test\\a1");
+        File[] files = file.listFiles();
+        File file2 = new File(file.getAbsolutePath() + ".zip");
+        ZipUtil.doCompressFiles(file2,files);
+    }
+    public static void test16() throws IOException {
+        String remark = "你好";
+        remark = new String(Base64.getEncoder().encode(remark.getBytes()));
+        System.out.println(remark);
+    }
+    public static void test15() throws IOException {
+        Properties prop = new Properties();
+        String fileName = "subpackage.properties";
+        try {
+            prop.load(new InputStreamReader(Test.class.getClassLoader().getResourceAsStream(fileName), "GBK"));
+        } catch (Throwable var4) {
+            throw var4;
+        }
+        String property = prop.getProperty("CMB.01A");
+        System.out.println(property);
+
+    }
+    public static void test14() throws IOException {
+        String code = null;
+        // "通过用途中文映射不同的银行用途代码， 格式：text|code text|code code；例如：差旅费|311 办公费|312
+        // 313； 最后的code为默认值，如果最后配置为text|code则没有默认值"
+        String explain = "工资奖金";
+        String useCode = "报销费用-差旅费|311 报销费用-办公费|312 报销费用-水电费|313 工资奖金|4111";
+        String[] useCodes = useCode.split("\\s+");
+        for (int i = 0; i < useCodes.length; i++) {
+            // 差旅费|311
+            String textCodes = useCodes[i];
+            String[] textCode = textCodes.split("\\|");
+            if (textCode[0].equals(explain)) {
+                code = textCode[1];
+            }
+        }
+        if (null == code) {
+            code = useCodes[useCodes.length - 1];
+            if (code.contains("|")) {
+                code = "";
+                System.out.println("参数useCode配置异常，最后一位只能配置银行用途代码,否则摘要上传为空");
+            }
+        }
+        System.out.println(code);
     }
 
     /**
      * 日志分析
      */
     public static void test13() throws IOException {
-        File file = new File("D:\\1.NSTC\\demand\\2022.8\\13【ID1335609】【科沃斯】bp3-支付宝-AP-交易明细及余额接口返回的数据文件需要新建ftp存放目录\\BP2022V01-需求规模估算.xlsx");
+        File file = new File("D:\\2.sftp\\JD\\asd.txt");
         String accountNo = "123";
         FTPClient ftpClient = new FTPClient();
         try {
@@ -72,23 +133,25 @@ public class Test {
             } else {
                 throw new Exception("连接ftp失败.......");
             }
+
             // 本地下载回单文件的路径
             String basePath = "/baseDir";
             // 设置ftp被动模式
             ftpClient.enterLocalPassiveMode();
             // 设置目录
-            System.out.println("切换路径："+ftpClient.changeWorkingDirectory(basePath));
+//            System.out.println("切换路径："+ftpClient.changeWorkingDirectory(basePath));
             ftpClient.setBufferSize(1024);
             // 设置文件类型（二进制）
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             // 设置编码
-            ftpClient.setControlEncoding("gbk");
+            ftpClient.setControlEncoding("UTF-8");
             String fileName = file.getName();
             if (!fileName.startsWith(accountNo)) {
                 fileName = accountNo + "_" + fileName;
             }
-            String remote = new String(fileName.getBytes("gbk"), "iso-8859-1");
-            boolean success = ftpClient.storeFile(remote, new FileInputStream(file));
+            String remote = new String(fileName.getBytes("utf-8"), "iso-8859-1");
+            FTPFile[] ftpFiles = ftpClient.listDirectories();
+            boolean success = ftpClient.storeFile(fileName,new ByteArrayInputStream("asdasdassssssssssssssssssdsd".getBytes()));
             if (!success) {
                 throw new RuntimeException("FTP客户端上传文件失败");
             }

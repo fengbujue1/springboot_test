@@ -16,8 +16,8 @@ public class Producer_return {
         connectionFactory.setHost("47.96.0.106");
         connectionFactory.setPort(5672);
         connectionFactory.setVirtualHost("/");
-        connectionFactory.setUsername("bujue");
-        connectionFactory.setPassword("123");
+        connectionFactory.setUsername("fengbujue2");
+        connectionFactory.setPassword("bujue123");
 
         //2.获取connectionn
         Connection connection = connectionFactory.newConnection();

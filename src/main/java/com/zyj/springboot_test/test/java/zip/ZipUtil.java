@@ -2,6 +2,7 @@ package com.zyj.springboot_test.test.java.zip;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.tools.zip.ZipEntry;
@@ -10,6 +11,7 @@ import org.apache.tools.zip.ZipFile;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Enumeration;
+import java.util.List;
 
 /**
  * @Author 周赟吉
@@ -17,6 +19,7 @@ import java.util.Enumeration;
  * @Description :
  */
 public class ZipUtil {
+    private static final int bufferSize = 1024;
 
     public static void main(String[] args) throws Exception {
 //        unzip(new File("D:\\1.NSTC\\demand\\2022.7\\18【ID1329663】【华侨城集团】【农业银行】生产回单上线支持\\41002953400009373_20220621_CommonSingle_1.zip"),
@@ -82,6 +85,80 @@ public class ZipUtil {
 
             }
         }
+    }
+
+    public static void doCompress(File srcFile, File destFile) throws IOException {
+
+        ZipArchiveOutputStream out = null;
+
+        InputStream is = null;
+
+        try {
+
+            is = new BufferedInputStream(new FileInputStream(srcFile), 1024);
+
+            out = new ZipArchiveOutputStream(new BufferedOutputStream(new FileOutputStream(destFile), 1024));
+
+            ZipArchiveEntry entry = new ZipArchiveEntry(srcFile.getName());
+
+            entry.setSize(srcFile.length());
+
+            out.putArchiveEntry(entry);
+
+            IOUtils.copy(is, out);
+
+            out.closeArchiveEntry();
+
+        } finally {
+
+            IOUtils.closeQuietly(is);
+
+            IOUtils.closeQuietly(out);
+
+        }
+
+    }
+
+    /**
+
+     * 用于多文件压缩
+
+     */
+
+    public static void doCompressFiles( File destFile,File... srcFiles) throws IOException {
+
+        ZipArchiveOutputStream out = null;
+
+        InputStream is = null;
+
+        try {
+
+            out = new ZipArchiveOutputStream(new BufferedOutputStream(new FileOutputStream(destFile), bufferSize));
+
+            for(File srcFile:srcFiles){
+
+                is = new BufferedInputStream(new FileInputStream(srcFile), bufferSize);
+
+                ZipArchiveEntry entry = new ZipArchiveEntry(srcFile.getName());
+
+                entry.setSize(srcFile.length());
+
+                out.putArchiveEntry(entry);
+
+                IOUtils.copy(is, out);
+
+            }
+
+            out.closeArchiveEntry();
+
+        } finally {
+
+            IOUtils.closeQuietly(is);
+
+            IOUtils.closeQuietly(out);
+
+        }
+
     }
 
     public static void unZip(File file, String destPath, boolean delete) throws Exception {
