@@ -15,6 +15,7 @@ import java.util.Scanner;
  */
 public class ProducerMain {
     public static void main(String[] args) {
+        int delayTimes = 30000;
         String contextFileName = "rabbitmq/bpt-context-rabbitmq.xml";
         String propertyName = "rabbitmq/mq.properties";
         PropertiesUtil.loadPropertiesFromFile(propertyName);
@@ -24,7 +25,12 @@ public class ProducerMain {
         while (true) {
             System.out.println("输入消息：");
             String s = scanner.nextLine();
-            rabbitTemplate.convertAndSend(s);
+            System.out.println("发送消息:" + s + ",当前时间:" + System.currentTimeMillis());
+            rabbitTemplate.convertAndSend("delayed_exchange", "routinkey", s, message -> {
+                //设置延迟毫秒值
+                message.getMessageProperties().setDelay((int) delayTimes);
+                return message;
+            });
         }
     }
 }

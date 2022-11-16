@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 import java.util.ArrayList;
 
 @SpringBootApplication
-//@ComponentScan("com.zyj.springboot_test")
+@ComponentScan("com.zyj.springboot_test")
 public class SpringbootTestApplication {
 
     public static void main(String[] args) {

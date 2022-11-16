@@ -57,7 +57,8 @@ http://www.springframework.org/schema/jms http://www.springframework.org/schema/
 
 	<!-- spring template声明 -->
 <!--	指定交换机与路由键的意义在于可以通过通配符一次性向多个队列发送消息-->
-	<rabbit:template id="rabbitTemplate" exchange="spring.queue.exchange" connection-factory="rabbitConnectionFactory" routing-key="${rabbitmq.queneName1}"/>
+<!--	<rabbit:template id="rabbitTemplate" exchange="spring.queue.exchange" connection-factory="rabbitConnectionFactory" routing-key="${rabbitmq.queneName1}"/>-->
+	<rabbit:template id="rabbitTemplate" exchange="delayed_exchange" connection-factory="rabbitConnectionFactory" routing-key="${rabbitmq.queneName1}"/>
 
 <!--	 queue 队列声明 -->
 	<rabbit:queue name="${rabbitmq.queneName1}" durable="true" auto-delete="false" exclusive="false"/>

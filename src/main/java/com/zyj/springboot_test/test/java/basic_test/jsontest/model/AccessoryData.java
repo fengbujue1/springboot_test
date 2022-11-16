@@ -5,15 +5,15 @@ import java.util.Arrays;
 
 /**
  * Description:
- * ²Î¿¼ÎÄµµ¹éµµÓÚ£ºhttp://192.168.0.2/svn/doc/Doc.Dev/BP/¿ª·¢±¸Íü/Wiki/½»Ò×±¨ÎÄ¹æ·¶/TX0022-¿ç¾³ÈËÃñ±ÒÖ§¸¶£¨CIPS£©.xlsx
- * ¸½¼şÊı¾İÄ£ĞÍ
+ * å‚è€ƒæ–‡æ¡£å½’æ¡£äºï¼šhttp://192.168.0.2/svn/doc/Doc.Dev/BP/å¼€å‘å¤‡å¿˜/Wiki/äº¤æ˜“æŠ¥æ–‡è§„èŒƒ/TX0022-è·¨å¢ƒäººæ°‘å¸æ”¯ä»˜ï¼ˆCIPSï¼‰.xlsx
+ * é™„ä»¶æ•°æ®æ¨¡å‹
  *
- * @author ÖÜÚS¼ª
+ * @author å‘¨èµŸå‰
  * @since 2021/12/10
  */
 public class AccessoryData {
-    private String imgName;//ÎÄ¼şÃû³Æ£¬±ØÌî¡¢·Ç¿Õ¡£
-    private byte[] imgData;//ÎÄ¼şÊı¾İ£¬±ØÌî¡¢·Ç¿Õ¡£base64×ªÂëµÄÎÄ¼şÊı¾İ
+    private String imgName;//æ–‡ä»¶åç§°ï¼Œå¿…å¡«ã€éç©ºã€‚
+    private byte[] imgData;//æ–‡ä»¶æ•°æ®ï¼Œå¿…å¡«ã€éç©ºã€‚base64è½¬ç çš„æ–‡ä»¶æ•°æ®
 
     public String getImgName() {
         return imgName;
