@@ -24,8 +24,8 @@ public class DelayQueueDemo {
 	
 	public static void main(String[] args) {
 		DelayQueueDemo demo = new DelayQueueDemo();
-		//demo.test();
-		demo.scheduleThreadPool();
+		demo.test();
+//		demo.scheduleThreadPool();
 	}
 	
 	public void test() {
