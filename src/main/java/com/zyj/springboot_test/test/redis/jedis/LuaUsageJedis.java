@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.redis_jedis;
+package com.zyj.springboot_test.test.redis.jedis;
 
 import com.zyj.springboot_test.util.FileUtil;
 import redis.clients.jedis.Jedis;

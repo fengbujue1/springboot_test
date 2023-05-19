@@ -1,4 +1,4 @@
-package com.zyj.springboot_test.test.redis_jedis.distribute_lock;
+package com.zyj.springboot_test.test.redis.jedis.distribute_lock;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;

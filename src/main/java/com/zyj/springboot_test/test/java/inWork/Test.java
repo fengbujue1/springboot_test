@@ -18,8 +18,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.checkerframework.checker.units.qual.A;
 import org.jdom.Element;
 import java.io.*;
+import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -42,6 +44,7 @@ public class Test {
     public static String s_3;
     public static String s_4;
     public static String s_tail;
+
 
     public static void main(String[] args) throws Exception {
 //        test1();
@@ -67,10 +70,127 @@ public class Test {
 //        test21();
 //        test22();
 //        test23();
-        test24();
+//        test24();
 
-//        String part = "yyyyMMdd.HHmmss.SSS";
+
+        String part = "yyyyMMdd.HHmmss.SSS";
+//        String part = "YYYY-MM-dd HH:mm:ss";
 //        System.out.println(TextFormat.formatDate(new Date(), part));
+//        System.out.println(new BigDecimal(2).setScale(2,BigDecimal.ROUND_DOWN));
+
+//        test27_ceb();
+
+//        System.out.println("BANENDRREVOKTRNRQ".toLowerCase());
+    }
+    public static void test27_cib() throws Exception {
+        String excelPath = "C:\\Users\\king\\Desktop\\新建文本文档 (2).txt";
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(excelPath),"utf-8"));
+        String line;
+        HashMap<String,String> pathes = new HashMap<>();
+        HashMap<String,String> types = new HashMap<>();
+        HashMap<String,String> notes = new HashMap<>();
+        HashMap<String,String> must = new HashMap<>();
+        HashMap<String, List> stringListHashMap = new HashMap<>();
+        while ((line = reader.readLine()) != null) {
+            String[] split = line.split("---");
+            String path = split[split.length - 1];
+            String name = split[0];
+            pathes.put(name,path);
+            String[] split1 = path.split("/");
+            String parent = split1[split1.length - 2];
+            List list = stringListHashMap.get(parent);
+            if (list == null) {
+                list = new ArrayList<String>();
+                stringListHashMap.put(parent, list);
+            }
+            list.add(name);
+            types.put(name, split[1]);
+            notes.put(name, split[3]);
+            must.put(name, split[2]);
+        }
+
+        Set<Map.Entry<String, List>> entries = stringListHashMap.entrySet();
+        for (Map.Entry<String, List> entry : entries) {
+            String key = entry.getKey();
+            List value = entry.getValue();
+            if (value.size() < 2) {
+                continue;
+            }
+            System.out.println("public static class " + key+"{");
+            for (int i = 0; i < value.size(); i++) {
+                String type;
+                if (types.get(value.get(i)).startsWith("String")) {
+                    type = "String";
+                } else if (types.get(value.get(i)).startsWith("Number")) {
+                    type = "BigDecimal";
+                } else if (types.get(value.get(i)).startsWith("Date")) {
+                    type = "Date";
+                } else {
+                    type = "";
+                }
+                System.out.println("    /**\n" +
+                        "     * " + notes.get(value.get(i)) + "\n" +
+                        "     * 是否必输：" + must.get(value.get(i)) + "\n" +
+                        "     */");
+                System.out.println("    @JacksonXmlProperty(localName = \"" + value.get(i).toString() + "\")");
+                System.out.println("    private " + type +" "+ value.get(i).toString().toLowerCase()+";");
+            }
+            System.out.println("}");
+            System.out.println("");
+        }
+    }
+
+    public static void test27_ceb() throws Exception {
+        String excelPath = "C:\\Users\\king\\Desktop\\新建文本文档.txt";
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(excelPath),"utf-8"));
+        String line;
+        List<String[]> arrays = new ArrayList<>();
+        while ((line = reader.readLine()) != null) {
+            String[] split = line.split("---");
+            if (split.length < 1) {
+                continue;
+            }
+            arrays.add(split);
+        }
+        for (int i = 0; i < arrays.size(); i++) {
+            String[] value = arrays.get(i);
+            if (value.length < 2) {
+                continue;
+            }
+            System.out.println("    /**\n" +
+                    "     * " + value[1] + "\n" +
+                    "     * 是否必输：" + value[2]);
+            if (value.length == 6) {
+                System.out.println("     * 示例值：" + value[5]);
+            }
+            System.out.println("     */");
+            System.out.println("    @JacksonXmlProperty(localName = \"" + value[0] + "\")");
+            System.out.println("    private " + value[4] + " " + getname(value[0]) + ";");
+        }
+    }
+
+    private static String getname(String s) {
+        if (s.contains("_")) {
+            return s;
+        } else {
+            return Character.toLowerCase(s.charAt(0)) + s.substring(1);
+        }
+
+    }
+
+
+    public static void test25() {
+        String[] split = "000000000001,000001750056".split(",");
+        long rang;
+        rang = Long.parseLong(split[1]) - Long.parseLong(split[0]) + 1;
+//        long settleAmount = new Double(detailDo.getTxDo().getSettleAmount().doubleValue() * 100).longValue();
+        long settleAmount = new Double((new BigDecimal(17500.56).doubleValue() * 100)).longValue();
+        if (settleAmount < rang) {
+            String endNum = String.valueOf((Long.parseLong(split[0]) + settleAmount - 1));
+            System.out.println(split[0] + "," + TextFormat.getRightPrefixString(endNum, 12, "0"));
+        } else {
+            System.out.println("no");
+        }
     }
     public static void test24() throws IOException {
         try {

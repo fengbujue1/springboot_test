@@ -1,11 +1,13 @@
 package com.zyj.springboot_test.test.java.inWork;
 
 
+import java.io.Serializable;
+
 /**
  * 参数的配置，入网商户对接通联通的商户必须找相应的分公司技术颁发唯一的系统对接参数
  * 如，商户号，用户名，密码，私钥证书
  **/
-public class DemoConfig {
+public class DemoConfig implements Serializable {
 	public static String merchantidjfb = "200604000002185";
 	public static String usernamejfb = "20060400000218504";
 	public static String pathpfxjfb = "config/20060400000218504.p12";
