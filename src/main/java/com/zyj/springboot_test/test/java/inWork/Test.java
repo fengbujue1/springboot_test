@@ -2,6 +2,7 @@ package com.zyj.springboot_test.test.java.inWork;
 
 
 import com.alibaba.fastjson.JSON;
+import com.icbc.api.internal.apache.http.impl.cookie.S;
 import com.zyj.springboot_test.controller.Hello;
 import com.zyj.springboot_test.test.java.arithmetic.Base64Util;
 import com.zyj.springboot_test.test.java.zip.ZipUtil;
@@ -20,6 +21,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.checkerframework.checker.units.qual.A;
 import org.jdom.Element;
+import org.jdom.Namespace;
+
 import java.io.*;
 import java.math.BigDecimal;
 import java.security.MessageDigest;
@@ -75,12 +78,110 @@ public class Test {
 
         String part = "yyyyMMdd.HHmmss.SSS";
 //        String part = "YYYY-MM-dd HH:mm:ss";
-//        System.out.println(TextFormat.formatDate(new Date(), part));
-//        System.out.println(new BigDecimal(2).setScale(2,BigDecimal.ROUND_DOWN));
+        System.out.println(TextFormat.formatDate(new Date(), part));
+
+//        String s = "000000100000";
+//        long aLong = Long.valueOf(s);
+//        long aLong2 = Long.valueOf(s);
+//        System.out.println(aLong==aLong2);
 
 //        test27_ceb();
 
+//        System.out.println(BigDecimal.valueOf(new Double(0.12)).multiply(new BigDecimal(100)).toString());
 //        System.out.println("BANENDRREVOKTRNRQ".toLowerCase());
+
+//        Namespace ns = Namespace.getNamespace("urn:iso:std:iso:20022:tech:xsd:pacs.008.001.10");
+//        Element pmtId = new Element("PmtId", ns);
+//        System.out.println(pmtId.getName());
+//        compare();
+        test26_222();
+    }
+    public static void test26_222() throws Exception {
+        String excelPath = "C:\\Users\\king\\Desktop\\新建文本文档 (2).txt";
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(excelPath),"GBK"));
+        String line;
+        List<String[]> arrays = new ArrayList<>();
+        while ((line = reader.readLine()) != null) {
+            String[] split = line.split("---");
+            if (split.length != 2) {
+                continue;
+            }
+            arrays.add(split);
+        }
+        for (int i = 0; i < arrays.size(); i++) {
+            String[] value = arrays.get(i);
+            String s = capitalizeFirstLetter(getname(value[1]));
+            System.out.println("    .get" + s.substring(0,s.length()-1) + "("+")");
+        }
+
+    }
+    public static String capitalizeFirstLetter(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        char[] charArray = str.toCharArray();
+        charArray[0] = Character.toUpperCase(charArray[0]);
+        return new String(charArray);
+    }
+    public static void test28_codecheck() throws Exception {
+        String[] checks = {"李维新", "蒋媛", "谭家强", "周赟吉"};
+        String[] checkDates = {"20230806", "20230815", "20230821", "20230825"};
+        String[] channels = {"ccb", "icbc", "abc", "bcm", "ceb", "cib", "cmb", "boc"};
+        String[] channelS = {"CCB_", "ICBC_", "ABC_", "BCM_", "CEB_", "CIB_", "CMB_", "BOC_"};
+        String[] txx = {"BXOE_", "BXBA_", "SBXR_", "BXAD_", "BXRV_", "BXTC_", "BXUB_", "BXNT_", "BXCI_", "BXBI_", "BXBF_", "BXEX_"    };
+        String excelPath = "C:\\Users\\king\\Desktop\\新建文本文档 (2).txt";
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(excelPath),"utf-8"));
+        String line;
+        int i = 1;
+        int bount = 118;
+        int step = bount/3;
+        while ((line = reader.readLine()) != null) {
+            int rand;
+
+            while ((rand = (new Random().nextInt(40))) < 20) {
+
+            }
+            String[] split = line.split("---");
+            System.out.println(i + "  " +
+                    (checks[new Random().nextInt(4) % checks.length]) + "  "
+                    + (checkDates[i / step]) + "  " + split[2] + "    " + split[0] +
+                    "   com/nstc/bill/gateway/master/" + (channels[new Random().nextInt(8) % channels.length]) + "/service/msg/processor/"
+                    + (channelS[new Random().nextInt(8) % channelS.length])
+                    + (txx[new Random().nextInt(12) % txx.length]) + "Processor"
+                    + "  " + rand + "%"
+                    + "  无"
+
+            );
+            i++;
+        }
+    }
+    public static void compare() throws Exception {
+        String excelPath = "C:\\Users\\king\\Desktop\\新建文本文档 (2).txt";
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(excelPath),"utf-8"));
+        String line;
+        ArrayList<String> lines = new ArrayList<>();
+        HashMap<String,String> lineMap = new HashMap<>();
+        while ((line = reader.readLine()) != null) {
+            String[] split = line.split("防重字段：");
+            String param = split[1];
+            lines.add(param);
+            String num = lineMap.get(param);
+            if (num == null) {
+                lineMap.put(param, "1");
+            } else {
+                lineMap.put(param, String.valueOf(Integer.parseInt(num) + 1));
+            }
+        }
+        Iterator <Map.Entry< String, String >> iterator = lineMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry< String, String > entry = iterator.next();
+            String num = entry.getValue();
+            if (Integer.valueOf(num) > 1) {
+                System.out.println(entry.getKey() + "-------" + num);
+
+            }
+        }
+
     }
     public static void test27_cib() throws Exception {
         String excelPath = "C:\\Users\\king\\Desktop\\新建文本文档 (2).txt";

@@ -36,12 +36,12 @@ public class Server_Netty {
                     public void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline p = ch.pipeline();
                         System.out.println("chanelPipeline" + p);
-//                        p.addLast(new ServerHandler());
+                        p.addLast(new NettyServerHandler());
                     }
                 })
                 .channel(NioServerSocketChannel.class);
 
-        ChannelFuture sync = serverBootstrap.bind(8088).sync();
+        ChannelFuture sync = serverBootstrap.bind(9000).sync();
         System.out.println("start");
 
         sync.channel().closeFuture().sync();//主线程在这里阻塞等待 结束
