@@ -11,6 +11,7 @@ public class ExecutorsInJDK {
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         ExecutorService executorService2 = Executors.newSingleThreadExecutor();
         ExecutorService executorService3 = Executors.newCachedThreadPool();
+        ExecutorService executorService4 = Executors.newScheduledThreadPool(5);
 
         for (int i = 1; i < 11; i++) {
             executorService.execute(new Thread_pool.Run1(i));
