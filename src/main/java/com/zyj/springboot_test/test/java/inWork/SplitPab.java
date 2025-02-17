@@ -21,19 +21,20 @@ public class SplitPab {
         String prior = "";
         ArrayList<String> strings = new ArrayList<>();
         while ((line = reader.readLine()) != null) {
-            if (line.contains("object")) {
-                strings.add(line);
-                continue;
-            }
-            if (line.startsWith("最大长度")
-                    ||line.startsWith("最大值")
-            ) {
-                strings.add(processFir(prior) + line);
-            }
-            prior = line;
+            strings.add(line);
+//            if (line.contains("object")) {
+//                strings.add(line);
+//                continue;
+//            }
+//            if (line.startsWith("最大长度")
+//                    ||line.startsWith("最大值")
+//            ) {
+//                strings.add(processFir(prior) + line);
+//            }
+//            prior = line;
         }
 
-
+    
         for (int i = 0; i < strings.size(); i++) {
             String s = strings.get(i);
             if (s.contains("object")) {
@@ -42,23 +43,17 @@ public class SplitPab {
                 continue;
             }
             String[] split = s.split("---");
-            if (split.length < 7) {
+            if (split.length < 5) {
                 System.out.println("格式错误，长度小于7");
             }
             System.out.println("    /**\n" +
-                    "     *" + split[1] + "\n" +
+                    "     *" + split[0] + "\n" +
                     "     * 是否必输：" + split[3] + "\n" +
-                    "     * 备注：" + split[5] + "\n" +
-                    "     *" + split[6] + "\n" +
-                    "     *" + (split.length>7?split[7]:"") + "\n" +
-                    "     *" + (split.length>8?split[8]:"") + "\n" +
-                    "     *" + (split.length>9?split[9]:"") + "\n" +
+                    "     * 备注：" + split[4] + "\n" +
                     "     */");
-            char[] chars = split[2].toCharArray();
-            String s1 = String.valueOf(chars[1]).toUpperCase();
-            String s2 = split[2].substring(2, split[2].length());
-            System.out.println("    @JacksonXmlProperty(localName = \"" + split[0]  + "\")");
-            System.out.println("    private " + s1 + s2 + " " + split[0] + ";");
+            char[] chars = split[1].toCharArray();
+            System.out.println("    @JacksonXmlProperty(localName = \"" + split[1]  + "\")");
+            System.out.println("    private String"  + " " + split[1] + ";");
         }
         System.out.println("}");
 
