@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 public class TestSHA256 {
     public static void main(String[] args) {
         try {
-            String input = ""; // 需要计算 SHA-256 的输入数据
+            String input = "huiyi1314"; // 需要计算 SHA-256 的输入数据
             // 获取 SHA-256 的 MessageDigest 实例
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
