@@ -80,6 +80,7 @@ public class Test3 {
         int[] rank ;
         public UnionFind(int numbers) {
             this.parent = new int[numbers+1];
+            this.rank = new int[numbers+1];
             for (int i = 0; i <= numbers; i++) {
                 parent[i] = i;
                 rank[i] = 1;
