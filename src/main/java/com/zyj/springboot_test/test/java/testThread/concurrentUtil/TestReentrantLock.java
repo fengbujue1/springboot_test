@@ -91,6 +91,7 @@ public class TestReentrantLock {
      */
     public static void test2() {
         ReentrantLock reentrantLock = new ReentrantLock();
+
         reentrantLock.lock();
         Thread thread1 = new Thread(new Runnable() {
             @Override

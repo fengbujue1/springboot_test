@@ -64,56 +64,56 @@
             <version>5.0.2.RELEASE</version>
             <scope>compile</scope>
         </dependency>
-        <!--        工商银行本地jar包引入-->
-        <dependency>
-            <groupId>icbc-api</groupId>
-            <artifactId>proguard.jar</artifactId>
-            <scope>system</scope>
-            <version>1.0.0</version>
-            <systemPath>${project.basedir}/lib/proguard.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>icbc-api</groupId>
-            <artifactId>commons-logging-1.2.jar</artifactId>
-            <scope>system</scope>
-            <version>1.0.0</version>
-            <systemPath>${project.basedir}/lib/commons-logging-1.2.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>icbc-api</groupId>
-            <artifactId>hsm-software-share-1.0.5.jar</artifactId>
-            <scope>system</scope>
-            <version>1.0.0</version>
-            <systemPath>${project.basedir}/lib/hsm-software-share-1.0.5.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>icbc-api</groupId>
-            <artifactId>icbc-api-sdk-cop-io</artifactId>
-            <scope>system</scope>
-            <version>1.0.0</version>
-            <systemPath>${project.basedir}/lib/icbc-api-sdk-cop-io.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>icbc-api</groupId>
-            <artifactId>icbc-api-sdk-cop</artifactId>
-            <scope>system</scope>
-            <version>1.0.0</version>
-            <systemPath>${project.basedir}/lib/icbc-api-sdk-cop.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>icbc</groupId>
-            <artifactId>icbc-ca</artifactId>
-            <scope>system</scope>
-            <version>1.0.0</version>
-            <systemPath>${project.basedir}/lib/icbc-ca.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>InfosecCrypto</groupId>
-            <artifactId>InfosecCrypto</artifactId>
-            <scope>system</scope>
-            <version>1.0.0</version>
-            <systemPath>${project.basedir}/lib/InfosecCrypto_Java1_02_JDK14+.jar</systemPath>
-        </dependency>
+<!--        &lt;!&ndash;        工商银行本地jar包引入&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>icbc-api</groupId>-->
+<!--            <artifactId>proguard.jar</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>1.0.0</version>-->
+<!--            <systemPath>${project.basedir}/lib/proguard.jar</systemPath>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>icbc-api</groupId>-->
+<!--            <artifactId>commons-logging-1.2.jar</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>1.0.0</version>-->
+<!--            <systemPath>${project.basedir}/lib/commons-logging-1.2.jar</systemPath>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>icbc-api</groupId>-->
+<!--            <artifactId>hsm-software-share-1.0.5.jar</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>1.0.0</version>-->
+<!--            <systemPath>${project.basedir}/lib/hsm-software-share-1.0.5.jar</systemPath>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>icbc-api</groupId>-->
+<!--            <artifactId>icbc-api-sdk-cop-io</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>1.0.0</version>-->
+<!--            <systemPath>${project.basedir}/lib/icbc-api-sdk-cop-io.jar</systemPath>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>icbc-api</groupId>-->
+<!--            <artifactId>icbc-api-sdk-cop</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>1.0.0</version>-->
+<!--            <systemPath>${project.basedir}/lib/icbc-api-sdk-cop.jar</systemPath>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>icbc</groupId>-->
+<!--            <artifactId>icbc-ca</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>1.0.0</version>-->
+<!--            <systemPath>${project.basedir}/lib/icbc-ca.jar</systemPath>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>InfosecCrypto</groupId>-->
+<!--            <artifactId>InfosecCrypto</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>1.0.0</version>-->
+<!--            <systemPath>${project.basedir}/lib/InfosecCrypto_Java1_02_JDK14+.jar</systemPath>-->
+<!--        </dependency>-->
 
         <!--redis缓存组件-->
         <dependency>
@@ -538,6 +538,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
