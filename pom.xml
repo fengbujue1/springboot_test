@@ -423,7 +423,7 @@
             <artifactId>protobuf-java</artifactId>
             <!--<version>3.6.1</version>-->
             <!--官方文档推荐使用3.11.0版本-->
-            <version>3.11.0</version>
+            <version>3.16.3</version>
         </dependency>
 
         <!--官网说加入这个依赖可以使用protobuf  的一些特色-->
